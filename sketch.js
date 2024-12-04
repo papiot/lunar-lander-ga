@@ -13,13 +13,13 @@ const LANDER_HEIGHT = 50;
 const GRAVITY = 1.62; 
 
 // Scale factor to convert real physics to screen coordinates
-const SCALE = 0.1; 
+const SCALE = 0.01; 
 
 // Thrust force magnitude
-const THRUST_FORCE = 0.2; 
+const THRUST_FORCE = 3.0 * SCALE; 
 
 // Side thrusters' rotational force
-const ROTATION_THRUST = 0.003; 
+const ROTATION_THRUST = 0.03 * SCALE; 
 
 // State of the lander
 let lander = {
