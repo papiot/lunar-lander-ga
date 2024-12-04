@@ -214,16 +214,31 @@ function updateLander() {
             );
             
             // Check if lander has hit the terrain
-            if (lander.pos.y + LANDER_HEIGHT/2 + 20 >= terrainY) { // +20 for landing gear
+            if (lander.pos.y + LANDER_HEIGHT/2 + 20 >= terrainY) {
                 lander.crashed = true;
                 lander.pos.y = terrainY - LANDER_HEIGHT/2 - 20;
-                lander.vel = { x: 0, y: 0 };
-                lander.angularVelocity = 0; // Stop rotation on crash
                 
-                // Check if it's a safe landing
-                const landingSpeed = Math.abs(lander.vel.y);
-                console.log(`Landing speed: ${landingSpeed}`);
-                // TODO: Add landing success/failure logic
+                // Calculate landing conditions
+                const landingSpeed = Math.abs(lander.vel.y) * SCALE;
+                const terrainAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+                const landerAngle = lander.rotation;
+                const relativeLandingAngle = Math.abs(landerAngle - terrainAngle);
+                const maxSafeSpeed = 2 * SCALE;
+                const maxSafeAngle = PI / 9; // 20 degrees in radians
+                
+                // Check if landing was successful
+                const isSafeLanding = landingSpeed < maxSafeSpeed && 
+                                    relativeLandingAngle < maxSafeAngle;
+                
+                lander.vel = { x: 0, y: 0 };
+                lander.angularVelocity = 0;
+                
+                // Set crash state for visual feedback
+                lander.crashed = !isSafeLanding;
+                
+                console.log(`Landing speed: ${landingSpeed.toFixed(2)}`);
+                console.log(`Landing angle: ${(relativeLandingAngle * 180 / PI).toFixed(2)}°`);
+                console.log(`Landing ${isSafeLanding ? 'successful' : 'failed'}`);
             }
         }
     }
@@ -238,11 +253,13 @@ function drawLander() {
     translate(lander.pos.x, lander.pos.y);
     rotate(lander.rotation);
     
-    // Draw lander body
+    // Update color based on crash state
     if (lander.crashed) {
-        fill(255, 0, 0);
+        fill(255, 0, 0);  // Red for crash
+    } else if (lander.vel.x === 0 && lander.vel.y === 0) {
+        fill(0, 255, 0);  // Green for successful landing
     } else {
-        fill(200);
+        fill(200);        // Default gray while flying
     }
     stroke(0);
     rectMode(CENTER);
