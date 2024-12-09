@@ -1,3 +1,5 @@
+// import GeneticAlgorithm from "./genetic_algorithm";
+
 // State of the scene
 let currentScene = 'simulation'; 
 
@@ -52,8 +54,14 @@ function createSceneToggles() {
     simButton.position(canvasX + 70, canvasY - 40);
     trainButton.position(canvasX + 160, canvasY - 40);
     
-    simButton.mousePressed(() => currentScene = 'simulation');
-    trainButton.mousePressed(() => currentScene = 'training');
+    simButton.mousePressed(() => {
+        currentScene = 'simulation';
+        stopTraining(); // Add this to ensure training stops when switching scenes
+    });
+    trainButton.mousePressed(() => {
+        currentScene = 'training';
+        resetTraining(); // Add this to reset training state when switching to training scene
+    });
 }
 
 function loadTerrain(filename) {
@@ -153,10 +161,44 @@ function drawSimulationScene() {
 }
 
 function drawTrainingScene() {
-    // Placeholder for training scene content
+    // Draw basic training scene info
     fill(255);
     textSize(24);
-    text('Training Scene', width/2 - 70, height/2);
+    textAlign(CENTER);
+    text('Genetic Algorithm Training', width/2, 50);
+    
+    // Create start/stop training button if it doesn't exist
+    if (!window.trainButton) {
+        window.trainButton = createButton('Start Training');
+        window.trainButton.position(width/2 - 50, height/2);
+        window.trainButton.mousePressed(toggleTraining);
+    }
+}
+
+function startTraining() {
+    // Start training logic
+    if (!window.ga) {
+        // window.ga = new GeneticAlgorithm();
+        window.ga = new GeneticAlgorithm();
+    }
+    ga.evolve();
+}
+
+function toggleTraining() {
+    if (window.trainButton.html() === 'Start Training') {
+        window.trainButton.html('Stop Training');
+        startTraining(); // Function from your genetic algorithm file
+    } else {
+        window.trainButton.html('Start Training');
+        stopTraining(); // Function from your genetic algorithm file
+    }
+}
+
+// Add this function to clean up when switching scenes
+function resetTraining() {
+    if (window.trainButton) {
+        window.trainButton.html('Start Training');
+    }
 }
 
 function resetLander() {
@@ -374,3 +416,114 @@ function keyReleased() {
         lander.rightThruster = false;
     }
 } 
+
+
+class LunarLander {
+    constructor() {
+        this.position = 1000; // Starting height in meters
+        this.velocity = 0;    // Initial velocity
+        this.gravity = -1.62; // Moon's gravity in m/s²
+        this.thrust = 2.0;    // Thrust force in m/s²
+        this.fuel = 100;      // Starting fuel
+    }
+
+    // Simulate one time step (0.1 seconds)
+    step(thrustOn) {
+        const acceleration = this.gravity + (thrustOn ? this.thrust : 0);
+        this.velocity += acceleration * 0.1;
+        this.position += this.velocity * 0.1;
+        if (thrustOn) this.fuel -= 0.1;
+    }
+}
+
+class GeneticAlgorithm {
+    constructor(populationSize = 100, geneLength = 50) {
+        this.populationSize = populationSize;
+        this.geneLength = geneLength;
+        this.population = [];
+        this.initializePopulation();
+    }
+
+    // Create random initial population
+    initializePopulation() {
+        for (let i = 0; i < this.populationSize; i++) {
+            const chromosome = Array(this.geneLength).fill(0)
+                .map(() => Math.random() < 0.5 ? 1 : 0);
+            this.population.push(chromosome);
+        }
+    }
+
+    // Calculate fitness for a chromosome
+    calculateFitness(chromosome) {
+        const lander = new LunarLander();
+        
+        // Simulate the landing
+        for (let gene of chromosome) {
+            lander.step(gene === 1);
+            if (lander.position <= 0) break;
+        }
+
+        // Penalties for various failure conditions
+        if (lander.position > 0) return 0; // Didn't reach the ground
+        if (lander.fuel < 0) return 0;     // Ran out of fuel
+        
+        // Fitness based on landing velocity (softer landing = better fitness)
+        const velocityPenalty = Math.abs(lander.velocity);
+        return 1 / (1 + velocityPenalty);
+    }
+
+    // Select parents using tournament selection
+    selectParent() {
+        const tournamentSize = 5;
+        let best = null;
+        let bestFitness = -1;
+
+        for (let i = 0; i < tournamentSize; i++) {
+            const index = Math.floor(Math.random() * this.population.length);
+            const fitness = this.calculateFitness(this.population[index]);
+            if (fitness > bestFitness) {
+                best = this.population[index];
+                bestFitness = fitness;
+            }
+        }
+        return best;
+    }
+
+    // Crossover two parents to create offspring
+    crossover(parent1, parent2) {
+        const crossoverPoint = Math.floor(Math.random() * this.geneLength);
+        return [
+            ...parent1.slice(0, crossoverPoint),
+            ...parent2.slice(crossoverPoint)
+        ];
+    }
+
+    // Mutate a chromosome
+    mutate(chromosome, mutationRate = 0.01) {
+        return chromosome.map(gene => 
+            Math.random() < mutationRate ? (gene === 1 ? 0 : 1) : gene
+        );
+    }
+
+    // Evolve the population
+    evolve(generations = 100) {
+        for (let gen = 0; gen < generations; gen++) {
+            const newPopulation = [];
+
+            // Create new population
+            while (newPopulation.length < this.populationSize) {
+                const parent1 = this.selectParent();
+                const parent2 = this.selectParent();
+                let offspring = this.crossover(parent1, parent2);
+                offspring = this.mutate(offspring);
+                newPopulation.push(offspring);
+            }
+
+            this.population = newPopulation;
+
+            // Log best fitness for this generation
+            const bestFitness = Math.max(...this.population.map(p => this.calculateFitness(p)));
+            console.log(`Generation ${gen}: Best Fitness = ${bestFitness}`);
+        }
+    }
+}
