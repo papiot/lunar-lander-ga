@@ -23,6 +23,12 @@ const THRUST_FORCE = 3.0 * SCALE;
 // Side thrusters' rotational force
 const ROTATION_THRUST = 0.03 * SCALE; 
 
+// For testing:
+
+const genome_1 = "D,1.0;T,2.3;D,1.5;T,3.2;D,4.1;T,0.8"   
+const genome_2 = "D,1.0;D,1.2;T,4.5;D,2.1;T,1.9;D,3.3;T,2.7"
+const genome_3 = "D,1.0;T,1.1;T,2.4;D,3.7;T,1.5"
+
 // State of the lander
 let lander = {
     pos: { x: 0, y: 0 },
@@ -35,6 +41,15 @@ let lander = {
     rightThruster: false
 };
 
+// Add current genome tracking
+let currentGenome = genome_1; // Using the test genome we defined earlier
+let currentGenomeIndex = 1;
+
+// Add these near other lander-related variables
+let currentActionIndex = 0;  // Which gene we're currently executing
+let actionTimer = 0;        // How long current action has been running
+let currentActions = [];    // Parsed array of [action, duration] pairs
+
 function setup() {
     createCanvas(800, 600);
     createSceneToggles();
@@ -43,7 +58,8 @@ function setup() {
 }
 
 function createSceneToggles() {
-    const simButton = createButton('Simulation');
+    const simButton = createButton('Manual');
+    const simGAButton = createButton('GA Test');
     const trainButton = createButton('Training');
     
     const canvas = document.querySelector('canvas');
@@ -52,16 +68,15 @@ function createSceneToggles() {
     
     // Position buttons at top of canvas
     simButton.position(canvasX + 70, canvasY - 40);
-    trainButton.position(canvasX + 160, canvasY - 40);
+    simGAButton.position(canvasX + 160, canvasY - 40);
+    trainButton.position(canvasX + 250, canvasY - 40);
     
-    simButton.mousePressed(() => {
-        currentScene = 'simulation';
-        stopTraining(); // Add this to ensure training stops when switching scenes
+    simButton.mousePressed(() => currentScene = 'simulation');
+    simGAButton.mousePressed(() => {
+        currentScene = 'simulation_ga';
+        resetLander();
     });
-    trainButton.mousePressed(() => {
-        currentScene = 'training';
-        resetTraining(); // Add this to reset training state when switching to training scene
-    });
+    trainButton.mousePressed(() => currentScene = 'training');
 }
 
 function loadTerrain(filename) {
@@ -117,9 +132,15 @@ function generateRandomTerrain() {
 function draw() {
     background(128);
     
-    // Draw different content based on current scene
     if (currentScene === 'simulation') {
         drawSimulationScene();
+    } else if (currentScene === 'simulation_ga') {
+        drawSimulationScene();
+        // Add genome info overlay
+        fill(255);
+        textSize(16);
+        textAlign(LEFT);
+        text(`Using genome ${currentGenomeIndex}`, 20, 30);
     } else {
         drawTrainingScene();
     }
@@ -208,19 +229,63 @@ function resetLander() {
     lander.rotation = 0;
     lander.angularVelocity = 0; // random(-0.05, 0.05); // Random angular velocity
     lander.crashed = false;
+    
+    // Add genome parsing and reset when in GA mode
+    if (currentScene === 'simulation_ga') {
+        currentActionIndex = 0;
+        actionTimer = 0;
+        // Parse genome string into actions array
+        currentActions = currentGenome.split(';').map(gene => {
+            const [action, duration] = gene.split(',');
+            return [action, parseFloat(duration)];
+        });
+    }
 }
 
 function updateLander() {
     if (lander.crashed) return;
+
+    // Add GA control logic at the start of updateLander
+    if (currentScene === 'simulation_ga') {
+        // Update action timer
+        actionTimer += deltaTime / 1000; // Convert milliseconds to seconds
+        
+        // Check if we have actions to execute
+        if (currentActionIndex < currentActions.length) {
+            const [action, duration] = currentActions[currentActionIndex];
+            
+            // Execute current action
+            if (action === 'T') {
+                lander.mainThruster = true;
+            } else {
+                lander.mainThruster = false;
+            }
+            
+            // Move to next action if current one is complete
+            if (actionTimer >= duration) {
+                currentActionIndex++;
+                actionTimer = 0;
+                lander.mainThruster = false;
+            }
+        } else {
+            // No more actions, turn off thrusters
+            lander.mainThruster = false;
+        }
+    }
 
     // Apply gravity
     lander.vel.y += GRAVITY * SCALE;
     
     // Apply main thruster
     if (lander.mainThruster) {    
-        // Calculate thrust vector based on lander's rotation
-        let thrustX = -THRUST_FORCE * Math.sin(lander.rotation);
-        let thrustY = -THRUST_FORCE * Math.cos(lander.rotation);
+        // Calculate thrust direction based on rotation
+        const thrustAngle = lander.rotation - PI/2; // Adjust so 0 means thrusting up
+        
+        // Convert polar coordinates (angle and magnitude) to Cartesian (x,y)
+        const thrustX = THRUST_FORCE * Math.cos(thrustAngle);
+        const thrustY = THRUST_FORCE * Math.sin(thrustAngle);
+        
+        // Add thrust to current velocity
         lander.vel.x += thrustX;
         lander.vel.y += thrustY;
     }
@@ -416,114 +481,3 @@ function keyReleased() {
         lander.rightThruster = false;
     }
 } 
-
-
-class LunarLander {
-    constructor() {
-        this.position = 1000; // Starting height in meters
-        this.velocity = 0;    // Initial velocity
-        this.gravity = -1.62; // Moon's gravity in m/s²
-        this.thrust = 2.0;    // Thrust force in m/s²
-        this.fuel = 100;      // Starting fuel
-    }
-
-    // Simulate one time step (0.1 seconds)
-    step(thrustOn) {
-        const acceleration = this.gravity + (thrustOn ? this.thrust : 0);
-        this.velocity += acceleration * 0.1;
-        this.position += this.velocity * 0.1;
-        if (thrustOn) this.fuel -= 0.1;
-    }
-}
-
-class GeneticAlgorithm {
-    constructor(populationSize = 100, geneLength = 50) {
-        this.populationSize = populationSize;
-        this.geneLength = geneLength;
-        this.population = [];
-        this.initializePopulation();
-    }
-
-    // Create random initial population
-    initializePopulation() {
-        for (let i = 0; i < this.populationSize; i++) {
-            const chromosome = Array(this.geneLength).fill(0)
-                .map(() => Math.random() < 0.5 ? 1 : 0);
-            this.population.push(chromosome);
-        }
-    }
-
-    // Calculate fitness for a chromosome
-    calculateFitness(chromosome) {
-        const lander = new LunarLander();
-        
-        // Simulate the landing
-        for (let gene of chromosome) {
-            lander.step(gene === 1);
-            if (lander.position <= 0) break;
-        }
-
-        // Penalties for various failure conditions
-        if (lander.position > 0) return 0; // Didn't reach the ground
-        if (lander.fuel < 0) return 0;     // Ran out of fuel
-        
-        // Fitness based on landing velocity (softer landing = better fitness)
-        const velocityPenalty = Math.abs(lander.velocity);
-        return 1 / (1 + velocityPenalty);
-    }
-
-    // Select parents using tournament selection
-    selectParent() {
-        const tournamentSize = 5;
-        let best = null;
-        let bestFitness = -1;
-
-        for (let i = 0; i < tournamentSize; i++) {
-            const index = Math.floor(Math.random() * this.population.length);
-            const fitness = this.calculateFitness(this.population[index]);
-            if (fitness > bestFitness) {
-                best = this.population[index];
-                bestFitness = fitness;
-            }
-        }
-        return best;
-    }
-
-    // Crossover two parents to create offspring
-    crossover(parent1, parent2) {
-        const crossoverPoint = Math.floor(Math.random() * this.geneLength);
-        return [
-            ...parent1.slice(0, crossoverPoint),
-            ...parent2.slice(crossoverPoint)
-        ];
-    }
-
-    // Mutate a chromosome
-    mutate(chromosome, mutationRate = 0.01) {
-        return chromosome.map(gene => 
-            Math.random() < mutationRate ? (gene === 1 ? 0 : 1) : gene
-        );
-    }
-
-    // Evolve the population
-    evolve(generations = 100) {
-        for (let gen = 0; gen < generations; gen++) {
-            const newPopulation = [];
-
-            // Create new population
-            while (newPopulation.length < this.populationSize) {
-                const parent1 = this.selectParent();
-                const parent2 = this.selectParent();
-                let offspring = this.crossover(parent1, parent2);
-                offspring = this.mutate(offspring);
-                newPopulation.push(offspring);
-            }
-
-            this.population = newPopulation;
-
-            // Log best fitness for this generation
-            const bestFitness = Math.max(...this.population.map(p => this.calculateFitness(p)));
-            console.log(`Generation ${gen}: Best Fitness = ${bestFitness}`);
-        }
-    }
-}
