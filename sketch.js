@@ -1,4 +1,3 @@
-// import GeneticAlgorithm from "./genetic_algorithm";
 
 // State of the scene
 let currentScene = 'simulation'; 
@@ -25,9 +24,8 @@ const ROTATION_THRUST = 0.03 * SCALE;
 
 // For testing:
 
-const genome_1 = "D,1.0;T,2.3;D,1.5;T,3.2;D,4.1;T,0.8"   
-const genome_2 = "D,1.0;D,1.2;T,4.5;D,2.1;T,1.9;D,3.3;T,2.7"
-const genome_3 = "D,1.0;T,1.1;T,2.4;D,3.7;T,1.5"
+let currentGenome = '';
+let genomeFileName = 'genomes/genome_2024-12-13T20-02-36.528Z.txt';
 
 // State of the lander
 let lander = {
@@ -42,19 +40,28 @@ let lander = {
 };
 
 // Add current genome tracking
-let currentGenome = genome_1; // Using the test genome we defined earlier
-let currentGenomeIndex = 1;
-
-// Add these near other lander-related variables
 let currentActionIndex = 0;  // Which gene we're currently executing
 let actionTimer = 0;        // How long current action has been running
 let currentActions = [];    // Parsed array of [action, duration] pairs
 
+// Add this function near other initialization functions
+function loadGenome(index) {
+    fetch(genomeFileName)
+        .then(response => response.text())
+        .then(data => {
+            currentGenome = data.trim();
+            resetLander(); // Reset lander with new genome
+        })
+        .catch(error => {
+            console.error('Error loading genome:', error);
+        });
+}
+
 function setup() {
     createCanvas(800, 600);
     createSceneToggles();
-    loadTerrain('terrain/terrain_2024-12-04T11-42-51.json'); // Load default terrain
-    resetLander();
+    loadTerrain('terrain/terrain_2024-12-04T11-42-51.json');
+    loadGenome(1); // Load first genome by default
 }
 
 function createSceneToggles() {
@@ -140,7 +147,7 @@ function draw() {
         fill(255);
         textSize(16);
         textAlign(LEFT);
-        text(`Using genome ${currentGenomeIndex}`, 20, 30);
+        text(`Using genome ${genomeFileName}`, 20, 30);
     } else {
         drawTrainingScene();
     }
@@ -199,10 +206,14 @@ function drawTrainingScene() {
 function startTraining() {
     // Start training logic
     if (!window.ga) {
-        // window.ga = new GeneticAlgorithm();
-        window.ga = new GeneticAlgorithm();
+        window.ga = new GeneticAlgorithm({
+            populationSize: 50,
+            mutationRate: 0.1,
+            terrain: terrain,
+            lander: lander
+        });
     }
-    ga.evolve();
+    window.ga.evolve();
 }
 
 function toggleTraining() {
@@ -468,6 +479,12 @@ function keyPressed() {
     if (keyCode === RIGHT_ARROW) {
         lander.rightThruster = true;
     }
+    if (currentScene === 'simulation_ga') {
+        if (key === '1' || key === '2' || key === '3') {
+            loadGenome(parseInt(key));
+            return;
+        }
+    }
 }
 
 function keyReleased() {
@@ -479,5 +496,235 @@ function keyReleased() {
     }
     if (keyCode === RIGHT_ARROW) {
         lander.rightThruster = false;
+    }
+} 
+
+// Add this function to stop training
+function stopTraining() {
+    if (window.ga) {
+        window.ga.stop();
+    }
+}
+
+
+
+class GeneticAlgorithm {
+    constructor() {
+        this.populationSize = 100;
+        this.maxGenes = 50;
+        this.currentGeneration = 0;
+        this.maxGenerations = 3;
+        this.mutationRate = 0.1;
+        this.population = [];
+        this.bestFitness = -Infinity;
+        this.bestGenome = null;
+        
+        // Constants for fitness calculation
+        this.MAX_SAFE_LANDING_SPEED = 2 * SCALE;
+        this.MAX_SAFE_ANGLE = PI / 9;
+        this.TARGET_LANDING_Y = height - 100; // Landing pad height
+        
+        this.initialize();
+    }
+    
+    initialize() {
+        // Create initial population
+        for (let i = 0; i < this.populationSize; i++) {
+            const genome = this.createRandomGenome();
+            this.population.push(genome);
+        }
+    }
+    
+    createRandomGenome() {
+        const numGenes = Math.floor(random(10, this.maxGenes));
+        const genes = [];
+        
+        for (let i = 0; i < numGenes; i++) {
+            const action = random() < 0.5 ? 'T' : 'D';
+            const duration = random(0.1, 3).toFixed(1);
+            genes.push(`${action},${duration}`);
+        }
+        
+        return genes.join(';');
+    }
+    
+    async evolve() {
+        while (this.currentGeneration < this.maxGenerations) {
+            console.log(`Generation ${this.currentGeneration + 1}/${this.maxGenerations}`);
+            
+            // Evaluate fitness for all genomes
+            const fitnessScores = await Promise.all(
+                this.population.map(genome => this.evaluateFitness(genome))
+            );
+            
+            // Find best genome
+            const bestIndex = fitnessScores.indexOf(Math.max(...fitnessScores));
+            if (fitnessScores[bestIndex] > this.bestFitness) {
+                this.bestFitness = fitnessScores[bestIndex];
+                this.bestGenome = this.population[bestIndex];
+                console.log(`New best fitness: ${this.bestFitness}`);
+            }
+            
+            // Create new population
+            const newPopulation = [];
+            
+            // Keep best 10% of population
+            const eliteCount = Math.floor(this.populationSize * 0.1);
+            const sortedIndices = fitnessScores
+                .map((f, i) => ({f, i}))
+                .sort((a, b) => b.f - a.f)
+                .map(x => x.i);
+            
+            for (let i = 0; i < eliteCount; i++) {
+                newPopulation.push(this.population[sortedIndices[i]]);
+            }
+            
+            // Create rest through crossover and mutation
+            while (newPopulation.length < this.populationSize) {
+                const parent1 = this.selectParent(fitnessScores);
+                const parent2 = this.selectParent(fitnessScores);
+                let child = this.crossover(
+                    this.population[parent1],
+                    this.population[parent2]
+                );
+                child = this.mutate(child);
+                newPopulation.push(child);
+            }
+            
+            this.population = newPopulation;
+            this.currentGeneration++;
+            
+            // Save best genome every 10 generations
+            if (this.currentGeneration % 10 === 0) {
+                this.saveGenome();
+            }
+        }
+        
+        // Save final best genome
+        this.saveGenome();
+    }
+    
+    async evaluateFitness(genome) {
+        return new Promise(resolve => {
+            // Create temporary lander for simulation
+            const testLander = {
+                pos: { x: width/2, y: 50 },
+                vel: { x: 0, y: 0 },
+                rotation: 0,
+                angularVelocity: 0,
+                crashed: false,
+                mainThruster: false
+            };
+            
+            // Parse genome
+            const actions = genome.split(';').map(gene => {
+                const [action, duration] = gene.split(',');
+                return [action, parseFloat(duration)];
+            });
+            
+            let currentAction = 0;
+            let actionTimer = 0;
+            let simulationSteps = 0;
+            const maxSteps = 1000; // Prevent infinite loops
+            
+            const simulate = () => {
+                if (simulationSteps++ > maxSteps || testLander.crashed) {
+                    // Calculate fitness
+                    const distanceToLanding = Math.abs(testLander.pos.y - this.TARGET_LANDING_Y);
+                    const speedPenalty = Math.abs(testLander.vel.y) > this.MAX_SAFE_LANDING_SPEED ? 1000 : 0;
+                    const anglePenalty = Math.abs(testLander.rotation) > this.MAX_SAFE_ANGLE ? 1000 : 0;
+                    
+                    // Higher fitness is better
+                    const fitness = 10000 - distanceToLanding - speedPenalty - anglePenalty;
+                    resolve(fitness);
+                    return;
+                }
+                
+                // Update action
+                if (currentAction < actions.length) {
+                    const [action, duration] = actions[currentAction];
+                    testLander.mainThruster = (action === 'T');
+                    
+                    actionTimer += 1/60; // Assuming 60 FPS
+                    if (actionTimer >= duration) {
+                        currentAction++;
+                        actionTimer = 0;
+                    }
+                }
+                
+                // Update physics (simplified version of updateLander)
+                testLander.vel.y += GRAVITY * SCALE;
+                
+                if (testLander.mainThruster) {
+                    testLander.vel.y -= THRUST_FORCE;
+                }
+                
+                testLander.pos.y += testLander.vel.y;
+                
+                // Check for collision
+                if (testLander.pos.y >= this.TARGET_LANDING_Y) {
+                    testLander.crashed = true;
+                }
+                
+                requestAnimationFrame(simulate);
+            };
+            
+            simulate();
+        });
+    }
+    
+    selectParent(fitnessScores) {
+        // Tournament selection
+        const tournamentSize = 5;
+        let bestIndex = Math.floor(random(this.populationSize));
+        let bestFitness = fitnessScores[bestIndex];
+        
+        for (let i = 0; i < tournamentSize - 1; i++) {
+            const index = Math.floor(random(this.populationSize));
+            if (fitnessScores[index] > bestFitness) {
+                bestIndex = index;
+                bestFitness = fitnessScores[index];
+            }
+        }
+        
+        return bestIndex;
+    }
+    
+    crossover(genome1, genome2) {
+        const genes1 = genome1.split(';');
+        const genes2 = genome2.split(';');
+        
+        const crossoverPoint = Math.floor(random(
+            Math.min(genes1.length, genes2.length)
+        ));
+        
+        const newGenes = [
+            ...genes1.slice(0, crossoverPoint),
+            ...genes2.slice(crossoverPoint)
+        ];
+        
+        return newGenes.join(';');
+    }
+    
+    mutate(genome) {
+        const genes = genome.split(';');
+        const mutatedGenes = genes.map(gene => {
+            if (random() < this.mutationRate) {
+                // Create new random gene
+                const action = random() < 0.5 ? 'T' : 'D';
+                const duration = random(0.1, 3).toFixed(1);
+                return `${action},${duration}`;
+            }
+            return gene;
+        });
+        
+        return mutatedGenes.join(';');
+    }
+    
+    saveGenome() {
+        const date = new Date();
+        const filename = `genome_${date.toISOString().replace(/:/g, '-')}.txt`;
+        saveStrings([this.bestGenome], filename);
+        console.log(`Saved genome to ${filename}`);
     }
 } 
