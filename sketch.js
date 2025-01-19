@@ -9,12 +9,10 @@ const LANDER_WIDTH = 40;
 const LANDER_HEIGHT = 50;
 
 // Constants for the physics
-// Moon's gravity in m/s²
-const GRAVITY = 1.62; 
-// Earth's gravity in m/s²
-// const GRAVITY = 9.81; 
-// Very low gravity in m/s²
-// const GRAVITY = 0.5; 
+// Will be set randomly on reset
+let GRAVITY;
+const MIN_GRAVITY = 2;    // Minimum gravity in m/s²
+const MAX_GRAVITY = 10;   // Maximum gravity in m/s²
 
 // Scale factor to convert real physics to screen coordinates
 const SCALE = 0.01; 
@@ -187,6 +185,12 @@ function drawSimulationScene() {
     }
     strokeWeight(1);
     
+    // Display current gravity value
+    fill(255);
+    textSize(16);
+    textAlign(LEFT);
+    text(`Gravity: ${GRAVITY.toFixed(1)} m/s²`, 20, 50);
+    
     // Update and draw 
     updateLander();
     drawLander();
@@ -246,13 +250,16 @@ function resetTraining() {
 }
 
 function resetLander() {
+    // Randomize gravity
+    GRAVITY = random(MIN_GRAVITY, MAX_GRAVITY);
+    
     // Start from top
     lander.pos = { x: width/2, y: 50 }; 
     lander.vel = { x: 0, y: 0 };
     lander.rotation = 0;
     lander.angularVelocity = 0;
     lander.crashed = false;
-    lander.landed = false;  // Add landed state reset
+    lander.landed = false;
     
     // Add genome parsing and reset when in GA mode
     if (currentScene === 'simulation_ga') {
