@@ -10,7 +10,7 @@ const LANDER_HEIGHT = 50;
 
 // Constants for the physics
 // Will be set randomly on reset
-let GRAVITY;
+let GRAVITY = 1.62;
 const MIN_GRAVITY = 2;    // Minimum gravity in m/s²
 const MAX_GRAVITY = 10;   // Maximum gravity in m/s²
 
@@ -46,6 +46,49 @@ let currentActionIndex = 0;  // Which gene we're currently executing
 let actionTimer = 0;        // How long current action has been running
 let currentActions = [];    // Parsed array of [action, duration] pairs
 
+// Add PID controller constants and variables
+let USE_PID = false;  // Toggle for PID control
+let altitudePID, horizontalPID, rotationPID;  // PID controller instances
+
+class PIDController {
+    constructor(kp, ki, kd) {
+        this.kp = kp;
+        this.ki = ki;
+        this.kd = kd;
+        this.previousError = 0;
+        this.integral = 0;
+        this.lastTime = null;
+    }
+    
+    compute(setpoint, measuredValue) {
+        const currentTime = millis();
+        if (this.lastTime === null) {
+            this.lastTime = currentTime;
+            return 0;
+        }
+        
+        const dt = (currentTime - this.lastTime) / 1000; // Convert to seconds
+        this.lastTime = currentTime;
+        
+        const error = setpoint - measuredValue;
+        this.integral += error * dt;
+        const derivative = (error - this.previousError) / dt;
+        
+        const output = this.kp * error + 
+                      this.ki * this.integral + 
+                      this.kd * derivative;
+        
+        this.previousError = error;
+        return output;
+    }
+    
+    reset() {
+        this.previousError = 0;
+        this.integral = 0;
+        this.lastTime = null;
+    }
+}
+
 // Add this function near other initialization functions
 function loadGenome(index) {
     fetch(genomeFileName)
@@ -64,12 +107,20 @@ function setup() {
     createSceneToggles();
     loadTerrain('terrain/terrain_2024-12-04T11-42-51.json');
     loadGenome(1); // Load first genome by default
+    
+    // Initialize PID controllers
+    // Tune these values as needed
+    altitudePID = new PIDController(0.1, 0.01, 0.05);    // Vertical control
+    
+    // horizontalPID = new PIDController(0.1, 0.01, 0.05);  // Horizontal control
+    // rotationPID = new PIDController(2.0, 0.1, 0.5);      // Rotation control
 }
 
 function createSceneToggles() {
     const simButton = createButton('Manual');
     const simGAButton = createButton('GA Test');
     const trainButton = createButton('Training');
+    const pidButton = createButton('PID Control');  // New button
     
     const canvas = document.querySelector('canvas');
     const canvasX = canvas.offsetLeft;
@@ -79,13 +130,23 @@ function createSceneToggles() {
     simButton.position(canvasX + 70, canvasY - 40);
     simGAButton.position(canvasX + 160, canvasY - 40);
     trainButton.position(canvasX + 250, canvasY - 40);
+    pidButton.position(canvasX + 340, canvasY - 40);  // Position the new button
     
-    simButton.mousePressed(() => currentScene = 'simulation');
+    simButton.mousePressed(() => {
+        currentScene = 'simulation';
+        USE_PID = false;
+    });
     simGAButton.mousePressed(() => {
         currentScene = 'simulation_ga';
+        USE_PID = false;
         resetLander();
     });
     trainButton.mousePressed(() => currentScene = 'training');
+    pidButton.mousePressed(() => {
+        currentScene = 'simulation';
+        USE_PID = true;
+        resetLander();
+    });
 }
 
 function loadTerrain(filename) {
@@ -185,11 +246,12 @@ function drawSimulationScene() {
     }
     strokeWeight(1);
     
-    // Display current gravity value
+    // Display current gravity value and PID status
     fill(255);
     textSize(16);
     textAlign(LEFT);
     text(`Gravity: ${GRAVITY.toFixed(1)} m/s²`, 20, 50);
+    text(`PID Control: ${USE_PID ? 'ON' : 'OFF'}`, 20, 80);  // Add PID status display
     
     // Update and draw 
     updateLander();
@@ -261,6 +323,11 @@ function resetLander() {
     lander.crashed = false;
     lander.landed = false;
     
+    // Reset PID controllers
+    altitudePID.reset();
+    // horizontalPID.reset();
+    // rotationPID.reset();
+    
     // Add genome parsing and reset when in GA mode
     if (currentScene === 'simulation_ga') {
         currentActionIndex = 0;
@@ -274,13 +341,41 @@ function resetLander() {
 }
 
 function updateLander() {
-    if (lander.crashed) return;
-    
-    // Add success state check at the start
-    if (lander.landed) return;  // Stop processing if successfully landed
+    if (lander.crashed || lander.landed) return;
 
-    // Add GA control logic at the start of updateLander
-    if (currentScene === 'simulation_ga') {
+    if (currentScene === 'simulation' && USE_PID) {
+        // Find target landing spot (middle of landing pad)
+        const landingTarget = {
+            x: width/2,
+            y: height - 100  // Landing pad height
+        };
+        
+        // Calculate desired rotation to point towards target
+        const dx = landingTarget.x - lander.pos.x;
+        const dy = landingTarget.y - lander.pos.y;
+        const desiredRotation = Math.atan2(dy, dx) + PI/2;  // Add PI/2 to point upwards
+        
+        // Get PID outputs
+        // const rotationControl = rotationPID.compute(desiredRotation, lander.rotation);
+        const altitudeControl = altitudePID.compute(landingTarget.y, lander.pos.y);
+        // const horizontalControl = horizontalPID.compute(landingTarget.x, lander.pos.x);
+        
+        // Apply rotation control
+        // if (rotationControl > 0.1) {
+        //     lander.leftThruster = true;
+        //     lander.rightThruster = false;
+        // } else if (rotationControl < -0.1) {
+        //     lander.leftThruster = false;
+        //     lander.rightThruster = true;
+        // } else {
+        //     lander.leftThruster = false;
+        //     lander.rightThruster = false;
+        // }
+        
+        // Apply main thruster based on altitude control
+        lander.mainThruster = altitudeControl > 0;
+        
+    } else if (currentScene === 'simulation_ga') {
         // Update action timer
         actionTimer += deltaTime / 1000; // Convert milliseconds to seconds
         
