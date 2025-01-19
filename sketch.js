@@ -1,4 +1,3 @@
-
 // State of the scene
 let currentScene = 'simulation'; 
 
@@ -12,6 +11,10 @@ const LANDER_HEIGHT = 50;
 // Constants for the physics
 // Moon's gravity in m/s²
 const GRAVITY = 1.62; 
+// Earth's gravity in m/s²
+// const GRAVITY = 9.81; 
+// Very low gravity in m/s²
+// const GRAVITY = 0.5; 
 
 // Scale factor to convert real physics to screen coordinates
 const SCALE = 0.01; 
@@ -36,7 +39,8 @@ let lander = {
     crashed: false,
     mainThruster: false,
     leftThruster: false,
-    rightThruster: false
+    rightThruster: false,
+    landed: false
 };
 
 // Add current genome tracking
@@ -186,6 +190,14 @@ function drawSimulationScene() {
     // Update and draw 
     updateLander();
     drawLander();
+
+    // Add success message
+    if (lander.landed) {
+        fill(0, 255, 0);
+        textSize(32);
+        textAlign(CENTER);
+        text('Success!', width/2, height/2);
+    }
 }
 
 function drawTrainingScene() {
@@ -238,8 +250,9 @@ function resetLander() {
     lander.pos = { x: width/2, y: 50 }; 
     lander.vel = { x: 0, y: 0 };
     lander.rotation = 0;
-    lander.angularVelocity = 0; // random(-0.05, 0.05); // Random angular velocity
+    lander.angularVelocity = 0;
     lander.crashed = false;
+    lander.landed = false;  // Add landed state reset
     
     // Add genome parsing and reset when in GA mode
     if (currentScene === 'simulation_ga') {
@@ -255,6 +268,9 @@ function resetLander() {
 
 function updateLander() {
     if (lander.crashed) return;
+    
+    // Add success state check at the start
+    if (lander.landed) return;  // Stop processing if successfully landed
 
     // Add GA control logic at the start of updateLander
     if (currentScene === 'simulation_ga') {
@@ -351,8 +367,14 @@ function updateLander() {
                 lander.vel = { x: 0, y: 0 };
                 lander.angularVelocity = 0;
                 
-                // Set crash state for visual feedback
-                lander.crashed = !isSafeLanding;
+                // Update these lines to handle successful landing differently
+                if (isSafeLanding) {
+                    lander.landed = true;  // New state for successful landing
+                    lander.crashed = false;
+                } else {
+                    lander.crashed = true;
+                    lander.landed = false;
+                }
                 
                 console.log(`Landing speed: ${landingSpeed.toFixed(2)}`);
                 console.log(`Landing angle: ${(relativeLandingAngle * 180 / PI).toFixed(2)}°`);
@@ -371,10 +393,10 @@ function drawLander() {
     translate(lander.pos.x, lander.pos.y);
     rotate(lander.rotation);
     
-    // Update color based on crash state
+    // Update color based on crash/landing state
     if (lander.crashed) {
         fill(255, 0, 0);  // Red for crash
-    } else if (lander.vel.x === 0 && lander.vel.y === 0) {
+    } else if (lander.landed) {
         fill(0, 255, 0);  // Green for successful landing
     } else {
         fill(200);        // Default gray while flying
