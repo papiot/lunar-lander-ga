@@ -262,8 +262,84 @@ function drawTrainingScene() {
     // Create start/stop training button if it doesn't exist
     if (!window.trainButton) {
         window.trainButton = createButton('Start Training');
-        window.trainButton.position(width/2 - 50, height/2);
+        window.trainButton.position(width/2 - 50, height/2 - 150);
         window.trainButton.mousePressed(toggleTraining);
+    }
+
+    // Draw 10 visualization squares
+    const squareSize = width / 10;
+    const startY = height / 2;
+    
+    for (let i = 0; i < 10; i++) {
+        const x = i * squareSize;
+        
+        // Draw square border
+        stroke(200);
+        noFill();
+        rect(x, startY, squareSize, squareSize);
+        
+        // If we have active simulations, draw their state
+        if (window.ga && window.ga.activeSimulations && window.ga.activeSimulations[i]) {
+            const sim = window.ga.activeSimulations[i];
+            
+            // Draw mini terrain
+            stroke(100);
+            fill(100);
+            beginShape();
+            for (let point of terrain) {
+                // Scale terrain to fit in square
+                const scaledX = map(point.x, 0, width, x, x + squareSize);
+                const scaledY = map(point.y, 0, height, startY, startY + squareSize);
+                vertex(scaledX, scaledY);
+            }
+            vertex(x + squareSize, startY + squareSize);
+            vertex(x, startY + squareSize);
+            endShape(CLOSE);
+            
+            // Draw mini lander if it exists
+            if (sim.lander) {
+                const scaledX = map(sim.lander.pos.x, 0, width, x, x + squareSize);
+                const scaledY = map(sim.lander.pos.y, 0, height, startY, startY + squareSize);
+                
+                push();
+                translate(scaledX, scaledY);
+                
+                // Color based on lander state
+                if (sim.lander.crashed) {
+                    fill(255, 0, 0);  // Red for crashed
+                } else if (sim.lander.landed) {
+                    fill(0, 255, 0);  // Green for landed
+                } else {
+                    fill(255);  // White for active
+                }
+                
+                // Draw simplified lander
+                noStroke();
+                rect(-3, -3, 6, 6);
+                pop();
+            }
+            
+            // Draw simulation info
+            fill(255);
+            noStroke();
+            textSize(10);
+            textAlign(LEFT);
+            text(`G: ${sim.gravity?.toFixed(1) || '?'}`, x + 5, startY + 15);
+            if (sim.fitness !== undefined) {
+                text(`F: ${sim.fitness.toFixed(0)}`, x + 5, startY + 30);
+            }
+        }
+    }
+    
+    // Draw generation info if available
+    if (window.ga) {
+        fill(255);
+        textSize(16);
+        textAlign(LEFT);
+        text(`Generation: ${window.ga.currentGeneration + 1}/${window.ga.maxGenerations}`, 20, height - 60);
+        if (window.ga.bestFitness !== -Infinity) {
+            text(`Best Fitness: ${window.ga.bestFitness.toFixed(0)}`, 20, height - 40);
+        }
     }
 }
 
@@ -595,7 +671,7 @@ class GeneticAlgorithm {
     constructor() {
         this.populationSize = 100;
         this.currentGeneration = 0;
-        this.maxGenerations = 10;
+        this.maxGenerations = 5;
         this.mutationRate = 0.1;
         this.population = [];
         this.bestFitness = -Infinity;
@@ -609,6 +685,8 @@ class GeneticAlgorithm {
         // Sequence parameters
         this.MAX_SEQUENCE_LENGTH = 10;
         this.DURATION_RANGE = { min: 1.0, max: 2.5 };  // Updated duration range: minimum 1s, maximum 2.5s
+        
+        this.activeSimulations = new Array(10).fill(null);
         
         this.initialize();
     }
@@ -710,24 +788,30 @@ class GeneticAlgorithm {
     async evaluateFitness(genome) {
         // Test each genome under 10 different random gravity conditions
         const gravityTests = Array.from({length: 10}, () => random(1.2, 10));
-        console.log('\nTesting genome under gravities:', gravityTests.map(g => g.toFixed(2)));
         
-        const fitnessPromises = gravityTests.map(gravity => 
-            this.evaluateUnderGravity(genome, gravity)
+        // Initialize simulation objects for visualization
+        this.activeSimulations = gravityTests.map(gravity => ({
+            gravity,
+            lander: {
+                pos: { x: width/2, y: 50 },
+                vel: { x: 0, y: 0 },
+                crashed: false,
+                landed: false
+            },
+            fitness: undefined
+        }));
+        
+        const fitnessPromises = gravityTests.map((gravity, index) => 
+            this.evaluateUnderGravity(genome, gravity, index)
         );
         
-        // Wait for all gravity condition tests to complete
         const fitnessResults = await Promise.all(fitnessPromises);
-        
-        // Calculate and log average fitness
         const avgFitness = fitnessResults.reduce((a, b) => a + b) / fitnessResults.length;
-        console.log('\nFitness results:', fitnessResults.map(f => f.toFixed(2)));
-        console.log('Average fitness:', avgFitness.toFixed(2));
         
         return avgFitness;
     }
     
-    async evaluateUnderGravity(genome, testGravity) {
+    async evaluateUnderGravity(genome, testGravity, simulationIndex) {
         return new Promise(resolve => {
             const parts = genome.split(';');
             const [kp, ki, kd] = parts[0].split(',').map(Number);
@@ -812,25 +896,88 @@ class GeneticAlgorithm {
                     console.log(`Position: ${testLander.pos.y.toFixed(2)}`);
                     console.log(`Velocity: ${testLander.vel.y.toFixed(2)}`);
                     
+                    this.activeSimulations[simulationIndex].fitness = fitness;
                     resolve(fitness);
                     return;
                 }
                 
+                // Update PID control and thrusters
+                if (currentActionIndex < actions.length) {
+                    const [type, duration] = actions[currentActionIndex].split(',');
+                    const scaledDuration = Number(duration) / Math.sqrt(testGravity);
+                    currentActionTime += 1/60;
+
+                    if (currentActionTime >= scaledDuration) {
+                        currentActionIndex++;
+                        currentActionTime = 0;
+                    }
+
+                    if (type === 'T') {
+                        const pidOutput = testPID.compute(targetY, testLander.pos.y, testLander.vel.y);
+                        testLander.mainThruster = pidOutput > testPID.threshold;
+                        if (testLander.mainThruster) {
+                            thrusterUsage++;
+                        }
+                    } else {
+                        testLander.mainThruster = false;
+                    }
+                }
+
                 // Update physics with gravity-scaled thrust
                 testLander.vel.y += testGravity * SCALE;
                 if (testLander.mainThruster) {
-                    // Scale thrust force relative to current gravity
                     const scaledThrust = BASE_THRUST_FORCE * (testGravity / MIN_GRAVITY);
                     testLander.vel.y -= scaledThrust * SCALE;
                 }
                 testLander.pos.y += testLander.vel.y;
-                
+
+                // Check for collision with terrain
+                for (let i = 0; i < terrain.length - 1; i++) {
+                    const p1 = terrain[i];
+                    const p2 = terrain[i + 1];
+
+                    if (testLander.pos.x >= p1.x && testLander.pos.x <= p2.x) {
+                        const terrainY = map(
+                            testLander.pos.x,
+                            p1.x, p2.x,
+                            p1.y, p2.y
+                        );
+
+                        if (testLander.pos.y + LANDER_HEIGHT/2 >= terrainY) {
+                            testLander.crashed = true;
+                            testLander.pos.y = terrainY - LANDER_HEIGHT/2;
+
+                            // Check landing conditions
+                            const landingSpeed = Math.abs(testLander.vel.y);
+                            const maxSafeSpeed = 2 * SCALE;
+
+                            if (landingSpeed < maxSafeSpeed && 
+                                testLander.pos.x >= width/2 - 80 && 
+                                testLander.pos.x <= width/2 + 80) {
+                                testLander.landed = true;
+                                testLander.crashed = false;
+                            }
+
+                            testLander.vel = { x: 0, y: 0 };
+                            break;
+                        }
+                    }
+                }
+
                 // Bounds checking
                 if (testLander.pos.y < 0) {
                     testLander.pos.y = 0;
                     testLander.vel.y = 0;
                 }
-                
+
+                // Update visualization state
+                this.activeSimulations[simulationIndex].lander = {
+                    pos: { ...testLander.pos },
+                    vel: { ...testLander.vel },
+                    crashed: testLander.crashed,
+                    landed: testLander.landed
+                };
+
                 requestAnimationFrame(simulate);
             };
             
