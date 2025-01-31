@@ -11,14 +11,14 @@ const LANDER_HEIGHT = 50;
 // Constants for the physics
 // Will be set randomly on reset
 let GRAVITY = 1.62;
-const MIN_GRAVITY = 1.6;    // Minimum gravity in m/s²
-const MAX_GRAVITY = 1.7;   // Maximum gravity in m/s²
+const MIN_GRAVITY = 1.2;    // Minimum gravity in m/s²
+const MAX_GRAVITY = 10;   // Maximum gravity in m/s²
 
 // Scale factor to convert real physics to screen coordinates
-const SCALE = 0.01; 
+const SCALE = 0.02; 
 
 // Thrust force magnitude
-const THRUST_FORCE = 10 * SCALE; 
+const THRUST_FORCE = 20; 
 
 // Side thrusters' rotational force
 const ROTATION_THRUST = 0.03 * SCALE; 
@@ -226,11 +226,16 @@ function drawSimulationScene() {
     
     // Add action sequence display
     if (currentGenome) {
-        const actions = currentGenome.split(';').slice(1, -1);
+        const parts = currentGenome.split(';');
+        const actions = parts.slice(1, -1);
+        
         if (currentActionIndex < actions.length) {
             const [type, duration] = actions[currentActionIndex].split(',');
-            text(`Current Action: ${type === 'T' ? 'Thrust' : 'Drift'} (${currentActionTime.toFixed(1)}/${duration}s)`, 20, 140);
-            text(`Action ${currentActionIndex + 1}/${actions.length}`, 20, 170);
+            const scaledDuration = Number(duration) / Math.sqrt(GRAVITY);
+            text(`Current Action: ${type === 'T' ? 'Thrust' : 'Drift'}`, 20, 140);
+            text(`Duration: ${scaledDuration.toFixed(2)}s (base: ${duration}s)`, 20, 170);
+            text(`Progress: ${currentActionTime.toFixed(1)}s`, 20, 200);
+            text(`Action ${currentActionIndex + 1}/${actions.length}`, 20, 230);
         }
     }
     
@@ -315,41 +320,48 @@ function updateLander() {
     if (currentScene === 'simulation' && USE_PID) {
         const targetY = height - 100;
         
-        // Parse current genome into actions
-        const actions = currentGenome.split(';').slice(1, -1);  // Skip PID constants and empty last element
+        // Parse current genome into components
+        const parts = currentGenome.split(';');
+        const actions = parts.slice(1, -1);  // Remove scale factor part
         
         // Update action based on sequence
         if(currentActionIndex < actions.length) {
             const [type, duration] = actions[currentActionIndex].split(',');
-            currentActionTime += 1/60;  // Assuming 60fps
+            // Scale duration based on current gravity
+            const scaledDuration = Number(duration) / Math.sqrt(GRAVITY);
+            currentActionTime += 1/60;
             
-            if(currentActionTime >= Number(duration)) {
+            if(currentActionTime >= scaledDuration) {
                 currentActionIndex++;
                 currentActionTime = 0;
             }
             
-            // Use PID during thrust phases, direct control during drift
             if(type === 'T') {
                 const pidOutput = altitudePID.compute(targetY, lander.pos.y, lander.vel.y);
                 lander.mainThruster = pidOutput > altitudePID.threshold;
             } else {
                 lander.mainThruster = false;
             }
+        } else {
+            lander.mainThruster = false;
         }
     }
     
-    // Update physics - ONLY vertical components
+    // Update physics
     lander.vel.y += GRAVITY * SCALE;
     if (lander.mainThruster) {
         lander.vel.y -= THRUST_FORCE * SCALE;
     }
     
-    // Ensure horizontal velocity is always 0
     lander.vel.x = 0;
-    
-    // Update position
     lander.pos.y += lander.vel.y;
-    lander.pos.x = width/2;  // Keep lander centered horizontally
+    lander.pos.x = width/2;
+    
+    // Add bounds checking
+    if (lander.pos.y < 0) {
+        lander.pos.y = 0;
+        lander.vel.y = 0;  // Optional: stop vertical velocity when hitting top
+    }
     
     // Apply gravity
     lander.vel.x += GRAVITY * SCALE;
@@ -583,7 +595,7 @@ class GeneticAlgorithm {
     constructor() {
         this.populationSize = 100;
         this.currentGeneration = 0;
-        this.maxGenerations = 50;
+        this.maxGenerations = 10;
         this.mutationRate = 0.1;
         this.population = [];
         this.bestFitness = -Infinity;
@@ -595,8 +607,8 @@ class GeneticAlgorithm {
         this.KD_RANGE = { min: 0.01, max: 0.5 };
         
         // Sequence parameters
-        this.MAX_SEQUENCE_LENGTH = 10;  // Maximum number of actions
-        this.MAX_DURATION = 5.0;        // Maximum duration for each action
+        this.MAX_SEQUENCE_LENGTH = 10;
+        this.DURATION_RANGE = { min: 1.0, max: 2.5 };  // Updated duration range: minimum 1s, maximum 2.5s
         
         this.initialize();
     }
@@ -621,7 +633,7 @@ class GeneticAlgorithm {
         
         for(let i = 0; i < sequenceLength; i++) {
             const action = random() > 0.5 ? 'T' : 'D';
-            const duration = random(0.1, this.MAX_DURATION);
+            const duration = random(this.DURATION_RANGE.min, this.DURATION_RANGE.max);
             sequence += `${action},${duration.toFixed(2)};`;
         }
         
@@ -696,17 +708,37 @@ class GeneticAlgorithm {
     }
     
     async evaluateFitness(genome) {
+        // Test each genome under 10 different random gravity conditions
+        const gravityTests = Array.from({length: 10}, () => random(1.2, 10));
+        console.log('\nTesting genome under gravities:', gravityTests.map(g => g.toFixed(2)));
+        
+        const fitnessPromises = gravityTests.map(gravity => 
+            this.evaluateUnderGravity(genome, gravity)
+        );
+        
+        // Wait for all gravity condition tests to complete
+        const fitnessResults = await Promise.all(fitnessPromises);
+        
+        // Calculate and log average fitness
+        const avgFitness = fitnessResults.reduce((a, b) => a + b) / fitnessResults.length;
+        console.log('\nFitness results:', fitnessResults.map(f => f.toFixed(2)));
+        console.log('Average fitness:', avgFitness.toFixed(2));
+        
+        return avgFitness;
+    }
+    
+    async evaluateUnderGravity(genome, testGravity) {
         return new Promise(resolve => {
             const parts = genome.split(';');
             const [kp, ki, kd] = parts[0].split(',').map(Number);
             const actions = parts.slice(1, -1);
             
             const testPID = new PIDController(kp, ki, kd);
-            const testGravity = random(MIN_GRAVITY, MAX_GRAVITY);
             
             let currentActionIndex = 0;
             let currentActionTime = 0;
             let thrusterUsage = 0;
+            let maxHeightReached = 0;  // Track maximum height
             
             const testLander = {
                 pos: { x: width/2, y: 50 },
@@ -724,92 +756,77 @@ class GeneticAlgorithm {
             
             const simulate = () => {
                 if (simulationSteps++ > maxSteps || testLander.crashed || testLander.landed) {
-                    let fitness = 10000;  // Base fitness
+                    let fitness = 10000;
+                    let penalties = {
+                        space: 0,
+                        crash: 0,
+                        timeout: 0,
+                        distance: 0,
+                        velocity: 0,
+                        thruster: 0,
+                        time: 0
+                    };
                     
-                    // Major penalties for crash or timeout
+                    // Space penalty - only if it goes above canvas
+                    if (testLander.pos.y < 0) {
+                        penalties.space = 9000;
+                    }
+                    
+                    // Crash or timeout penalties
                     if (testLander.crashed) {
-                        fitness -= 8000;  // Severe penalty for crashing
+                        const crashVelocity = Math.abs(testLander.vel.y);
+                        penalties.crash = Math.min(8000, 1000 * (crashVelocity / 5));
                     } else if (simulationSteps >= maxSteps) {
-                        fitness -= 7000;  // Major penalty for timeout
+                        penalties.timeout = 7000;
                     }
                     
-                    // Minor penalties for non-critical factors
-                    const distanceToTarget = Math.abs(testLander.pos.y - targetY);
-                    const velocityPenalty = Math.abs(testLander.vel.y) * 50;  // Reduced weight
-                    const thrusterPenalty = thrusterUsage * 5;  // Reduced weight
-                    const timePenalty = simulationSteps * 2;  // Reduced weight
+                    // Regular penalties - with reasonable scaling
+                    penalties.distance = Math.min(5000, Math.abs(testLander.pos.y - targetY) * 2);
+                    penalties.velocity = Math.min(2000, Math.abs(testLander.vel.y) * 20);
+                    penalties.thruster = Math.min(1000, thrusterUsage);
+                    penalties.time = Math.min(1000, simulationSteps / 2);
                     
-                    fitness -= distanceToTarget;
-                    fitness -= velocityPenalty;
-                    fitness -= thrusterPenalty;
-                    fitness -= timePenalty;
+                    // Calculate total fitness
+                    let totalPenalty = Object.values(penalties).reduce((a, b) => a + b, 0);
+                    fitness -= totalPenalty;
                     
-                    // Bonus for successful landing
+                    // Add landing bonus if applicable
                     if (testLander.landed) {
-                        fitness += 3000;  // Bonus for successful landing
+                        const landingVelocity = Math.abs(testLander.vel.y);
+                        const landingBonus = 3000 * Math.max(0, 1 - (landingVelocity / 2));
+                        fitness += landingBonus;
                     }
                     
-                    // Log detailed fitness information for debugging
-                    if (fitness > 4000) {  // Adjusted threshold for logging
-                        console.log(`\nGenome Performance Details:`);
-                        console.log(`PID Values: Kp=${kp}, Ki=${ki}, Kd=${kd}`);
-                        console.log(`Gravity: ${testGravity.toFixed(2)} m/s²`);
-                        console.log(`Distance to target: ${distanceToTarget.toFixed(2)}`);
-                        console.log(`Final velocity: ${testLander.vel.y.toFixed(2)}`);
-                        console.log(`Thruster usage: ${thrusterUsage}`);
-                        console.log(`Time steps: ${simulationSteps}`);
-                        console.log(`Status: ${testLander.landed ? 'LANDED' : testLander.crashed ? 'CRASHED' : 'TIMEOUT'}`);
-                        console.log(`Penalties:`);
-                        console.log(`- Distance: -${distanceToTarget.toFixed(2)}`);
-                        console.log(`- Velocity: -${velocityPenalty.toFixed(2)}`);
-                        console.log(`- Thruster: -${thrusterPenalty.toFixed(2)}`);
-                        console.log(`- Time: -${timePenalty.toFixed(2)}`);
-                        console.log(`Final fitness: ${fitness.toFixed(2)}`);
+                    // Debug logging
+                    console.log(`\nDetailed Fitness Calculation (g=${testGravity}):`);
+                    console.log(`Base Fitness: 10000`);
+                    console.log(`Penalties:`);
+                    Object.entries(penalties).forEach(([key, value]) => {
+                        console.log(`- ${key}: -${value.toFixed(2)}`);
+                    });
+                    if (testLander.landed) {
+                        console.log(`Landing Bonus: +${landingBonus.toFixed(2)}`);
                     }
+                    console.log(`Final Fitness: ${fitness.toFixed(2)}`);
+                    console.log(`Status: ${testLander.landed ? 'LANDED' : testLander.crashed ? 'CRASHED' : 'TIMEOUT'}`);
+                    console.log(`Position: ${testLander.pos.y.toFixed(2)}`);
+                    console.log(`Velocity: ${testLander.vel.y.toFixed(2)}`);
                     
                     resolve(fitness);
                     return;
                 }
                 
-                // Update action based on sequence
-                if(currentActionIndex < actions.length) {
-                    const [type, duration] = actions[currentActionIndex].split(',');
-                    currentActionTime += 1/60;  // Assuming 60fps
-                    
-                    if(currentActionTime >= Number(duration)) {
-                        currentActionIndex++;
-                        currentActionTime = 0;
-                    }
-                    
-                    // Use PID during thrust phases, direct control during drift
-                    if(type === 'T') {
-                        const pidOutput = testPID.compute(targetY, testLander.pos.y, testLander.vel.y);
-                        testLander.mainThruster = pidOutput > testPID.threshold;
-                    } else {
-                        testLander.mainThruster = false;
-                    }
-                }
-                
-                // Update physics - ONLY vertical components
+                // Update physics with original scaling
                 testLander.vel.y += testGravity * SCALE;
                 if (testLander.mainThruster) {
-                    testLander.vel.y -= THRUST_FORCE * SCALE;
+                    testLander.vel.y -= THRUST_FORCE * SCALE;  // Removed the 1.5 multiplier
                 }
-                
-                // Ensure horizontal velocity is always 0
-                testLander.vel.x = 0;
-                
-                // Update position
                 testLander.pos.y += testLander.vel.y;
-                testLander.pos.x = width/2;  // Keep lander centered
                 
-                // Check for landing/crash
-                if (testLander.pos.y >= targetY) {
-                    if (Math.abs(testLander.vel.y) < 2 * SCALE) {
-                        testLander.landed = true;
-                    } else {
-                        testLander.crashed = true;
-                    }
+                // Bounds checking
+                if (testLander.pos.y < 0) {
+                    testLander.pos.y = 0;
+                    testLander.vel.y = 0;
                 }
                 
                 requestAnimationFrame(simulate);
@@ -884,9 +901,16 @@ class GeneticAlgorithm {
             if(action) {
                 const [type, duration] = action.split(',');
                 const newType = this.mutationRate > random() ? (type === 'T' ? 'D' : 'T') : type;
-                const newDuration = this.mutationRate > random() ? 
-                    (Number(duration) * random(0.8, 1.2)).toFixed(2) : duration;
-                newSequence += `${newType},${newDuration};`;
+                let newDuration = Number(duration);
+                
+                if(this.mutationRate > random()) {
+                    newDuration *= random(0.8, 1.2);
+                    // Clamp duration to valid range
+                    newDuration = Math.max(this.DURATION_RANGE.min, 
+                                        Math.min(this.DURATION_RANGE.max, newDuration));
+                }
+                
+                newSequence += `${newType},${newDuration.toFixed(2)};`;
             }
         }
         
@@ -909,15 +933,21 @@ function loadGenome(filename = DEFAULT_GENOME_FILE) {
             const parts = data.trim().split(';');
             const [kp, ki, kd] = parts[0].split(',').map(Number);
             
-            // Store PID constants
+            // Validate the values
+            if (isNaN(kp) || isNaN(ki) || isNaN(kd)) {
+                throw new Error('Invalid PID values in genome file');
+            }
+            
+            // Update PID controller with loaded values
             altitudePID = new PIDController(kp, ki, kd);
             
-            // Store action sequence
+            // Store full genome for action sequence
             currentGenome = data.trim();
             currentActionIndex = 0;
             currentActionTime = 0;
             
-            console.log('Successfully loaded genome');
+            console.log(`PID Controller updated - Kp: ${kp}, Ki: ${ki}, Kd: ${kd}`);
+            console.log('Action sequence loaded');
             resetLander();
         })
         .catch(error => {
