@@ -18,7 +18,7 @@ const MAX_GRAVITY = 10;   // Maximum gravity in m/s²
 const SCALE = 0.02; 
 
 // Thrust force magnitude
-const THRUST_FORCE = 20; 
+const BASE_THRUST_FORCE = 2;  // Base thrust force
 
 // Side thrusters' rotational force
 const ROTATION_THRUST = 0.03 * SCALE; 
@@ -347,20 +347,20 @@ function updateLander() {
         }
     }
     
-    // Update physics
+    // Update physics with gravity-scaled thrust
     lander.vel.y += GRAVITY * SCALE;
     if (lander.mainThruster) {
-        lander.vel.y -= THRUST_FORCE * SCALE;
+        const scaledThrust = BASE_THRUST_FORCE * SCALE;
+        lander.vel.y -= scaledThrust;
     }
     
     lander.vel.x = 0;
     lander.pos.y += lander.vel.y;
     lander.pos.x = width/2;
     
-    // Add bounds checking
     if (lander.pos.y < 0) {
         lander.pos.y = 0;
-        lander.vel.y = 0;  // Optional: stop vertical velocity when hitting top
+        lander.vel.y = 0;
     }
     
     // Apply gravity
@@ -372,8 +372,8 @@ function updateLander() {
         const thrustAngle = lander.rotation - PI/2; // Adjust so 0 means thrusting up
         
         // Convert polar coordinates (angle and magnitude) to Cartesian (x,y)
-        const thrustX = THRUST_FORCE * Math.cos(thrustAngle);
-        const thrustY = THRUST_FORCE * Math.sin(thrustAngle);
+        const thrustX = BASE_THRUST_FORCE * Math.cos(thrustAngle);
+        const thrustY = BASE_THRUST_FORCE * Math.sin(thrustAngle);
         
         // Add thrust to current velocity
         lander.vel.x += thrustX;
@@ -816,10 +816,12 @@ class GeneticAlgorithm {
                     return;
                 }
                 
-                // Update physics with original scaling
+                // Update physics with gravity-scaled thrust
                 testLander.vel.y += testGravity * SCALE;
                 if (testLander.mainThruster) {
-                    testLander.vel.y -= THRUST_FORCE * SCALE;  // Removed the 1.5 multiplier
+                    // Scale thrust force relative to current gravity
+                    const scaledThrust = BASE_THRUST_FORCE * (testGravity / MIN_GRAVITY);
+                    testLander.vel.y -= scaledThrust * SCALE;
                 }
                 testLander.pos.y += testLander.vel.y;
                 
