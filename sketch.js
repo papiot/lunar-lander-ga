@@ -109,21 +109,69 @@ function setup() {
 function createSceneToggles() {
     const simButton = createButton('Test PID');
     const trainButton = createButton('Train PID');
+    const testPIDButton = createButton('Test PID Controller');
+    const metricsButton = createButton('GA Metrics');
+    const landingMetricsButton = createButton('Landing Metrics');
+    const stressTestButton = createButton('Stress Test');
+    const visualizeButton = createButton('Visualize Data');
     
     const canvas = document.querySelector('canvas');
     const canvasX = canvas.offsetLeft;
     const canvasY = canvas.offsetTop;
     
-    simButton.position(canvasX + 70, canvasY - 40);
-    trainButton.position(canvasX + 160, canvasY - 40);
+    // Position buttons in two rows
+    const row1Y = canvasY - 40;
+    const row2Y = canvasY - 70;
     
+    // Row 1
+    simButton.position(canvasX + 70, row1Y);
+    trainButton.position(canvasX + 160, row1Y);
+    testPIDButton.position(canvasX + 270, row1Y);
+    
+    // Row 2
+    metricsButton.position(canvasX + 70, row2Y);
+    landingMetricsButton.position(canvasX + 160, row2Y);
+    stressTestButton.position(canvasX + 270, row2Y);
+    visualizeButton.position(canvasX + 380, row2Y);
+    
+    // Existing button handlers
     simButton.mousePressed(() => {
         currentScene = 'simulation';
         USE_PID = true;
-        loadGenome();  // Load PID values when switching to test mode
+        loadGenome();
         resetLander();
     });
     trainButton.mousePressed(() => currentScene = 'training');
+    testPIDButton.mousePressed(() => {
+        console.log("=== Running PID Controller Tests ===");
+        testPIDController();
+    });
+    
+    // New button handlers
+    metricsButton.mousePressed(() => {
+        currentScene = 'metrics';
+        if (window.ga) {
+            displayGAMetrics(window.ga.collectMetrics());
+        } else {
+            console.log("No GA instance available");
+        }
+    });
+    
+    landingMetricsButton.mousePressed(() => {
+        currentScene = 'landing_metrics';
+        const metrics = evaluateLandingPerformance(lander);
+        displayLandingMetrics(metrics);
+    });
+    
+    stressTestButton.mousePressed(async () => {
+        currentScene = 'stress_test';
+        await runStressTest();
+    });
+    
+    visualizeButton.mousePressed(() => {
+        currentScene = 'visualization';
+        visualizeAllData();
+    });
 }
 
 function loadTerrain(filename) {
@@ -179,10 +227,25 @@ function generateRandomTerrain() {
 function draw() {
     background(128);
     
-    if (currentScene === 'simulation') {
-        drawSimulationScene();
-    } else {
-        drawTrainingScene();
+    switch(currentScene) {
+        case 'simulation':
+            drawSimulationScene();
+            break;
+        case 'training':
+            drawTrainingScene();
+            break;
+        case 'metrics':
+            drawMetricsScene();
+            break;
+        case 'landing_metrics':
+            drawLandingMetricsScene();
+            break;
+        case 'stress_test':
+            drawStressTestScene();
+            break;
+        case 'visualization':
+            drawVisualizationScene();
+            break;
     }
 }
 
@@ -305,17 +368,26 @@ function drawTrainingScene() {
                 translate(scaledX, scaledY);
                 
                 // Color based on lander state
-                if (sim.lander.crashed) {
-                    fill(255, 0, 0);  // Red for crashed
+                if (sim.lander.escaped) {
+                    fill(255, 0, 255);  // Purple for atmosphere escape
+                } else if (sim.lander.crashed) {
+                    fill(255, 0, 0);    // Red for crashed
                 } else if (sim.lander.landed) {
-                    fill(0, 255, 0);  // Green for landed
+                    fill(0, 255, 0);    // Green for landed
                 } else {
-                    fill(255);  // White for active
+                    fill(255);          // White for active
                 }
                 
                 // Draw simplified lander
                 noStroke();
                 rect(-3, -3, 6, 6);
+                
+                // Draw thruster flame if active
+                if (sim.lander.mainThruster) {
+                    fill(255, 150, 0);
+                    triangle(-2, 3, 2, 3, 0, 8);
+                }
+                
                 pop();
             }
             
@@ -723,15 +795,16 @@ class GeneticAlgorithm {
             console.log(`\n=== Generation ${this.currentGeneration + 1}/${this.maxGenerations} ===`);
             
             // Evaluate fitness for all genomes
-            const fitnessScores = await Promise.all(
-                this.population.map(genome => this.evaluateFitness(genome))
-            );
+            const fitnessScores = [];
+            for (let i = 0; i < this.population.length; i++) {
+                const fitness = await this.evaluateFitness(this.population[i]);
+                fitnessScores.push(fitness);
+            }
             
             // Find best genome of this generation
             const bestIndex = fitnessScores.indexOf(Math.max(...fitnessScores));
             const avgFitness = fitnessScores.reduce((a, b) => a + b) / fitnessScores.length;
             
-            console.log(`Best Genome: ${this.population[bestIndex]}`);
             console.log(`Best Fitness: ${fitnessScores[bestIndex].toFixed(2)}`);
             console.log(`Average Fitness: ${avgFitness.toFixed(2)}`);
             
@@ -740,7 +813,6 @@ class GeneticAlgorithm {
                 this.bestFitness = fitnessScores[bestIndex];
                 this.bestGenome = this.population[bestIndex];
                 console.log(`New Best Overall Fitness: ${this.bestFitness.toFixed(2)}`);
-                console.log(`New Best PID Values - Kp: ${this.bestGenome.split(',')[0]}, Ki: ${this.bestGenome.split(',')[1]}, Kd: ${this.bestGenome.split(',')[2]}`);
             }
             
             // Create new population
@@ -769,14 +841,18 @@ class GeneticAlgorithm {
                 newPopulation.push(child);
             }
             
+            // Update population and increment generation
             this.population = newPopulation;
             this.currentGeneration++;
             
             // Save best genome periodically
-            if (this.currentGeneration % 10 === 0) {
+            if (this.currentGeneration % 1 === 0) {
                 console.log('\nSaving checkpoint...');
                 this.saveGenome();
             }
+            
+            // Add a small delay between generations to allow UI updates
+            await new Promise(resolve => setTimeout(resolve, 100));
         }
         
         console.log('\n=== Training Complete ===');
@@ -818,11 +894,9 @@ class GeneticAlgorithm {
             const actions = parts.slice(1, -1);
             
             const testPID = new PIDController(kp, ki, kd);
-            
             let currentActionIndex = 0;
             let currentActionTime = 0;
             let thrusterUsage = 0;
-            let maxHeightReached = 0;  // Track maximum height
             
             const testLander = {
                 pos: { x: width/2, y: 50 },
@@ -831,6 +905,7 @@ class GeneticAlgorithm {
                 angularVelocity: 0,
                 crashed: false,
                 landed: false,
+                escaped: false,
                 mainThruster: false
             };
             
@@ -839,150 +914,148 @@ class GeneticAlgorithm {
             const targetY = height - 100;
             
             const simulate = () => {
-                if (simulationSteps++ > maxSteps || testLander.crashed || testLander.landed) {
-                    let fitness = 10000;
-                    let penalties = {
-                        space: 0,
-                        crash: 0,
-                        timeout: 0,
-                        distance: 0,
-                        velocity: 0,
-                        thruster: 0,
-                        time: 0
+                simulationSteps++;
+                
+                // Check if simulation should end
+                const shouldEndSimulation = 
+                    testLander.crashed || 
+                    testLander.landed || 
+                    testLander.escaped ||
+                    simulationSteps >= maxSteps;
+                
+                if (!shouldEndSimulation) {
+                    // Update physics and controls
+                    this.updateSimulation(testLander, testPID, actions, currentActionIndex, 
+                        currentActionTime, thrusterUsage, testGravity, targetY);
+                    
+                    // Update visualization
+                    this.activeSimulations[simulationIndex] = {
+                        gravity: testGravity,
+                        lander: {
+                            pos: { ...testLander.pos },
+                            vel: { ...testLander.vel },
+                            crashed: testLander.crashed,
+                            landed: testLander.landed,
+                            escaped: testLander.escaped,
+                            mainThruster: testLander.mainThruster
+                        }
                     };
                     
-                    // Space penalty - only if it goes above canvas
-                    if (testLander.pos.y < 0) {
-                        penalties.space = 9000;
-                    }
+                    requestAnimationFrame(simulate);
+                } else {
+                    // Calculate final fitness
+                    const fitness = this.calculateFitness(testLander, simulationSteps, 
+                        thrusterUsage, targetY);
                     
-                    // Crash or timeout penalties
-                    if (testLander.crashed) {
-                        const crashVelocity = Math.abs(testLander.vel.y);
-                        penalties.crash = Math.min(8000, 1000 * (crashVelocity / 5));
-                    } else if (simulationSteps >= maxSteps) {
-                        penalties.timeout = 7000;
-                    }
+                    // Update final state
+                    this.activeSimulations[simulationIndex] = {
+                        gravity: testGravity,
+                        lander: {
+                            pos: { ...testLander.pos },
+                            vel: { ...testLander.vel },
+                            crashed: testLander.crashed,
+                            landed: testLander.landed,
+                            escaped: testLander.escaped,
+                            mainThruster: testLander.mainThruster
+                        },
+                        fitness: fitness
+                    };
                     
-                    // Regular penalties - with reasonable scaling
-                    penalties.distance = Math.min(5000, Math.abs(testLander.pos.y - targetY) * 2);
-                    penalties.velocity = Math.min(2000, Math.abs(testLander.vel.y) * 20);
-                    penalties.thruster = Math.min(1000, thrusterUsage);
-                    penalties.time = Math.min(1000, simulationSteps / 2);
-                    
-                    // Calculate total fitness
-                    let totalPenalty = Object.values(penalties).reduce((a, b) => a + b, 0);
-                    fitness -= totalPenalty;
-                    
-                    // Add landing bonus if applicable
-                    if (testLander.landed) {
-                        const landingVelocity = Math.abs(testLander.vel.y);
-                        const landingBonus = 3000 * Math.max(0, 1 - (landingVelocity / 2));
-                        fitness += landingBonus;
-                    }
-                    
-                    // Debug logging
-                    console.log(`\nDetailed Fitness Calculation (g=${testGravity}):`);
-                    console.log(`Base Fitness: 10000`);
-                    console.log(`Penalties:`);
-                    Object.entries(penalties).forEach(([key, value]) => {
-                        console.log(`- ${key}: -${value.toFixed(2)}`);
-                    });
-                    if (testLander.landed) {
-                        console.log(`Landing Bonus: +${landingBonus.toFixed(2)}`);
-                    }
-                    console.log(`Final Fitness: ${fitness.toFixed(2)}`);
-                    console.log(`Status: ${testLander.landed ? 'LANDED' : testLander.crashed ? 'CRASHED' : 'TIMEOUT'}`);
-                    console.log(`Position: ${testLander.pos.y.toFixed(2)}`);
-                    console.log(`Velocity: ${testLander.vel.y.toFixed(2)}`);
-                    
-                    this.activeSimulations[simulationIndex].fitness = fitness;
                     resolve(fitness);
-                    return;
                 }
-                
-                // Update PID control and thrusters
-                if (currentActionIndex < actions.length) {
-                    const [type, duration] = actions[currentActionIndex].split(',');
-                    const scaledDuration = Number(duration) / Math.sqrt(testGravity);
-                    currentActionTime += 1/60;
-
-                    if (currentActionTime >= scaledDuration) {
-                        currentActionIndex++;
-                        currentActionTime = 0;
-                    }
-
-                    if (type === 'T') {
-                        const pidOutput = testPID.compute(targetY, testLander.pos.y, testLander.vel.y);
-                        testLander.mainThruster = pidOutput > testPID.threshold;
-                        if (testLander.mainThruster) {
-                            thrusterUsage++;
-                        }
-                    } else {
-                        testLander.mainThruster = false;
-                    }
-                }
-
-                // Update physics with gravity-scaled thrust
-                testLander.vel.y += testGravity * SCALE;
-                if (testLander.mainThruster) {
-                    const scaledThrust = BASE_THRUST_FORCE * (testGravity / MIN_GRAVITY);
-                    testLander.vel.y -= scaledThrust * SCALE;
-                }
-                testLander.pos.y += testLander.vel.y;
-
-                // Check for collision with terrain
-                for (let i = 0; i < terrain.length - 1; i++) {
-                    const p1 = terrain[i];
-                    const p2 = terrain[i + 1];
-
-                    if (testLander.pos.x >= p1.x && testLander.pos.x <= p2.x) {
-                        const terrainY = map(
-                            testLander.pos.x,
-                            p1.x, p2.x,
-                            p1.y, p2.y
-                        );
-
-                        if (testLander.pos.y + LANDER_HEIGHT/2 >= terrainY) {
-                            testLander.crashed = true;
-                            testLander.pos.y = terrainY - LANDER_HEIGHT/2;
-
-                            // Check landing conditions
-                            const landingSpeed = Math.abs(testLander.vel.y);
-                            const maxSafeSpeed = 2 * SCALE;
-
-                            if (landingSpeed < maxSafeSpeed && 
-                                testLander.pos.x >= width/2 - 80 && 
-                                testLander.pos.x <= width/2 + 80) {
-                                testLander.landed = true;
-                                testLander.crashed = false;
-                            }
-
-                            testLander.vel = { x: 0, y: 0 };
-                            break;
-                        }
-                    }
-                }
-
-                // Bounds checking
-                if (testLander.pos.y < 0) {
-                    testLander.pos.y = 0;
-                    testLander.vel.y = 0;
-                }
-
-                // Update visualization state
-                this.activeSimulations[simulationIndex].lander = {
-                    pos: { ...testLander.pos },
-                    vel: { ...testLander.vel },
-                    crashed: testLander.crashed,
-                    landed: testLander.landed
-                };
-
-                requestAnimationFrame(simulate);
             };
             
             simulate();
         });
+    }
+    
+    updateSimulation(lander, pid, actions, actionIndex, actionTime, thrusterUsage, gravity, targetY) {
+        // Update PID control and thrusters
+        if (actionIndex < actions.length) {
+            const [type, duration] = actions[actionIndex].split(',');
+            const scaledDuration = Number(duration) / Math.sqrt(gravity);
+            actionTime += 1/60;
+
+            if (actionTime >= scaledDuration) {
+                actionIndex++;
+                actionTime = 0;
+            }
+
+            if (type === 'T') {
+                const pidOutput = pid.compute(targetY, lander.pos.y, lander.vel.y);
+                lander.mainThruster = pidOutput > pid.threshold;
+                if (lander.mainThruster) {
+                    thrusterUsage++;
+                }
+            } else {
+                lander.mainThruster = false;
+            }
+        }
+
+        // Update physics - match exactly with main simulation
+        lander.vel.y += gravity * SCALE;
+        if (lander.mainThruster) {
+            // Calculate thrust direction based on rotation
+            const thrustAngle = lander.rotation - PI/2; // Adjust so 0 means thrusting up
+            
+            // Convert polar coordinates (angle and magnitude) to Cartesian (x,y)
+            const thrustForce = BASE_THRUST_FORCE * (gravity / MIN_GRAVITY);
+            const thrustX = thrustForce * Math.cos(thrustAngle) * SCALE;
+            const thrustY = thrustForce * Math.sin(thrustAngle) * SCALE;
+            
+            // Add thrust to velocity
+            lander.vel.x += thrustX;
+            lander.vel.y += thrustY;
+        }
+        
+        // Update position
+        lander.pos.x += lander.vel.x;
+        lander.pos.y += lander.vel.y;
+
+        // Add dampening like in main simulation
+        lander.vel.x *= 0.99;
+        lander.vel.y *= 0.99;
+
+        // Check for atmosphere escape
+        if (lander.pos.y <= 0) {
+            lander.pos.y = 0;
+            lander.vel.y = 0;
+            lander.crashed = true;
+            lander.escaped = true;
+            return;
+        }
+
+        // Keep lander within screen bounds like main simulation
+        lander.pos.x = constrain(lander.pos.x, 0, width);
+        lander.pos.y = constrain(lander.pos.y, 0, height);
+
+        // Check terrain collision
+        this.checkTerrainCollision(lander);
+    }
+    
+    calculateFitness(lander, steps, thrusterUsage, targetY) {
+        let fitness = 10000;
+        
+        // Apply penalties
+        if (lander.escaped) {
+            fitness -= 9500;  // Most severe penalty for escaping atmosphere
+        } else if (lander.crashed) {
+            const crashVelocity = Math.abs(lander.vel.y) / SCALE;
+            fitness -= 1000 + crashVelocity * 500;  // Severe crash penalty
+        } else if (steps >= 1000) {
+            fitness -= 7000;  // Timeout penalty
+        } else if (lander.landed) {
+            fitness += 5000;  // Landing bonus
+        }
+
+        // Distance penalty
+        const finalDistance = Math.abs(lander.pos.y - targetY);
+        fitness -= Math.min(5000, finalDistance);
+
+        // Thruster usage penalty
+        fitness -= Math.min(1000, thrusterUsage * 2);
+
+        return fitness;
     }
     
     selectParent(fitnessScores) {
@@ -1072,6 +1145,68 @@ class GeneticAlgorithm {
         saveStrings([this.bestGenome], filename);
         console.log(`Saved PID genome to ${filename}`);
     }
+
+    checkTerrainCollision(lander) {
+        for (let i = 0; i < terrain.length - 1; i++) {
+            const p1 = terrain[i];
+            const p2 = terrain[i + 1];
+            
+            if (lander.pos.x >= p1.x && lander.pos.x <= p2.x) {
+                const terrainY = map(
+                    lander.pos.x,
+                    p1.x, p2.x,
+                    p1.y, p2.y
+                );
+                
+                if (lander.pos.y >= terrainY - LANDER_HEIGHT/2) {
+                    lander.pos.y = terrainY - LANDER_HEIGHT/2;
+                    const landingSpeed = Math.abs(lander.vel.y) / SCALE;
+                    
+                    // Check if it's a safe landing in the landing zone
+                    if (landingSpeed < 2.0 && 
+                        lander.pos.x >= width/2 - 80 && 
+                        lander.pos.x <= width/2 + 80) {
+                        lander.landed = true;
+                        lander.crashed = false;
+                    } else {
+                        lander.crashed = true;
+                        lander.landed = false;
+                    }
+                    
+                    lander.vel.y = 0;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    collectMetrics() {
+        return {
+            generationStats: {
+                avgFitness: this.calculateAverageFitness(),
+                bestFitness: this.bestFitness,
+                worstFitness: Math.min(...this.fitnessScores),
+                diversity: this.calculatePopulationDiversity()
+            },
+            successRate: this.calculateSuccessRate(),
+            convergenceSpeed: this.generationsToConverge
+        };
+    }
+    
+    calculatePopulationDiversity() {
+        // Measure how different genomes are from each other
+        let totalDifference = 0;
+        for(let i = 0; i < this.population.length; i++) {
+            for(let j = i + 1; j < this.population.length; j++) {
+                totalDifference += this.genomeDifference(
+                    this.population[i], 
+                    this.population[j]
+                );
+            }
+        }
+        return totalDifference / (this.population.length * (this.population.length - 1) / 2);
+    }
 } 
 
 function loadGenome(filename = DEFAULT_GENOME_FILE) {
@@ -1105,4 +1240,141 @@ function loadGenome(filename = DEFAULT_GENOME_FILE) {
             currentGenome = '';
             resetLander();
         });
+} 
+
+function testPIDController() {
+    const pid = new PIDController(0.5, 0.1, 0.2);
+    
+    // Test basic response
+    const targetHeight = 300;
+    const testCases = [
+        { height: 400, velocity: 5, expected: "negative" },  // Above target, moving up
+        { height: 400, velocity: -5, expected: "small" },    // Above target, moving down
+        { height: 200, velocity: -5, expected: "large" },    // Below target, moving down
+        { height: 200, velocity: 5, expected: "small" }      // Below target, moving up
+    ];
+    
+    testCases.forEach(test => {
+        const output = pid.compute(targetHeight, test.height, test.velocity);
+        console.log(`Height: ${test.height}, Velocity: ${test.velocity}`);
+        console.log(`Output: ${output}, Expected: ${test.expected}`);
+    });
+} 
+
+function drawMetricsScene() {
+    if (!window.gaMetrics) return;
+    
+    fill(255);
+    textSize(20);
+    textAlign(LEFT);
+    let y = 50;
+    
+    text(`Generation: ${window.ga?.currentGeneration || 0}`, 20, y); y += 30;
+    text(`Average Fitness: ${window.gaMetrics.generationStats.avgFitness.toFixed(2)}`, 20, y); y += 30;
+    text(`Best Fitness: ${window.gaMetrics.generationStats.bestFitness.toFixed(2)}`, 20, y); y += 30;
+    text(`Population Diversity: ${window.gaMetrics.generationStats.diversity.toFixed(2)}`, 20, y); y += 30;
+    text(`Success Rate: ${(window.gaMetrics.successRate * 100).toFixed(1)}%`, 20, y);
+}
+
+function drawLandingMetricsScene() {
+    if (!window.landingMetrics) return;
+    
+    fill(255);
+    textSize(20);
+    textAlign(LEFT);
+    let y = 50;
+    
+    text(`Outcome: ${window.landingMetrics.outcome}`, 20, y); y += 30;
+    text(`Final Velocity: ${window.landingMetrics.finalVelocity.toFixed(2)} m/s`, 20, y); y += 30;
+    text(`Landing Accuracy: ${window.landingMetrics.landingAccuracy.toFixed(2)} m`, 20, y); y += 30;
+    text(`Fuel Efficiency: ${window.landingMetrics.fuelEfficiency.toFixed(2)}`, 20, y); y += 30;
+    text(`Time to Land: ${window.landingMetrics.timeToLand.toFixed(1)} s`, 20, y); y += 30;
+    text(`Oscillations: ${window.landingMetrics.oscillations}`, 20, y); y += 30;
+    text(`Max Overshoot: ${window.landingMetrics.maxOvershoot.toFixed(2)} m`, 20, y);
+}
+
+function drawStressTestScene() {
+    if (!window.stressTestResults) return;
+    
+    fill(255);
+    textSize(20);
+    textAlign(LEFT);
+    let y = 50;
+    
+    text("Stress Test Results:", 20, y); y += 30;
+    
+    const results = window.stressTestResults;
+    text(`Total Tests: ${results.totalTests}`, 20, y); y += 30;
+    text(`Success Rate: ${(results.successRate * 100).toFixed(1)}%`, 20, y); y += 30;
+    text(`Average Landing Time: ${results.avgLandingTime.toFixed(1)} s`, 20, y); y += 30;
+    
+    text("Failure Modes:", 20, y); y += 30;
+    Object.entries(results.failureModes).forEach(([mode, count]) => {
+        text(`${mode}: ${count}`, 40, y); y += 25;
+    });
+}
+
+function drawVisualizationScene() {
+    if (!window.visualizationData) return;
+    
+    // Draw fitness over time graph
+    drawGraph(window.visualizationData.fitnessHistory, "Fitness History", 50, 50, 300, 200);
+    
+    // Draw diversity graph
+    drawGraph(window.visualizationData.diversityHistory, "Population Diversity", 400, 50, 300, 200);
+    
+    // Draw success rate graph
+    drawGraph(window.visualizationData.successRateHistory, "Success Rate", 50, 300, 300, 200);
+}
+
+function drawGraph(data, title, x, y, w, h) {
+    push();
+    translate(x, y);
+    
+    // Draw axes
+    stroke(255);
+    line(0, h, w, h);  // X axis
+    line(0, 0, 0, h);  // Y axis
+    
+    // Draw title
+    noStroke();
+    fill(255);
+    textAlign(CENTER);
+    text(title, w/2, -10);
+    
+    // Draw data points
+    stroke(255, 255, 0);
+    noFill();
+    beginShape();
+    for (let i = 0; i < data.length; i++) {
+        const px = map(i, 0, data.length-1, 0, w);
+        const py = map(data[i], 0, max(data), h, 0);
+        vertex(px, py);
+    }
+    endShape();
+    
+    pop();
+}
+
+async function runStressTest() {
+    const results = await stressTest();
+    window.stressTestResults = results;
+}
+
+function displayGAMetrics(metrics) {
+    window.gaMetrics = metrics;
+}
+
+function displayLandingMetrics(metrics) {
+    window.landingMetrics = metrics;
+}
+
+function visualizeAllData() {
+    if (!window.ga) return;
+    
+    window.visualizationData = {
+        fitnessHistory: window.ga.fitnessHistory || [],
+        diversityHistory: window.ga.diversityHistory || [],
+        successRateHistory: window.ga.successRateHistory || []
+    };
 } 
