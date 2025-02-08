@@ -49,14 +49,13 @@ let currentActionTime = 0;
 
 class PIDController {
     constructor(kp, ki, kd) {
-        console.log(`Creating PID controller with Kp=${kp}, Ki=${ki}, Kd=${kd}`);
         this.kp = kp;
         this.ki = ki;
         this.kd = kd;
         this.previousError = 0;
         this.integral = 0;
         this.lastTime = null;
-        this.threshold = 0.5;  // Add threshold for activation
+        this.threshold = 0.5;
     }
     
     compute(setpoint, measuredValue, velocity) {
@@ -66,18 +65,17 @@ class PIDController {
             return 0;
         }
         
-        const dt = (currentTime - this.lastTime) / 1000; // Convert to seconds
+        const dt = (currentTime - this.lastTime) / 1000;
         this.lastTime = currentTime;
         
         const error = setpoint - measuredValue;
         
-        // Penalize moving away from target when below it
-        if (error < 0 && velocity < 0) {  // If below target and moving down
+        if (error < 0 && velocity < 0) {
             this.integral += error * dt;
-        } else if (error > 0 && velocity > 0) {  // If above target and moving up
+        } else if (error > 0 && velocity > 0) {
             this.integral += error * dt;
         } else {
-            this.integral = 0;  // Reset integral when moving wrong direction
+            this.integral = 0;
         }
         
         const derivative = (error - this.previousError) / dt;
@@ -101,81 +99,76 @@ function setup() {
     createCanvas(800, 600);
     createSceneToggles();
     loadTerrain('terrain/terrain_2024-12-04T11-42-51.json');
-    
-    // Initialize with default PID values
     altitudePID = new PIDController(0.1, 0.01, 0.05);
 }
 
 function createSceneToggles() {
-    const simButton = createButton('Test PID');
-    const trainButton = createButton('Train PID');
-    const testPIDButton = createButton('Test PID Controller');
-    const metricsButton = createButton('GA Metrics');
-    const landingMetricsButton = createButton('Landing Metrics');
-    const stressTestButton = createButton('Stress Test');
-    const visualizeButton = createButton('Visualize Data');
+    const buttonWidth = 120;
+    const buttonHeight = 30;
+    const buttonSpacing = 10;
+    const buttonsPerRow = 4;
     
     const canvas = document.querySelector('canvas');
     const canvasX = canvas.offsetLeft;
-    const canvasY = canvas.offsetTop;
+    const startY = canvas.offsetTop - (buttonHeight + buttonSpacing) * 2;
     
-    // Position buttons in two rows
-    const row1Y = canvasY - 40;
-    const row2Y = canvasY - 70;
+    const buttonConfigs = [
+        { label: 'Test PID', scene: 'simulation', handler: () => {
+            currentScene = 'simulation';
+            USE_PID = true;
+            loadGenome();
+            resetLander();
+        }},
+        { label: 'Train PID', scene: 'training', handler: () => currentScene = 'training' },
+        { label: 'Test Controller', scene: 'test', handler: () => {
+            testPIDController();
+        }},
+        { label: 'GA Metrics', scene: 'metrics', handler: () => {
+            currentScene = 'metrics';
+            if (window.ga) {
+                displayGAMetrics(window.ga.collectMetrics());
+            }
+        }},
+        { label: 'Landing Metrics', scene: 'landing_metrics', handler: () => {
+            currentScene = 'landing_metrics';
+            const metrics = evaluateLandingPerformance(lander);
+            displayLandingMetrics(metrics);
+        }},
+        { label: 'Stress Test', scene: 'stress_test', handler: async () => {
+            currentScene = 'stress_test';
+            await runStressTest();
+        }},
+        { label: 'Visualize Data', scene: 'visualization', handler: () => {
+            currentScene = 'visualization';
+            visualizeAllData();
+        }}
+    ];
     
-    // Row 1
-    simButton.position(canvasX + 70, row1Y);
-    trainButton.position(canvasX + 160, row1Y);
-    testPIDButton.position(canvasX + 270, row1Y);
-    
-    // Row 2
-    metricsButton.position(canvasX + 70, row2Y);
-    landingMetricsButton.position(canvasX + 160, row2Y);
-    stressTestButton.position(canvasX + 270, row2Y);
-    visualizeButton.position(canvasX + 380, row2Y);
-    
-    // Existing button handlers
-    simButton.mousePressed(() => {
-        currentScene = 'simulation';
-        USE_PID = true;
-        loadGenome();
-        resetLander();
-    });
-    trainButton.mousePressed(() => currentScene = 'training');
-    testPIDButton.mousePressed(() => {
-        console.log("=== Running PID Controller Tests ===");
-        testPIDController();
-    });
-    
-    // New button handlers
-    metricsButton.mousePressed(() => {
-        currentScene = 'metrics';
-        if (window.ga) {
-            displayGAMetrics(window.ga.collectMetrics());
-        } else {
-            console.log("No GA instance available");
-        }
-    });
-    
-    landingMetricsButton.mousePressed(() => {
-        currentScene = 'landing_metrics';
-        const metrics = evaluateLandingPerformance(lander);
-        displayLandingMetrics(metrics);
-    });
-    
-    stressTestButton.mousePressed(async () => {
-        currentScene = 'stress_test';
-        await runStressTest();
-    });
-    
-    visualizeButton.mousePressed(() => {
-        currentScene = 'visualization';
-        visualizeAllData();
+    buttonConfigs.forEach((config, index) => {
+        const row = Math.floor(index / buttonsPerRow);
+        const col = index % buttonsPerRow;
+        
+        const button = createButton(config.label);
+        button.style('width', buttonWidth + 'px');
+        button.style('height', buttonHeight + 'px');
+        button.style('background-color', '#444');
+        button.style('color', 'white');
+        button.style('border', '1px solid #666');
+        button.style('border-radius', '4px');
+        button.style('cursor', 'pointer');
+        
+        const x = canvasX + col * (buttonWidth + buttonSpacing);
+        const y = startY + row * (buttonHeight + buttonSpacing);
+        
+        button.position(x, y);
+        button.mousePressed(config.handler);
+        
+        button.mouseOver(() => button.style('background-color', '#555'));
+        button.mouseOut(() => button.style('background-color', '#444'));
     });
 }
 
 function loadTerrain(filename) {
-    // Load terrain data from a file
     fetch(filename)
         .then(response => response.json())
         .then(data => {
@@ -218,7 +211,6 @@ function generateRandomTerrain() {
     
     terrain.sort((a, b) => a.x - b.x);
     
-    // Save terrain to disk
     const date = new Date();
     const filename = `terrain_${date.toISOString().replace(/:/g, '-').split('.')[0]}.json`;
     saveJSON(terrain, filename);
@@ -250,7 +242,6 @@ function draw() {
 }
 
 function drawSimulationScene() {
-    // Draw terrain first
     stroke(0);
     fill(100);
     beginShape();
@@ -261,7 +252,6 @@ function drawSimulationScene() {
     vertex(0, height);
     endShape(CLOSE);
     
-    // Draw flags
     stroke(200);
     strokeWeight(3);
     for (let point of terrain) {
@@ -279,7 +269,6 @@ function drawSimulationScene() {
     }
     strokeWeight(1);
     
-    // Display current values
     fill(255);
     textSize(16);
     textAlign(LEFT);
@@ -287,7 +276,6 @@ function drawSimulationScene() {
     text(`PID Control: ${USE_PID ? 'ON' : 'OFF'}`, 20, 80);
     text(`PID Constants - Kp: ${altitudePID.kp.toFixed(3)}, Ki: ${altitudePID.ki.toFixed(3)}, Kd: ${altitudePID.kd.toFixed(3)}`, 20, 110);
     
-    // Add action sequence display
     if (currentGenome) {
         const parts = currentGenome.split(';');
         const actions = parts.slice(1, -1);
@@ -302,11 +290,9 @@ function drawSimulationScene() {
         }
     }
     
-    // Update and draw 
     updateLander();
     drawLander();
 
-    // Add success message
     if (lander.landed) {
         fill(0, 255, 0);
         textSize(32);
@@ -316,41 +302,34 @@ function drawSimulationScene() {
 }
 
 function drawTrainingScene() {
-    // Draw basic training scene info
     fill(255);
     textSize(24);
     textAlign(CENTER);
     text('Genetic Algorithm Training', width/2, 50);
     
-    // Create start/stop training button if it doesn't exist
     if (!window.trainButton) {
         window.trainButton = createButton('Start Training');
         window.trainButton.position(width/2 - 50, height/2 - 150);
         window.trainButton.mousePressed(toggleTraining);
     }
 
-    // Draw 10 visualization squares
     const squareSize = width / 10;
     const startY = height / 2;
     
     for (let i = 0; i < 10; i++) {
         const x = i * squareSize;
         
-        // Draw square border
         stroke(200);
         noFill();
         rect(x, startY, squareSize, squareSize);
         
-        // If we have active simulations, draw their state
         if (window.ga && window.ga.activeSimulations && window.ga.activeSimulations[i]) {
             const sim = window.ga.activeSimulations[i];
             
-            // Draw mini terrain
             stroke(100);
             fill(100);
             beginShape();
             for (let point of terrain) {
-                // Scale terrain to fit in square
                 const scaledX = map(point.x, 0, width, x, x + squareSize);
                 const scaledY = map(point.y, 0, height, startY, startY + squareSize);
                 vertex(scaledX, scaledY);
@@ -359,7 +338,6 @@ function drawTrainingScene() {
             vertex(x, startY + squareSize);
             endShape(CLOSE);
             
-            // Draw mini lander if it exists
             if (sim.lander) {
                 const scaledX = map(sim.lander.pos.x, 0, width, x, x + squareSize);
                 const scaledY = map(sim.lander.pos.y, 0, height, startY, startY + squareSize);
@@ -367,22 +345,19 @@ function drawTrainingScene() {
                 push();
                 translate(scaledX, scaledY);
                 
-                // Color based on lander state
                 if (sim.lander.escaped) {
-                    fill(255, 0, 255);  // Purple for atmosphere escape
+                    fill(255, 0, 255);
                 } else if (sim.lander.crashed) {
-                    fill(255, 0, 0);    // Red for crashed
+                    fill(255, 0, 0);
                 } else if (sim.lander.landed) {
-                    fill(0, 255, 0);    // Green for landed
+                    fill(0, 255, 0);
                 } else {
-                    fill(255);          // White for active
+                    fill(255);
                 }
                 
-                // Draw simplified lander
                 noStroke();
                 rect(-3, -3, 6, 6);
                 
-                // Draw thruster flame if active
                 if (sim.lander.mainThruster) {
                     fill(255, 150, 0);
                     triangle(-2, 3, 2, 3, 0, 8);
@@ -391,7 +366,6 @@ function drawTrainingScene() {
                 pop();
             }
             
-            // Draw simulation info
             fill(255);
             noStroke();
             textSize(10);
@@ -403,7 +377,6 @@ function drawTrainingScene() {
         }
     }
     
-    // Draw generation info if available
     if (window.ga) {
         fill(255);
         textSize(16);
@@ -416,7 +389,6 @@ function drawTrainingScene() {
 }
 
 function startTraining() {
-    // Start training logic
     if (!window.ga) {
         window.ga = new GeneticAlgorithm({
             populationSize: 50,
@@ -431,14 +403,13 @@ function startTraining() {
 function toggleTraining() {
     if (window.trainButton.html() === 'Start Training') {
         window.trainButton.html('Stop Training');
-        startTraining(); // Function from your genetic algorithm file
+        startTraining();
     } else {
         window.trainButton.html('Start Training');
-        stopTraining(); // Function from your genetic algorithm file
+        stopTraining();
     }
 }
 
-// Add this function to clean up when switching scenes
 function resetTraining() {
     if (window.trainButton) {
         window.trainButton.html('Start Training');
@@ -454,11 +425,9 @@ function resetLander() {
     lander.crashed = false;
     lander.landed = false;
     
-    // Reset action tracking
     currentActionIndex = 0;
     currentActionTime = 0;
     
-    // Reset PID controllers
     altitudePID.reset();
 }
 
@@ -468,14 +437,11 @@ function updateLander() {
     if (currentScene === 'simulation' && USE_PID) {
         const targetY = height - 100;
         
-        // Parse current genome into components
         const parts = currentGenome.split(';');
-        const actions = parts.slice(1, -1);  // Remove scale factor part
+        const actions = parts.slice(1, -1);
         
-        // Update action based on sequence
         if(currentActionIndex < actions.length) {
             const [type, duration] = actions[currentActionIndex].split(',');
-            // Scale duration based on current gravity
             const scaledDuration = Number(duration) / Math.sqrt(GRAVITY);
             currentActionTime += 1/60;
             
@@ -495,7 +461,6 @@ function updateLander() {
         }
     }
     
-    // Update physics with gravity-scaled thrust
     lander.vel.y += GRAVITY * SCALE;
     if (lander.mainThruster) {
         const scaledThrust = BASE_THRUST_FORCE * SCALE;
@@ -511,24 +476,18 @@ function updateLander() {
         lander.vel.y = 0;
     }
     
-    // Apply gravity
     lander.vel.x += GRAVITY * SCALE;
     
-    // Apply main thruster
     if (lander.mainThruster) {    
-        // Calculate thrust direction based on rotation
-        const thrustAngle = lander.rotation - PI/2; // Adjust so 0 means thrusting up
+        const thrustAngle = lander.rotation - PI/2;
         
-        // Convert polar coordinates (angle and magnitude) to Cartesian (x,y)
         const thrustX = BASE_THRUST_FORCE * Math.cos(thrustAngle);
         const thrustY = BASE_THRUST_FORCE * Math.sin(thrustAngle);
         
-        // Add thrust to current velocity
         lander.vel.x += thrustX;
         lander.vel.y += thrustY;
     }
     
-    // Apply side thrusters
     if (lander.leftThruster) {
         lander.angularVelocity += ROTATION_THRUST;
     }
@@ -536,51 +495,42 @@ function updateLander() {
         lander.angularVelocity -= ROTATION_THRUST;
     }
     
-    // Update position and rotation
     lander.pos.x += lander.vel.x;
     lander.pos.y += lander.vel.y;
     lander.rotation += lander.angularVelocity;
     
-    // Add some angular dampening
     lander.angularVelocity *= 0.99;
     
-    // Check for collision with terrain
     for (let i = 0; i < terrain.length - 1; i++) {
         const p1 = terrain[i];
         const p2 = terrain[i + 1];
         
-        // Check if lander is between these terrain points
         if (lander.pos.x >= p1.x && lander.pos.x <= p2.x) {
-            // Calculate terrain height at lander's x position
             const terrainY = map(
                 lander.pos.x,
                 p1.x, p2.x,
                 p1.y, p2.y
             );
             
-            // Check if lander has hit the terrain
             if (lander.pos.y + LANDER_HEIGHT/2 + 20 >= terrainY) {
                 lander.crashed = true;
                 lander.pos.y = terrainY - LANDER_HEIGHT/2 - 20;
                 
-                // Calculate landing conditions
                 const landingSpeed = Math.abs(lander.vel.y) * SCALE;
                 const terrainAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
                 const landerAngle = lander.rotation;
                 const relativeLandingAngle = Math.abs(landerAngle - terrainAngle);
                 const maxSafeSpeed = 2 * SCALE;
-                const maxSafeAngle = PI / 9; // 20 degrees in radians
+                const maxSafeAngle = PI / 9;
                 
-                // Check if landing was successful
                 const isSafeLanding = landingSpeed < maxSafeSpeed && 
                                     relativeLandingAngle < maxSafeAngle;
                 
                 lander.vel = { x: 0, y: 0 };
                 lander.angularVelocity = 0;
                 
-                // Update these lines to handle successful landing differently
                 if (isSafeLanding) {
-                    lander.landed = true;  // New state for successful landing
+                    lander.landed = true;
                     lander.crashed = false;
                 } else {
                     lander.crashed = true;
@@ -594,7 +544,6 @@ function updateLander() {
         }
     }
     
-    // Keep lander within screen bounds
     lander.pos.x = constrain(lander.pos.x, 0, width);
     lander.pos.y = constrain(lander.pos.y, 0, height);
 }
@@ -604,40 +553,33 @@ function drawLander() {
     translate(lander.pos.x, lander.pos.y);
     rotate(lander.rotation);
     
-    // Update color based on crash/landing state
     if (lander.crashed) {
-        fill(255, 0, 0);  // Red for crash
+        fill(255, 0, 0);
     } else if (lander.landed) {
-        fill(0, 255, 0);  // Green for successful landing
+        fill(0, 255, 0);
     } else {
-        fill(200);        // Default gray while flying
+        fill(200);
     }
     stroke(0);
     rectMode(CENTER);
     rect(0, 0, LANDER_WIDTH, LANDER_HEIGHT);
     
-    // Landing gear
     fill(150);
     stroke(0);
-    // Left leg
     beginShape();
     vertex(-LANDER_WIDTH/2, LANDER_HEIGHT/2);
     vertex(-LANDER_WIDTH/2 - 15, LANDER_HEIGHT/2 + 20);
     vertex(-LANDER_WIDTH/2 + 5, LANDER_HEIGHT/2 + 20);
     endShape(CLOSE);
-    // Right leg
     beginShape();
     vertex(LANDER_WIDTH/2, LANDER_HEIGHT/2);
     vertex(LANDER_WIDTH/2 + 15, LANDER_HEIGHT/2 + 20);
     vertex(LANDER_WIDTH/2 - 5, LANDER_HEIGHT/2 + 20);
     endShape(CLOSE);
     
-    // Draw thrusters and flames
-    // Main bottom thruster
     fill(100);
     rect(0, LANDER_HEIGHT/2, 15, 10);
     if (lander.mainThruster) {
-        // Animated flame effect
         noStroke();
         for (let i = 0; i < 3; i++) {
             let flameSize = random(15, 25);
@@ -652,14 +594,12 @@ function drawLander() {
         stroke(0);
     }
     
-    // Left side thruster
     push();
     translate(-LANDER_WIDTH/2, 0);
     rotate(PI / 8);
     fill(100);
     rect(0, 0, 10, 15);
     if (lander.leftThruster) {
-        // Animated flame effect
         noStroke();
         for (let i = 0; i < 3; i++) {
             let flameSize = random(10, 20);
@@ -675,14 +615,12 @@ function drawLander() {
     }
     pop();
     
-    // Right side thruster
     push();
     translate(LANDER_WIDTH/2, 0);
     rotate(-PI / 8);
     fill(100);
     rect(0, 0, 10, 15);
     if (lander.rightThruster) {
-        // Animated flame effect
         noStroke();
         for (let i = 0; i < 3; i++) {
             let flameSize = random(10, 20);
@@ -701,7 +639,6 @@ function drawLander() {
     pop();
 }
 
-// Add keyboard controls
 function keyPressed() {
     if (keyCode === UP_ARROW) {
         lander.mainThruster = true;
@@ -732,7 +669,6 @@ function keyReleased() {
     }
 } 
 
-// Add this function to stop training
 function stopTraining() {
     if (window.ga) {
         window.ga.stop();
@@ -749,18 +685,15 @@ class GeneticAlgorithm {
         this.bestFitness = -Infinity;
         this.bestGenome = null;
         
-        // PID ranges
         this.KP_RANGE = { min: 0.01, max: 1.0 };
         this.KI_RANGE = { min: 0.001, max: 0.1 };
         this.KD_RANGE = { min: 0.01, max: 0.5 };
         
-        // Sequence parameters
         this.MAX_SEQUENCE_LENGTH = 10;
-        this.DURATION_RANGE = { min: 1.0, max: 2.5 };  // Updated duration range: minimum 1s, maximum 2.5s
+        this.DURATION_RANGE = { min: 1.0, max: 2.5 };
         
         this.activeSimulations = new Array(10).fill(null);
         
-        // Add these arrays to store historical data
         this.fitnessHistory = [];
         this.diversityHistory = [];
         this.successRateHistory = [];
@@ -769,7 +702,6 @@ class GeneticAlgorithm {
     }
     
     initialize() {
-        // Create initial population
         for (let i = 0; i < this.populationSize; i++) {
             const genome = this.createRandomGenome();
             this.population.push(genome);
@@ -777,12 +709,10 @@ class GeneticAlgorithm {
     }
     
     createRandomGenome() {
-        // Generate random PID constants
         const kp = random(this.KP_RANGE.min, this.KP_RANGE.max);
         const ki = random(this.KI_RANGE.min, this.KI_RANGE.max);
         const kd = random(this.KD_RANGE.min, this.KD_RANGE.max);
         
-        // Generate random sequence
         const sequenceLength = floor(random(3, this.MAX_SEQUENCE_LENGTH));
         let sequence = '';
         
@@ -799,40 +729,33 @@ class GeneticAlgorithm {
         while (this.currentGeneration < this.maxGenerations) {
             console.log(`\n=== Generation ${this.currentGeneration + 1}/${this.maxGenerations} ===`);
             
-            // Evaluate fitness for all genomes
             const fitnessScores = [];
             for (let i = 0; i < this.population.length; i++) {
                 const fitness = await this.evaluateFitness(this.population[i]);
                 fitnessScores.push(fitness);
             }
             
-            // Find best genome of this generation
             const bestIndex = fitnessScores.indexOf(Math.max(...fitnessScores));
             const avgFitness = fitnessScores.reduce((a, b) => a + b) / fitnessScores.length;
             
             console.log(`Best Fitness: ${fitnessScores[bestIndex].toFixed(2)}`);
             console.log(`Average Fitness: ${avgFitness.toFixed(2)}`);
             
-            // Update all-time best if necessary
             if (fitnessScores[bestIndex] > this.bestFitness) {
                 this.bestFitness = fitnessScores[bestIndex];
                 this.bestGenome = this.population[bestIndex];
                 console.log(`New Best Overall Fitness: ${this.bestFitness.toFixed(2)}`);
             }
             
-            // After evaluating fitness scores, store the historical data
             this.fitnessHistory.push(avgFitness);
             this.diversityHistory.push(this.calculatePopulationDiversity());
             
-            // Calculate and store success rate
             const successfulLandings = fitnessScores.filter(score => score > 0).length;
             const successRate = successfulLandings / this.populationSize;
             this.successRateHistory.push(successRate);
             
-            // Create new population
             const newPopulation = [];
             
-            // Keep best 10% of population (elitism)
             const eliteCount = Math.floor(this.populationSize * 0.1);
             const sortedIndices = fitnessScores
                 .map((f, i) => ({f, i}))
@@ -843,7 +766,6 @@ class GeneticAlgorithm {
                 newPopulation.push(this.population[sortedIndices[i]]);
             }
             
-            // Create rest through crossover and mutation
             while (newPopulation.length < this.populationSize) {
                 const parent1 = this.selectParent(fitnessScores);
                 const parent2 = this.selectParent(fitnessScores);
@@ -855,17 +777,14 @@ class GeneticAlgorithm {
                 newPopulation.push(child);
             }
             
-            // Update population and increment generation
             this.population = newPopulation;
             this.currentGeneration++;
             
-            // Save best genome periodically
             if (this.currentGeneration % 1 === 0) {
                 console.log('\nSaving checkpoint...');
                 this.saveGenome();
             }
             
-            // Add a small delay between generations to allow UI updates
             await new Promise(resolve => setTimeout(resolve, 100));
         }
         
@@ -876,10 +795,8 @@ class GeneticAlgorithm {
     }
     
     async evaluateFitness(genome) {
-        // Test each genome under 10 different random gravity conditions
         const gravityTests = Array.from({length: 10}, () => random(1.2, 10));
         
-        // Initialize simulation objects for visualization
         this.activeSimulations = gravityTests.map(gravity => ({
             gravity,
             lander: {
@@ -930,7 +847,6 @@ class GeneticAlgorithm {
             const simulate = () => {
                 simulationSteps++;
                 
-                // Check if simulation should end
                 const shouldEndSimulation = 
                     testLander.crashed || 
                     testLander.landed || 
@@ -938,11 +854,9 @@ class GeneticAlgorithm {
                     simulationSteps >= maxSteps;
                 
                 if (!shouldEndSimulation) {
-                    // Update physics and controls
                     this.updateSimulation(testLander, testPID, actions, currentActionIndex, 
                         currentActionTime, thrusterUsage, testGravity, targetY);
                     
-                    // Update visualization
                     this.activeSimulations[simulationIndex] = {
                         gravity: testGravity,
                         lander: {
@@ -957,11 +871,9 @@ class GeneticAlgorithm {
                     
                     requestAnimationFrame(simulate);
                 } else {
-                    // Calculate final fitness
                     const fitness = this.calculateFitness(testLander, simulationSteps, 
                         thrusterUsage, targetY);
                     
-                    // Update final state
                     this.activeSimulations[simulationIndex] = {
                         gravity: testGravity,
                         lander: {
@@ -984,7 +896,6 @@ class GeneticAlgorithm {
     }
     
     updateSimulation(lander, pid, actions, actionIndex, actionTime, thrusterUsage, gravity, targetY) {
-        // Update PID control and thrusters
         if (actionIndex < actions.length) {
             const [type, duration] = actions[actionIndex].split(',');
             const scaledDuration = Number(duration) / Math.sqrt(gravity);
@@ -1006,31 +917,24 @@ class GeneticAlgorithm {
             }
         }
 
-        // Update physics - match exactly with main simulation
         lander.vel.y += gravity * SCALE;
         if (lander.mainThruster) {
-            // Calculate thrust direction based on rotation
-            const thrustAngle = lander.rotation - PI/2; // Adjust so 0 means thrusting up
+            const thrustAngle = lander.rotation - PI/2;
             
-            // Convert polar coordinates (angle and magnitude) to Cartesian (x,y)
             const thrustForce = BASE_THRUST_FORCE * (gravity / MIN_GRAVITY);
             const thrustX = thrustForce * Math.cos(thrustAngle) * SCALE;
             const thrustY = thrustForce * Math.sin(thrustAngle) * SCALE;
             
-            // Add thrust to velocity
             lander.vel.x += thrustX;
             lander.vel.y += thrustY;
         }
         
-        // Update position
         lander.pos.x += lander.vel.x;
         lander.pos.y += lander.vel.y;
 
-        // Add dampening like in main simulation
         lander.vel.x *= 0.99;
         lander.vel.y *= 0.99;
 
-        // Check for atmosphere escape
         if (lander.pos.y <= 0) {
             lander.pos.y = 0;
             lander.vel.y = 0;
@@ -1039,41 +943,35 @@ class GeneticAlgorithm {
             return;
         }
 
-        // Keep lander within screen bounds like main simulation
         lander.pos.x = constrain(lander.pos.x, 0, width);
         lander.pos.y = constrain(lander.pos.y, 0, height);
 
-        // Check terrain collision
         this.checkTerrainCollision(lander);
     }
     
     calculateFitness(lander, steps, thrusterUsage, targetY) {
         let fitness = 10000;
         
-        // Apply penalties
         if (lander.escaped) {
-            fitness -= 9500;  // Most severe penalty for escaping atmosphere
+            fitness -= 9500;
         } else if (lander.crashed) {
             const crashVelocity = Math.abs(lander.vel.y) / SCALE;
-            fitness -= 1000 + crashVelocity * 500;  // Severe crash penalty
+            fitness -= 1000 + crashVelocity * 500;
         } else if (steps >= 1000) {
-            fitness -= 7000;  // Timeout penalty
+            fitness -= 7000;
         } else if (lander.landed) {
-            fitness += 5000;  // Landing bonus
+            fitness += 5000;
         }
 
-        // Distance penalty
         const finalDistance = Math.abs(lander.pos.y - targetY);
         fitness -= Math.min(5000, finalDistance);
 
-        // Thruster usage penalty
         fitness -= Math.min(1000, thrusterUsage * 2);
 
         return fitness;
     }
     
     selectParent(fitnessScores) {
-        // Tournament selection
         const tournamentSize = 5;
         let bestIndex = Math.floor(random(this.populationSize));
         let bestFitness = fitnessScores[bestIndex];
@@ -1093,7 +991,6 @@ class GeneticAlgorithm {
         const parts1 = genome1.split(';');
         const parts2 = genome2.split(';');
         
-        // Crossover PID constants
         const [kp1, ki1, kd1] = parts1[0].split(',').map(Number);
         const [kp2, ki2, kd2] = parts2[0].split(',').map(Number);
         
@@ -1101,11 +998,9 @@ class GeneticAlgorithm {
         const ki = (ki1 + ki2) / 2 * random(0.9, 1.1);
         const kd = (kd1 + kd2) / 2 * random(0.9, 1.1);
         
-        // Crossover sequences
         const seq1 = parts1.slice(1, -1);
         const seq2 = parts2.slice(1, -1);
         
-        // Randomly select actions from both parents
         const newSeqLength = floor(random(3, this.MAX_SEQUENCE_LENGTH));
         let newSequence = '';
         
@@ -1124,12 +1019,10 @@ class GeneticAlgorithm {
         const parts = genome.split(';');
         const [kp, ki, kd] = parts[0].split(',').map(Number);
         
-        // Mutate PID constants
         const newKp = this.mutationRate > random() ? kp * random(0.8, 1.2) : kp;
         const newKi = this.mutationRate > random() ? ki * random(0.8, 1.2) : ki;
         const newKd = this.mutationRate > random() ? kd * random(0.8, 1.2) : kd;
         
-        // Mutate sequence
         let newSequence = '';
         const actions = parts.slice(1, -1);
         
@@ -1141,7 +1034,6 @@ class GeneticAlgorithm {
                 
                 if(this.mutationRate > random()) {
                     newDuration *= random(0.8, 1.2);
-                    // Clamp duration to valid range
                     newDuration = Math.max(this.DURATION_RANGE.min, 
                                         Math.min(this.DURATION_RANGE.max, newDuration));
                 }
@@ -1176,7 +1068,6 @@ class GeneticAlgorithm {
                     lander.pos.y = terrainY - LANDER_HEIGHT/2;
                     const landingSpeed = Math.abs(lander.vel.y) / SCALE;
                     
-                    // Check if it's a safe landing in the landing zone
                     if (landingSpeed < 2.0 && 
                         lander.pos.x >= width/2 - 80 && 
                         lander.pos.x <= width/2 + 80) {
@@ -1209,7 +1100,6 @@ class GeneticAlgorithm {
     }
     
     calculatePopulationDiversity() {
-        // Measure how different genomes are from each other
         let totalDifference = 0;
         for(let i = 0; i < this.population.length; i++) {
             for(let j = i + 1; j < this.population.length; j++) {
@@ -1226,25 +1116,20 @@ class GeneticAlgorithm {
         const parts1 = genome1.split(';');
         const parts2 = genome2.split(';');
         
-        // Compare PID values
         const pid1 = parts1[0].split(',').map(Number);
         const pid2 = parts2[0].split(',').map(Number);
         
-        // Calculate normalized PID difference
         const pidDiff = pid1.reduce((sum, val, i) => {
             const diff = Math.abs(val - pid2[i]);
             return sum + diff / Math.max(val, pid2[i]);
-        }, 0) / 3;  // Divide by 3 for average
+        }, 0) / 3;
         
-        // Compare action sequences
         const actions1 = parts1.slice(1, -1);
         const actions2 = parts2.slice(1, -1);
         
-        // Calculate sequence difference
         const seqDiff = Math.abs(actions1.length - actions2.length) / 
                        Math.max(actions1.length, actions2.length);
         
-        // Return weighted average (60% PID params, 40% sequence)
         return pidDiff * 0.6 + seqDiff * 0.4;
     }
 } 
@@ -1257,15 +1142,12 @@ function loadGenome(filename = DEFAULT_GENOME_FILE) {
             const parts = data.trim().split(';');
             const [kp, ki, kd] = parts[0].split(',').map(Number);
             
-            // Validate the values
             if (isNaN(kp) || isNaN(ki) || isNaN(kd)) {
                 throw new Error('Invalid PID values in genome file');
             }
             
-            // Update PID controller with loaded values
             altitudePID = new PIDController(kp, ki, kd);
             
-            // Store full genome for action sequence
             currentGenome = data.trim();
             currentActionIndex = 0;
             currentActionTime = 0;
@@ -1285,13 +1167,12 @@ function loadGenome(filename = DEFAULT_GENOME_FILE) {
 function testPIDController() {
     const pid = new PIDController(0.5, 0.1, 0.2);
     
-    // Test basic response
     const targetHeight = 300;
     const testCases = [
-        { height: 400, velocity: 5, expected: "negative" },  // Above target, moving up
-        { height: 400, velocity: -5, expected: "small" },    // Above target, moving down
-        { height: 200, velocity: -5, expected: "large" },    // Below target, moving down
-        { height: 200, velocity: 5, expected: "small" }      // Below target, moving up
+        { height: 400, velocity: 5, expected: "negative" },
+        { height: 400, velocity: -5, expected: "small" },
+        { height: 200, velocity: -5, expected: "large" },
+        { height: 200, velocity: 5, expected: "small" }
     ];
     
     testCases.forEach(test => {
@@ -1355,7 +1236,6 @@ function drawStressTestScene() {
 }
 
 function drawVisualizationScene() {
-    // Always draw the graph frames, even without data
     drawGraph(
         window.ga?.fitnessHistory || [], 
         "Fitness History", 
@@ -1379,25 +1259,21 @@ function drawGraph(data, title, x, y, w, h) {
     push();
     translate(x, y);
     
-    // Always draw axes and labels
     stroke(255);
-    line(0, h, w, h);  // X axis
-    line(0, 0, 0, h);  // Y axis
+    line(0, h, w, h);
+    line(0, 0, 0, h);
     
-    // Draw title
     noStroke();
     fill(255);
     textAlign(CENTER);
     text(title, w/2, -10);
     
-    // Add scale labels
     textAlign(RIGHT);
     textSize(12);
     text('1.0', -5, 10);
     text('0.5', -5, h/2);
     text('0.0', -5, h);
     
-    // Only draw data points if we have data
     if (data && data.length > 0) {
         stroke(255, 255, 0);
         noFill();
