@@ -760,6 +760,11 @@ class GeneticAlgorithm {
         
         this.activeSimulations = new Array(10).fill(null);
         
+        // Add these arrays to store historical data
+        this.fitnessHistory = [];
+        this.diversityHistory = [];
+        this.successRateHistory = [];
+        
         this.initialize();
     }
     
@@ -814,6 +819,15 @@ class GeneticAlgorithm {
                 this.bestGenome = this.population[bestIndex];
                 console.log(`New Best Overall Fitness: ${this.bestFitness.toFixed(2)}`);
             }
+            
+            // After evaluating fitness scores, store the historical data
+            this.fitnessHistory.push(avgFitness);
+            this.diversityHistory.push(this.calculatePopulationDiversity());
+            
+            // Calculate and store success rate
+            const successfulLandings = fitnessScores.filter(score => score > 0).length;
+            const successRate = successfulLandings / this.populationSize;
+            this.successRateHistory.push(successRate);
             
             // Create new population
             const newPopulation = [];
@@ -1207,6 +1221,32 @@ class GeneticAlgorithm {
         }
         return totalDifference / (this.population.length * (this.population.length - 1) / 2);
     }
+
+    genomeDifference(genome1, genome2) {
+        const parts1 = genome1.split(';');
+        const parts2 = genome2.split(';');
+        
+        // Compare PID values
+        const pid1 = parts1[0].split(',').map(Number);
+        const pid2 = parts2[0].split(',').map(Number);
+        
+        // Calculate normalized PID difference
+        const pidDiff = pid1.reduce((sum, val, i) => {
+            const diff = Math.abs(val - pid2[i]);
+            return sum + diff / Math.max(val, pid2[i]);
+        }, 0) / 3;  // Divide by 3 for average
+        
+        // Compare action sequences
+        const actions1 = parts1.slice(1, -1);
+        const actions2 = parts2.slice(1, -1);
+        
+        // Calculate sequence difference
+        const seqDiff = Math.abs(actions1.length - actions2.length) / 
+                       Math.max(actions1.length, actions2.length);
+        
+        // Return weighted average (60% PID params, 40% sequence)
+        return pidDiff * 0.6 + seqDiff * 0.4;
+    }
 } 
 
 function loadGenome(filename = DEFAULT_GENOME_FILE) {
@@ -1315,23 +1355,31 @@ function drawStressTestScene() {
 }
 
 function drawVisualizationScene() {
-    if (!window.visualizationData) return;
+    // Always draw the graph frames, even without data
+    drawGraph(
+        window.ga?.fitnessHistory || [], 
+        "Fitness History", 
+        50, 50, 300, 200
+    );
     
-    // Draw fitness over time graph
-    drawGraph(window.visualizationData.fitnessHistory, "Fitness History", 50, 50, 300, 200);
+    drawGraph(
+        window.ga?.diversityHistory || [], 
+        "Population Diversity", 
+        400, 50, 300, 200
+    );
     
-    // Draw diversity graph
-    drawGraph(window.visualizationData.diversityHistory, "Population Diversity", 400, 50, 300, 200);
-    
-    // Draw success rate graph
-    drawGraph(window.visualizationData.successRateHistory, "Success Rate", 50, 300, 300, 200);
+    drawGraph(
+        window.ga?.successRateHistory || [], 
+        "Success Rate", 
+        50, 300, 300, 200
+    );
 }
 
 function drawGraph(data, title, x, y, w, h) {
     push();
     translate(x, y);
     
-    // Draw axes
+    // Always draw axes and labels
     stroke(255);
     line(0, h, w, h);  // X axis
     line(0, 0, 0, h);  // Y axis
@@ -1342,16 +1390,25 @@ function drawGraph(data, title, x, y, w, h) {
     textAlign(CENTER);
     text(title, w/2, -10);
     
-    // Draw data points
-    stroke(255, 255, 0);
-    noFill();
-    beginShape();
-    for (let i = 0; i < data.length; i++) {
-        const px = map(i, 0, data.length-1, 0, w);
-        const py = map(data[i], 0, max(data), h, 0);
-        vertex(px, py);
+    // Add scale labels
+    textAlign(RIGHT);
+    textSize(12);
+    text('1.0', -5, 10);
+    text('0.5', -5, h/2);
+    text('0.0', -5, h);
+    
+    // Only draw data points if we have data
+    if (data && data.length > 0) {
+        stroke(255, 255, 0);
+        noFill();
+        beginShape();
+        for (let i = 0; i < data.length; i++) {
+            const px = map(i, 0, data.length-1, 0, w);
+            const py = map(data[i], 0, max(data), h, 0);
+            vertex(px, py);
+        }
+        endShape();
     }
-    endShape();
     
     pop();
 }
