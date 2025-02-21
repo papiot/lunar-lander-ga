@@ -44,56 +44,6 @@ function setup() {
     altitudePID = new PIDController(0.1, 0.01, 0.05);
 }
 
-function loadTerrain(filename) {
-    // Load terrain data from a file
-    fetch(filename)
-        .then(response => response.json())
-        .then(data => {
-            terrain = data;
-        })
-        .catch(error => {
-            console.error('Error loading terrain:', error);
-            generateRandomTerrain(); 
-        });
-}
-
-function generateRandomTerrain() {
-    terrain = [];
-    let x = 0;
-    const segmentWidth = 80;
-    const landingZoneWidth = 160; 
-    const landingZoneStart = width/2 - landingZoneWidth/2; 
-    
-    while (x < width) {
-        let y;
-        
-        if (x >= landingZoneStart && x <= landingZoneStart + landingZoneWidth) {
-            y = height - 100; 
-        } else {
-            y = height - random(80, 150);
-        }
-        
-        terrain.push({ x, y });
-        x += random(60, segmentWidth);
-    }
-    
-    terrain = terrain.filter(point => 
-        point.x < landingZoneStart || point.x > landingZoneStart + landingZoneWidth
-    );
-    
-    terrain.push(
-        { x: landingZoneStart, y: height - 100, isFlag: true },
-        { x: landingZoneStart + landingZoneWidth, y: height - 100, isFlag: true }
-    );
-    
-    terrain.sort((a, b) => a.x - b.x);
-    
-    // Save terrain to disk
-    const date = new Date();
-    const filename = `terrain_${date.toISOString().replace(/:/g, '-').split('.')[0]}.json`;
-    saveJSON(terrain, filename);
-}
-
 function draw() {
     background(128);
     
@@ -119,171 +69,8 @@ function draw() {
     }
 }
 
-function drawSimulationScene() {
-    // Draw terrain first
-    stroke(0);
-    fill(100);
-    beginShape();
-    for (let point of terrain) {
-        vertex(point.x, point.y);
-    }
-    vertex(width, height);
-    vertex(0, height);
-    endShape(CLOSE);
-    
-    // Draw flags
-    stroke(200);
-    strokeWeight(3);
-    for (let point of terrain) {
-        if (point.isFlag) {
-            line(point.x, point.y, point.x, point.y - 40);
-            fill(255, 255, 0);
-            noStroke();
-            triangle(
-                point.x, point.y - 40,
-                point.x + 20, point.y - 30,
-                point.x, point.y - 20
-            );
-            stroke(200);
-        }
-    }
-    strokeWeight(1);
-    
-    // Display current values
-    fill(255);
-    textSize(16);
-    textAlign(LEFT);
-    text(`Gravity: ${GRAVITY.toFixed(1)} m/s²`, 20, 50);
-    text(`PID Control: ${USE_PID ? 'ON' : 'OFF'}`, 20, 80);
-    text(`PID Constants - Kp: ${altitudePID.kp.toFixed(3)}, Ki: ${altitudePID.ki.toFixed(3)}, Kd: ${altitudePID.kd.toFixed(3)}`, 20, 110);
-    
-    // Add action sequence display
-    if (currentGenome) {
-        const parts = currentGenome.split(';');
-        const actions = parts.slice(1, -1);
-        
-        if (currentActionIndex < actions.length) {
-            const [type, duration] = actions[currentActionIndex].split(',');
-            const scaledDuration = Number(duration) / Math.sqrt(GRAVITY);
-            text(`Current Action: ${type === 'T' ? 'Thrust' : 'Drift'}`, 20, 140);
-            text(`Duration: ${scaledDuration.toFixed(2)}s (base: ${duration}s)`, 20, 170);
-            text(`Progress: ${currentActionTime.toFixed(1)}s`, 20, 200);
-            text(`Action ${currentActionIndex + 1}/${actions.length}`, 20, 230);
-        }
-    }
-    
-    // Update and draw 
-    updateLander();
-    drawLander();
 
-    // Add success message
-    if (lander.landed) {
-        fill(0, 255, 0);
-        textSize(32);
-        textAlign(CENTER);
-        text('Success!', width/2, height/2);
-    }
-}
 
-function drawTrainingScene() {
-    // Draw basic training scene info
-    fill(255);
-    textSize(24);
-    textAlign(CENTER);
-    text('Genetic Algorithm Training', width/2, 50);
-    
-    // Create start/stop training button if it doesn't exist
-    if (!window.trainButton) {
-        window.trainButton = createButton('Start Training');
-        window.trainButton.position(width/2 - 50, height/2 - 150);
-        window.trainButton.mousePressed(toggleTraining);
-    }
-
-    // Draw 10 visualization squares
-    const squareSize = width / 10;
-    const startY = height / 2;
-    
-    for (let i = 0; i < 10; i++) {
-        const x = i * squareSize;
-        
-        // Draw square border
-        stroke(200);
-        noFill();
-        rect(x, startY, squareSize, squareSize);
-        
-        // If we have active simulations, draw their state
-        if (window.ga && window.ga.activeSimulations && window.ga.activeSimulations[i]) {
-            const sim = window.ga.activeSimulations[i];
-            
-            // Draw mini terrain
-            stroke(100);
-            fill(100);
-            beginShape();
-            for (let point of terrain) {
-                // Scale terrain to fit in square
-                const scaledX = map(point.x, 0, width, x, x + squareSize);
-                const scaledY = map(point.y, 0, height, startY, startY + squareSize);
-                vertex(scaledX, scaledY);
-            }
-            vertex(x + squareSize, startY + squareSize);
-            vertex(x, startY + squareSize);
-            endShape(CLOSE);
-            
-            // Draw mini lander if it exists
-            if (sim.lander) {
-                const scaledX = map(sim.lander.pos.x, 0, width, x, x + squareSize);
-                const scaledY = map(sim.lander.pos.y, 0, height, startY, startY + squareSize);
-                
-                push();
-                translate(scaledX, scaledY);
-                
-                // Color based on lander state
-                if (sim.lander.escaped) {
-                    fill(255, 0, 255);  // Purple for atmosphere escape
-                } else if (sim.lander.crashed) {
-                    fill(255, 0, 0);    // Red for crashed
-                } else if (sim.lander.landed) {
-                    fill(0, 255, 0);    // Green for landed
-                } else {
-                    fill(255);          // White for active
-                }
-                
-                // Draw simplified lander
-                noStroke();
-                rect(-3, -3, 6, 6);
-                
-                // Draw thruster flame if active
-                if (sim.lander.mainThruster) {
-                    fill(255, 150, 0);
-                    triangle(-2, 3, 2, 3, 0, 8);
-                }
-                
-                pop();
-            }
-            
-            // Draw simulation info
-            fill(255);
-            noStroke();
-            textSize(10);
-            textAlign(LEFT);
-            text(`G: ${sim.gravity?.toFixed(1) || '?'}`, x + 5, startY + 15);
-            if (sim.fitness !== undefined) {
-                text(`F: ${sim.fitness.toFixed(0)}`, x + 5, startY + 30);
-            }
-        }
-    }
-    
-    // Draw generation info if available
-    if (window.ga) {
-        fill(255);
-        textSize(16);
-        textAlign(LEFT);
-        text(`Generation: ${window.ga.currentGeneration + 1}/${window.ga.maxGenerations}`, 20, height - 60);
-        if (window.ga.bestFitness !== -Infinity) {
-            text(`Best Fitness: ${window.ga.bestFitness.toFixed(0)}`, 20, height - 40);
-        }
-    }
-}
 
 function startTraining() {
     // Start training logic
@@ -301,14 +88,13 @@ function startTraining() {
 function toggleTraining() {
     if (window.trainButton.html() === 'Start Training') {
         window.trainButton.html('Stop Training');
-        startTraining(); // Function from your genetic algorithm file
+        startTraining(); 
     } else {
         window.trainButton.html('Start Training');
-        stopTraining(); // Function from your genetic algorithm file
+        stopTraining(); 
     }
 }
 
-// Add this function to clean up when switching scenes
 function resetTraining() {
     if (window.trainButton) {
         window.trainButton.html('Start Training');
@@ -387,7 +173,7 @@ function updateLander() {
     // Apply main thruster
     if (lander.mainThruster) {    
         // Calculate thrust direction based on rotation
-        const thrustAngle = lander.rotation - PI/2; // Adjust so 0 means thrusting up
+        const thrustAngle = lander.rotation - PI/2; 
         
         // Convert polar coordinates (angle and magnitude) to Cartesian (x,y)
         const thrustX = BASE_THRUST_FORCE * Math.cos(thrustAngle);
@@ -448,9 +234,8 @@ function updateLander() {
                 lander.vel = { x: 0, y: 0 };
                 lander.angularVelocity = 0;
                 
-                // Update these lines to handle successful landing differently
                 if (isSafeLanding) {
-                    lander.landed = true;  // New state for successful landing
+                    lander.landed = true;  
                     lander.crashed = false;
                 } else {
                     lander.crashed = true;
