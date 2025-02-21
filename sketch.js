@@ -26,18 +26,7 @@ const ROTATION_THRUST = 0.03 * SCALE;
 let currentGenome = '';
 const DEFAULT_GENOME_FILE = 'genomes/test_best_genome.txt';
 
-// State of the lander
-let lander = {
-    pos: { x: 0, y: 0 },
-    vel: { x: 0, y: 0 },
-    rotation: 0,
-    angularVelocity: 0, 
-    crashed: false,
-    mainThruster: false,
-    leftThruster: false,
-    rightThruster: false,
-    landed: false
-};
+let lander = new Lander();
 
 // Add PID controller constants and variables
 let USE_PID = true;  // Toggle for PID control
