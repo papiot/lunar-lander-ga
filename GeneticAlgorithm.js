@@ -1,9 +1,11 @@
 class GeneticAlgorithm {
     constructor() {
-        this.populationSize = 100;
+        this.populationSize = 1000;
         this.currentGeneration = 0;
         this.maxGenerations = 5;
-        this.mutationRate = 0.1;
+        this.durationMutationRate = 0.2;
+        this.actionMutationRate = 0.5;
+        this.pidMutationRate = 0.3;
         this.population = [];
         this.bestFitness = -Infinity;
         this.bestGenome = null;
@@ -55,22 +57,55 @@ class GeneticAlgorithm {
     }
     
     async evolve() {
+        const startTime = Date.now();
+        
         while (this.currentGeneration < this.maxGenerations) {
+            const genStartTime = Date.now();
             console.log(`\n=== Generation ${this.currentGeneration + 1}/${this.maxGenerations} ===`);
+            console.log(`Start time: ${new Date(genStartTime).toLocaleTimeString()}`);
             
             // Evaluate fitness for all genomes
             const fitnessScores = [];
+            let genomesEvaluated = 0;
+            
             for (let i = 0; i < this.population.length; i++) {
+                const genomeStartTime = Date.now();
                 const fitness = await this.evaluateFitness(this.population[i]);
                 fitnessScores.push(fitness);
+                genomesEvaluated++;
+                
+                if (genomesEvaluated % 10 === 0) {
+                    const timeElapsed = (Date.now() - genStartTime) / 1000;
+                    const genomePerSecond = genomesEvaluated / timeElapsed;
+                    const estimatedRemaining = (this.population.length - genomesEvaluated) / genomePerSecond;
+                    console.log(`Evaluated ${genomesEvaluated}/${this.population.length} genomes`);
+                    console.log(`Average speed: ${genomePerSecond.toFixed(2)} genomes/second`);
+                    console.log(`Estimated time remaining for generation: ${estimatedRemaining.toFixed(2)} seconds`);
+                }
             }
             
             // Find best genome of this generation
             const bestIndex = fitnessScores.indexOf(Math.max(...fitnessScores));
+            const bestGenomeThisGen = this.population[bestIndex];
             const avgFitness = fitnessScores.reduce((a, b) => a + b) / fitnessScores.length;
             
-            console.log(`Best Fitness: ${fitnessScores[bestIndex].toFixed(2)}`);
-            console.log(`Average Fitness: ${avgFitness.toFixed(2)}`);
+            // Parse and print detailed info about best genome
+            const parts = bestGenomeThisGen.split(';');
+            const [kp, ki, kd] = parts[0].split(',').map(Number);
+            const actions = parts.slice(1, -1);
+            
+            console.log('\n=== Best Genome Details ===');
+            console.log(`Raw genome string: ${bestGenomeThisGen}`);
+            console.log(`PID Values: Kp=${kp.toFixed(3)}, Ki=${ki.toFixed(3)}, Kd=${kd.toFixed(3)}`);
+            console.log('Action Sequence:');
+            actions.forEach((action, i) => {
+                const [type, duration] = action.split(',');
+                console.log(`  ${i + 1}. ${type} for ${duration}s`);
+            });
+            console.log(`Fitness: ${fitnessScores[bestIndex].toFixed(2)}`);
+            console.log(`Average Population Fitness: ${avgFitness.toFixed(2)}`);
+            console.log(`Population Size: ${this.population.length}`);
+            console.log('================================\n');
             
             // Update all-time best if necessary
             if (fitnessScores[bestIndex] > this.bestFitness) {
@@ -124,11 +159,18 @@ class GeneticAlgorithm {
                 this.saveGenome();
             }
             
+            const genEndTime = Date.now();
+            const genDuration = (genEndTime - genStartTime) / 1000;
+            console.log(`\nGeneration ${this.currentGeneration} completed in ${genDuration.toFixed(2)} seconds`);
+            
             // Add a small delay between generations to allow UI updates
             await new Promise(resolve => setTimeout(resolve, 100));
         }
         
-        console.log('\n=== Training Complete ===');
+        const totalDuration = (Date.now() - startTime) / 1000;
+        console.log(`\n=== Training Complete ===`);
+        console.log(`Total time: ${totalDuration.toFixed(2)} seconds`);
+        console.log(`Average time per generation: ${(totalDuration / this.maxGenerations).toFixed(2)} seconds`);
         console.log(`Final Best Fitness: ${this.bestFitness.toFixed(2)}`);
         console.log(`Final Best Genome: ${this.bestGenome}`);
         this.saveGenome();
@@ -162,14 +204,21 @@ class GeneticAlgorithm {
     
     async evaluateUnderGravity(genome, testGravity, simulationIndex) {
         return new Promise(resolve => {
+            const simStartTime = Date.now();
             const parts = genome.split(';');
             const [kp, ki, kd] = parts[0].split(',').map(Number);
             const actions = parts.slice(1, -1);
             
+            console.log(`Starting simulation ${simulationIndex} with gravity ${testGravity}`);
+            console.log(`Number of actions: ${actions.length}`);
+            console.log(`Actions:`, actions);
+            
             const testPID = new PIDController(kp, ki, kd);
-            let currentActionIndex = 0;
-            let currentActionTime = 0;
-            let thrusterUsage = 0;
+            const simState = {
+                currentActionIndex: 0,
+                currentActionTime: 0,
+                thrusterUsage: 0
+            };
             
             const testLander = {
                 pos: { x: width/2, y: 50 },
@@ -197,11 +246,24 @@ class GeneticAlgorithm {
                     simulationSteps >= maxSteps;
                 
                 if (!shouldEndSimulation) {
-                    // Update physics and controls
-                    this.updateSimulation(testLander, testPID, actions, currentActionIndex, 
-                        currentActionTime, thrusterUsage, testGravity, targetY);
+                    // Update physics multiple times per frame to speed up simulation
+                    const physicsSteps = 5;  // Run physics 5x faster
+                    for(let i = 0; i < physicsSteps; i++) {
+                        this.updateSimulation(
+                            testLander, 
+                            testPID, 
+                            actions, 
+                            simState,
+                            testGravity, 
+                            targetY
+                        );
+                        
+                        if(testLander.crashed || testLander.landed || testLander.escaped) {
+                            break;
+                        }
+                    }
                     
-                    // Update visualization
+                    // Update visualization state
                     this.activeSimulations[simulationIndex] = {
                         gravity: testGravity,
                         lander: {
@@ -214,26 +276,24 @@ class GeneticAlgorithm {
                         }
                     };
                     
+                    // Remove delay - run next frame immediately
                     requestAnimationFrame(simulate);
                 } else {
-                    // Calculate final fitness
+                    const simDuration = (Date.now() - simStartTime) / 1000;
+                    console.log(`Simulation ${simulationIndex} ended:`, {
+                        steps: simulationSteps,
+                        finalPos: testLander.pos,
+                        finalVel: testLander.vel,
+                        crashed: testLander.crashed,
+                        landed: testLander.landed,
+                        escaped: testLander.escaped,
+                        gravity: testGravity
+                    });
+                    
                     const fitness = this.calculateFitness(testLander, simulationSteps, 
-                        thrusterUsage, targetY);
+                        simState.thrusterUsage, targetY);
                     
-                    // Update final state
-                    this.activeSimulations[simulationIndex] = {
-                        gravity: testGravity,
-                        lander: {
-                            pos: { ...testLander.pos },
-                            vel: { ...testLander.vel },
-                            crashed: testLander.crashed,
-                            landed: testLander.landed,
-                            escaped: testLander.escaped,
-                            mainThruster: testLander.mainThruster
-                        },
-                        fitness: fitness
-                    };
-                    
+                    this.activeSimulations[simulationIndex].fitness = fitness;
                     resolve(fitness);
                 }
             };
@@ -242,54 +302,65 @@ class GeneticAlgorithm {
         });
     }
     
-    updateSimulation(lander, pid, actions, actionIndex, actionTime, thrusterUsage, gravity, targetY) {
-        // Update PID control and thrusters
-        if (actionIndex < actions.length) {
-            const [type, duration] = actions[actionIndex].split(',');
-            const scaledDuration = Number(duration) / Math.sqrt(gravity);
-            actionTime += 1/60;
+    updateSimulation(lander, pid, actions, simState, gravity, targetY) {
+        const timeScale = 1/60;
+        
+        // Debug gravity calculation
+        if (simState.currentActionIndex % 60 === 0) {
+            const gravityEffect = gravity * SCALE * timeScale;
+            console.log(`Gravity calculation:`, {
+                raw_gravity: gravity,
+                SCALE: SCALE,
+                timeScale: timeScale,
+                gravityEffect: gravityEffect,
+                current_velocity: lander.vel.y,
+                current_position: lander.pos.y
+            });
+        }
 
-            if (actionTime >= scaledDuration) {
-                actionIndex++;
-                actionTime = 0;
+        // Update PID control and thrusters
+        if (simState.currentActionIndex < actions.length) {
+            const [type, duration] = actions[simState.currentActionIndex].split(',');
+            const scaledDuration = Number(duration) / gravity;
+            simState.currentActionTime += timeScale;
+            
+            if (simState.currentActionTime >= scaledDuration) {
+                simState.currentActionIndex++;
+                simState.currentActionTime = 0;
             }
 
             if (type === 'T') {
                 const pidOutput = pid.compute(targetY, lander.pos.y, lander.vel.y);
                 lander.mainThruster = pidOutput > pid.threshold;
                 if (lander.mainThruster) {
-                    thrusterUsage++;
+                    simState.thrusterUsage++;
                 }
             } else {
                 lander.mainThruster = false;
             }
         }
 
-        // Update physics - match exactly with main simulation
-        lander.vel.y += gravity * SCALE;
+        // Update physics with proper scaling
+        lander.vel.y += gravity * SCALE * timeScale;  // Apply gravity
         if (lander.mainThruster) {
-            // Calculate thrust direction based on rotation
-            const thrustAngle = lander.rotation - PI/2; // Adjust so 0 means thrusting up
-            
-            // Convert polar coordinates (angle and magnitude) to Cartesian (x,y)
+            const thrustAngle = lander.rotation - PI/2;
             const thrustForce = BASE_THRUST_FORCE * (gravity / MIN_GRAVITY);
-            const thrustX = thrustForce * Math.cos(thrustAngle) * SCALE;
-            const thrustY = thrustForce * Math.sin(thrustAngle) * SCALE;
+            const thrustX = thrustForce * Math.cos(thrustAngle) * SCALE * timeScale;
+            const thrustY = thrustForce * Math.sin(thrustAngle) * SCALE * timeScale;
             
-            // Add thrust to velocity
             lander.vel.x += thrustX;
             lander.vel.y += thrustY;
         }
         
-        // Update position
-        lander.pos.x += lander.vel.x;
-        lander.pos.y += lander.vel.y;
+        // Update position with time scaling
+        lander.pos.x += lander.vel.x * timeScale;
+        lander.pos.y += lander.vel.y * timeScale;
 
-        // Add dampening like in main simulation
+        // Add dampening
         lander.vel.x *= 0.99;
         lander.vel.y *= 0.99;
 
-        // Check for atmosphere escape
+        // Check boundaries and collisions
         if (lander.pos.y <= 0) {
             lander.pos.y = 0;
             lander.vel.y = 0;
@@ -298,35 +369,50 @@ class GeneticAlgorithm {
             return;
         }
 
-        // Keep lander within screen bounds like main simulation
-        lander.pos.x = constrain(lander.pos.x, 0, width);
-        lander.pos.y = constrain(lander.pos.y, 0, height);
+        // Check for escape before constraining position
+        if (lander.pos.y > height) {
+            console.log(`Lander escaped atmosphere with velocity: ${lander.vel.y.toFixed(2)}`);
+            lander.escaped = true;
+            return;
+        }
 
-        // Check terrain collision
+        // Only constrain x position, let y position indicate escape
+        lander.pos.x = constrain(lander.pos.x, 0, width);
+
         this.checkTerrainCollision(lander);
     }
     
     calculateFitness(lander, steps, thrusterUsage, targetY) {
-        let fitness = 10000;
+        let fitness = 0;
+        const landingSpeed = Math.abs(lander.vel.y) / SCALE;
         
-        // Apply penalties
+        // Print debug info for interesting cases
+        if (lander.landed || lander.crashed) {
+            console.log(`Landing speed: ${landingSpeed.toFixed(2)} m/s`);
+            console.log(`Final position: ${lander.pos.y.toFixed(2)}`);
+            console.log(`Steps taken: ${steps}`);
+        }
+        
+        // More granular fitness calculation
         if (lander.escaped) {
-            fitness -= 9500;  // Most severe penalty for escaping atmosphere
+            fitness = -10000;  // Severe penalty for escaping
         } else if (lander.crashed) {
-            const crashVelocity = Math.abs(lander.vel.y) / SCALE;
-            fitness -= 1000 + crashVelocity * 500;  // Severe crash penalty
+            // Less harsh penalty for almost landing
+            fitness = -5000 + (2000 / (landingSpeed + 1));  // Rewards slower crashes
         } else if (steps >= 1000) {
-            fitness -= 7000;  // Timeout penalty
+            fitness = -7000;
         } else if (lander.landed) {
-            fitness += 5000;  // Landing bonus
+            // More granular landing rewards
+            const speedBonus = Math.max(0, 2.0 - landingSpeed) * 5000;
+            fitness = 10000 + speedBonus;
         }
 
-        // Distance penalty
-        const finalDistance = Math.abs(lander.pos.y - targetY);
-        fitness -= Math.min(5000, finalDistance);
+        // Add distance-based component even if not landed
+        const distanceToTarget = Math.abs(lander.pos.y - targetY);
+        fitness += Math.max(-3000, -distanceToTarget);
 
-        // Thruster usage penalty
-        fitness -= Math.min(1000, thrusterUsage * 2);
+        // Efficiency bonus
+        fitness -= thrusterUsage * 1;  // Small penalty for fuel usage
 
         return fitness;
     }
@@ -384,9 +470,9 @@ class GeneticAlgorithm {
         const [kp, ki, kd] = parts[0].split(',').map(Number);
         
         // Mutate PID constants
-        const newKp = this.mutationRate > random() ? kp * random(0.8, 1.2) : kp;
-        const newKi = this.mutationRate > random() ? ki * random(0.8, 1.2) : ki;
-        const newKd = this.mutationRate > random() ? kd * random(0.8, 1.2) : kd;
+        const newKp = this.pidMutationRate > random() ? kp * random(0.8, 1.2) : kp;
+        const newKi = this.pidMutationRate > random() ? ki * random(0.8, 1.2) : ki;
+        const newKd = this.pidMutationRate > random() ? kd * random(0.8, 1.2) : kd;
         
         // Mutate sequence
         let newSequence = '';
@@ -395,10 +481,10 @@ class GeneticAlgorithm {
         for(let action of actions) {
             if(action) {
                 const [type, duration] = action.split(',');
-                const newType = this.mutationRate > random() ? (type === 'T' ? 'D' : 'T') : type;
+                const newType = this.actionMutationRate > random() ? (type === 'T' ? 'D' : 'T') : type;
                 let newDuration = Number(duration);
                 
-                if(this.mutationRate > random()) {
+                if(this.durationMutationRate > random()) {
                     newDuration *= random(0.8, 1.2);
                     // Clamp duration to valid range
                     newDuration = Math.max(this.DURATION_RANGE.min, 

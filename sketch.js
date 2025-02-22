@@ -127,12 +127,16 @@ function updateLander() {
         // Parse current genome into components
         const parts = currentGenome.split(';');
         const actions = parts.slice(1, -1);  // Remove scale factor part
+        console.log("Actions: ");
+        console.log(actions);
+        console.log(`Current gravity: ${GRAVITY}`);
         
         // Update action based on sequence
         if(currentActionIndex < actions.length) {
             const [type, duration] = actions[currentActionIndex].split(',');
             // Scale duration based on current gravity
-            const scaledDuration = Number(duration) / Math.sqrt(GRAVITY);
+            const scaledDuration = Number(duration) / GRAVITY;
+            console.log(`Scaled duration: ${scaledDuration}`);
             currentActionTime += 1/60;
             
             if(currentActionTime >= scaledDuration) {
