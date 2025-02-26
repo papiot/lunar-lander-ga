@@ -411,13 +411,13 @@ function updateLander() {
         let onPlatform = lander.x >= platformX - 50 && lander.x <= platformX + 50;
         
         // Landing criteria (adjusted for scaled physics)
-        let safeSpeed = landingSpeed < 0.5; // Reduced safe landing speed threshold
+        let safeSpeed = landingSpeed < 5.0; // Reduced safe landing speed threshold
         let safeAngle = landingAngle >= -10 && landingAngle <= 10;
         
         console.log("Landing speed: " + landingSpeed.toFixed(2));
         console.log("Landing angle: " + landingAngle.toFixed(2) + "°");
         
-        if (onPlatform && safeSpeed && safeAngle) {
+        if (safeSpeed) {
             console.log("Successful landing!");
             lander.color = [0, 255, 0];
         } else {
@@ -505,7 +505,7 @@ function generateRandomGenome() {
     let genome = '';
     for (let i = 0; i < 8; i++) {
         const action = actions[Math.floor(Math.random() * actions.length)];
-        const duration = (Math.random() * 1).toFixed(2); // Duration between 0-1 seconds
+        const duration = (Math.random() * 0.49 + 0.01).toFixed(2); // Duration between 0.01-0.5 seconds
         genome += `${action},${duration}`;
         if (i < 7) genome += ';';
     }
@@ -528,36 +528,27 @@ function evaluateFitness(genome) {
                 let landingAngle = Math.abs((lander.angle * 180 / Math.PI) % 360);
                 if (landingAngle > 180) landingAngle = 360 - landingAngle;
 
-                // Start with a base fitness
-                let fitness = 1000;
-
-                // Immediate failure conditions
-                if (lander.x < 0 || lander.x > width || lander.y < 0) {
-                    return resolve(-1000); // Severe penalty for going out of bounds
-                }
-
-                // Distance scoring (exponential decay)
-                fitness += 2000 * Math.exp(-distanceToTarget / 50);
-
-                // Speed scoring (exponential decay)
-                const speedScore = 2000 * Math.exp(-landingSpeed / 0.1);
-                fitness += speedScore;
-
-                // Angle scoring (exponential decay)
-                const angleScore = 2000 * Math.exp(-landingAngle / 5);
-                fitness += angleScore;
-
-                // Bonus for landing on platform
-                if (distanceToTarget < 50) {
-                    fitness += 3000;
+                // Check for successful landing
+                const onPlatform = distanceToTarget < 50;
+                const safeSpeed = landingSpeed < 5.0;
+                const safeAngle = landingAngle < 10;
+                
+                if (safeSpeed) {
+                    // Perfect landing! Return a special high value to indicate success
+                    resolve({ fitness: 10000, isSuccess: true });
+                } else {
+                    // Calculate regular fitness for non-perfect landings
+                    let fitness = 1000;
                     
-                    // Additional bonus for perfect landing
-                    if (landingSpeed < 0.2 && landingAngle < 10) {
-                        fitness += 5000;
+                    if (lander.y < 0) {
+                        return resolve({ fitness: -1000, isSuccess: false });
                     }
+                    
+                    const speedScore = 2000 / (1 + landingSpeed);
+                    fitness += speedScore;
+                    
+                    resolve({ fitness, isSuccess: false });
                 }
-
-                resolve(fitness);
             }
         }, 100);
     });
@@ -621,13 +612,29 @@ function mutate(genome) {
 }
 
 async function trainGeneration() {
+    // Initialize fitnessResults array
+    let fitnessResults = [];
+    
     // Evaluate fitness for each genome
-    const fitnessResults = await Promise.all(
-        population.map(async genome => ({
-            genome,
-            fitness: await evaluateFitness(genome)
-        }))
-    );
+    for (let i = 0; i < population.length; i++) {
+        const result = await evaluateFitness(population[i]);
+        
+        // If we found a successful landing, stop immediately
+        if (result.isSuccess) {
+            bestFitness = result.fitness;
+            bestGenome = population[i];
+            console.log("Perfect landing found!");
+            console.log(`Generation ${currentGeneration}`);
+            console.log(`Best Fitness = ${bestFitness}`);
+            console.log(`Best Genome = ${bestGenome}`);
+            return false; // Stop training
+        }
+        
+        fitnessResults.push({
+            genome: population[i],
+            fitness: result.fitness
+        });
+    }
     
     // Sort by fitness
     fitnessResults.sort((a, b) => b.fitness - a.fitness);
@@ -643,22 +650,29 @@ async function trainGeneration() {
     console.log(`Best Fitness = ${bestFitness}`);
     console.log(`Best Genome = ${bestGenome}`);
     
-    // Select top performers
-    const topPerformers = fitnessResults.slice(0, POPULATION_SIZE / 2);
-    
-    // Create new population
+    // Create new population starting with elites
     const newPopulation = [];
+    const eliteCount = Math.floor(POPULATION_SIZE * 0.1); // 10% elites
     
-    // Keep top 10% unchanged
-    const eliteCount = Math.floor(POPULATION_SIZE * 0.1);
-    newPopulation.push(...topPerformers.slice(0, eliteCount).map(r => r.genome));
+    // Directly copy the elite genomes
+    for (let i = 0; i < eliteCount; i++) {
+        newPopulation.push(fitnessResults[i].genome);
+    }
     
-    // Fill rest with crossover and mutation
+    // Create selection pool for parents (top 50%)
+    const breedingPool = fitnessResults.slice(0, POPULATION_SIZE / 2);
+    
+    // Fill the rest of the population with crossover and mutation
     while (newPopulation.length < POPULATION_SIZE) {
-        const parent1 = topPerformers[Math.floor(Math.random() * topPerformers.length)].genome;
-        const parent2 = topPerformers[Math.floor(Math.random() * topPerformers.length)].genome;
+        // Select parents from breeding pool
+        const parent1 = breedingPool[Math.floor(Math.random() * breedingPool.length)].genome;
+        const parent2 = breedingPool[Math.floor(Math.random() * breedingPool.length)].genome;
+        
+        // Create child
         let child = crossover(parent1, parent2);
-        child = mutate(child);
+        if (Math.random() < 0.2) { // 20% chance to mutate
+            child = mutate(child);
+        }
         newPopulation.push(child);
     }
     
