@@ -78,6 +78,15 @@ let activeThrusters = {
     right: false
 };
 
+// Add these global variables at the top
+let population = [];
+const POPULATION_SIZE = 10000;
+const MUTATION_RATE = 0.1;
+const GENERATION_LIMIT = 50;
+let currentGeneration = 0;
+let bestFitness = -Infinity;
+let bestGenome = '';
+
 const PHYSICS_SCALE = 0.05;  
 const MAIN_THRUSTER_FORCE = 10.0;  
 const SIDE_THRUSTER_FORCE = 0.05;  
@@ -164,6 +173,20 @@ function createSceneControls() {
     trainButton = createButton('Train + Play');
     trainButton.parent(buttonContainer);
     trainButton.class('action-button');
+
+    trainButton.mousePressed(async () => {
+        initializePopulation();
+        currentGeneration = 0;
+        bestFitness = -Infinity;
+        
+        while (await trainGeneration()) {
+            // Training continues until generation limit is reached
+        }
+        
+        // Use best genome found
+        genomeInput.value(bestGenome);
+        resetLander();
+    });
 }
 
 function setup() {
@@ -365,6 +388,14 @@ function updateLander() {
     lander.y += lander.vy;
     lander.angle += lander.angularVel;
 
+    // Check for out of bounds (including upward boundary)
+    if (lander.x < 0 || lander.x > width || lander.y < 0) {
+        lander.crashed = true;
+        lander.color = [255, 0, 0];
+        console.log("Out of bounds - Mission failed");
+        return;
+    }
+
     // Check for collision with ground
     if (lander.y + lander.size/2 >= 500) {
         lander.crashed = true;
@@ -394,10 +425,6 @@ function updateLander() {
             lander.color = [255, 0, 0];
         }
     }
-
-    // Check for screen boundaries
-    if (lander.x < 0) lander.x = 0;
-    if (lander.x > width) lander.x = width;
 }
 
 function drawLander() {
@@ -462,4 +489,181 @@ function drawLander() {
     pop();
     
     pop();
+}
+
+// Add these functions for the genetic algorithm
+
+function initializePopulation() {
+    population = [];
+    for (let i = 0; i < POPULATION_SIZE; i++) {
+        population.push(generateRandomGenome());
+    }
+}
+
+function generateRandomGenome() {
+    const actions = ['T', 'D', 'L', 'R'];
+    let genome = '';
+    for (let i = 0; i < 8; i++) {
+        const action = actions[Math.floor(Math.random() * actions.length)];
+        const duration = (Math.random() * 1).toFixed(2); // Duration between 0-1 seconds
+        genome += `${action},${duration}`;
+        if (i < 7) genome += ';';
+    }
+    return genome;
+}
+
+function evaluateFitness(genome) {
+    return new Promise(resolve => {
+        genomeInput.value(genome);
+        resetLander();
+        
+        let checkInterval = setInterval(() => {
+            if (lander.crashed) {
+                clearInterval(checkInterval);
+                
+                // Get landing parameters
+                const platformX = sceneParameters[currentScene].platformX;
+                const distanceToTarget = Math.abs(lander.x - platformX);
+                const landingSpeed = Math.sqrt(lander.vx * lander.vx + lander.vy * lander.vy);
+                let landingAngle = Math.abs((lander.angle * 180 / Math.PI) % 360);
+                if (landingAngle > 180) landingAngle = 360 - landingAngle;
+
+                // Start with a base fitness
+                let fitness = 1000;
+
+                // Immediate failure conditions
+                if (lander.x < 0 || lander.x > width || lander.y < 0) {
+                    return resolve(-1000); // Severe penalty for going out of bounds
+                }
+
+                // Distance scoring (exponential decay)
+                fitness += 2000 * Math.exp(-distanceToTarget / 50);
+
+                // Speed scoring (exponential decay)
+                const speedScore = 2000 * Math.exp(-landingSpeed / 0.1);
+                fitness += speedScore;
+
+                // Angle scoring (exponential decay)
+                const angleScore = 2000 * Math.exp(-landingAngle / 5);
+                fitness += angleScore;
+
+                // Bonus for landing on platform
+                if (distanceToTarget < 50) {
+                    fitness += 3000;
+                    
+                    // Additional bonus for perfect landing
+                    if (landingSpeed < 0.2 && landingAngle < 10) {
+                        fitness += 5000;
+                    }
+                }
+
+                resolve(fitness);
+            }
+        }, 100);
+    });
+}
+
+// Single point crossover, not doing so well
+// function crossover(parent1, parent2) {
+//     const genes1 = parent1.split(';');
+//     const genes2 = parent2.split(';');
+//     const crossoverPoint = Math.floor(Math.random() * 7) + 1;
+    
+//     const child = [...genes1.slice(0, crossoverPoint), ...genes2.slice(crossoverPoint)];
+//     return child.join(';');
+// }
+// Uniform crossover, doing better
+function crossover(parent1, parent2) {
+    const genes1 = parent1.split(';');
+    const genes2 = parent2.split(';');
+
+    const child = genes1.map((gene, i) =>
+        Math.random() < 0.5 ? gene : genes2[i]
+    );
+
+    return child.join(';');
+}
+// Mutation is too agressive
+// function mutate(genome) {
+//     const genes = genome.split(';');
+//     const actions = ['T', 'D', 'L', 'R'];
+    
+//     return genes.map(gene => {
+//         if (Math.random() < MUTATION_RATE) {
+//             const action = actions[Math.floor(Math.random() * actions.length)];
+//             const duration = (Math.random() * 1).toFixed(2);
+//             return `${action},${duration}`;
+//         }
+//         return gene;
+//     }).join(';');
+// }
+// Less agressive mutation
+function mutate(genome) {
+    const genes = genome.split(';');
+    const actions = ['T', 'D', 'L', 'R'];
+
+    return genes.map((gene, index) => {
+        if (Math.random() < MUTATION_RATE) {
+            const [action, duration] = gene.split(',');
+            
+            // Randomly decide whether to change action or duration
+            if (Math.random() < 0.5) {
+                // Change action
+                return `${actions[Math.floor(Math.random() * actions.length)]},${duration}`;
+            } else {
+                // Slightly tweak duration instead of randomizing
+                let newDuration = Math.max(0.01, Math.min(1, parseFloat(duration) + (Math.random() * 0.2 - 0.1))); // Small tweak
+                return `${action},${newDuration.toFixed(2)}`;
+            }
+        }
+        return gene;
+    }).join(';');
+}
+
+async function trainGeneration() {
+    // Evaluate fitness for each genome
+    const fitnessResults = await Promise.all(
+        population.map(async genome => ({
+            genome,
+            fitness: await evaluateFitness(genome)
+        }))
+    );
+    
+    // Sort by fitness
+    fitnessResults.sort((a, b) => b.fitness - a.fitness);
+    
+    // Update best genome if we found a better one
+    if (fitnessResults[0].fitness > bestFitness) {
+        bestFitness = fitnessResults[0].fitness;
+        bestGenome = fitnessResults[0].genome;
+    }
+    
+    // Log generation results
+    console.log(`Generation ${currentGeneration}:`);
+    console.log(`Best Fitness = ${bestFitness}`);
+    console.log(`Best Genome = ${bestGenome}`);
+    
+    // Select top performers
+    const topPerformers = fitnessResults.slice(0, POPULATION_SIZE / 2);
+    
+    // Create new population
+    const newPopulation = [];
+    
+    // Keep top 10% unchanged
+    const eliteCount = Math.floor(POPULATION_SIZE * 0.1);
+    newPopulation.push(...topPerformers.slice(0, eliteCount).map(r => r.genome));
+    
+    // Fill rest with crossover and mutation
+    while (newPopulation.length < POPULATION_SIZE) {
+        const parent1 = topPerformers[Math.floor(Math.random() * topPerformers.length)].genome;
+        const parent2 = topPerformers[Math.floor(Math.random() * topPerformers.length)].genome;
+        let child = crossover(parent1, parent2);
+        child = mutate(child);
+        newPopulation.push(child);
+    }
+    
+    population = newPopulation;
+    currentGeneration++;
+    
+    return currentGeneration < GENERATION_LIMIT;
 }
