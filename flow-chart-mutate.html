@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutate Function Flow Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        #flowchart {
+            margin-top: 20px;
+            overflow: auto;
+        }
+        .btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mutate Function Flow Chart</h1>
+        <button class="btn" id="downloadBtn">Download as PNG</button>
+        <div id="flowchart" class="mermaid">
+            flowchart TD
+                A[Start: mutate function] --> B{hasFoundGoodAngle?}
+                
+                %% Template-based mutation path
+                B -->|Yes| C{Is template valid?}
+                C -->|No| D[Reset hasFoundGoodAngle flag]
+                D --> E[Fall back to normal mutation]
+                
+                C -->|Yes| F{Genome length matches template?}
+                F -->|No| G[Rebuild genome from template]
+                G --> H[Create genes following template structure]
+                H --> X[Return mutated genome]
+                
+                F -->|Yes| I[Process each gene]
+                I --> J{Is gene type L/R?}
+                J -->|Yes| K[Use exact template value]
+                J -->|No| L{Gene type matches template?}
+                
+                L -->|No| M[Fix gene type to match template]
+                L -->|Yes| N{Random < mutation rate?}
+                N -->|Yes| O[Mutate duration only]
+                N -->|No| P[Keep unchanged]
+                
+                M --> X
+                K --> X
+                O --> X
+                P --> X
+                
+                %% Non-template mutation path
+                B -->|No| Q{fitnessInfo null or fitness <= -5000?}
+                
+                Q -->|Yes| R[Apply stronger mutations]
+                R --> S[Higher chance to change gene]
+                S --> T[Chance to add/remove genes]
+                T --> X
+                
+                Q -->|No| U[Standard mutation]
+                U --> V[60% chance to modify duration only]
+                V --> W[40% chance to change action type]
+                W --> X
+        </div>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true
+            }
+        });
+
+        // Download as PNG
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const element = document.querySelector('.mermaid svg');
+            
+            // Use html2canvas to capture the rendered SVG
+            html2canvas(element, {
+                backgroundColor: '#ffffff',
+                scale: 2 // Higher resolution
+            }).then(canvas => {
+                // Create download link
+                const link = document.createElement('a');
+                link.download = 'mutate_function_flowchart.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html> 
