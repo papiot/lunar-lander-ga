@@ -100,35 +100,6 @@ const BASE_SIDE_THRUSTER_FORCE = 0.05;
 // Reference gravity to scale against (Moon gravity)
 const REFERENCE_GRAVITY = 1.62;
 
-// Add scene-specific genome templates
-const sceneGenomeTemplates = {
-    'Moon': [
-        'T,0.3;D,0.5;T,0.3;D,0.5;T,0.3;D,0.5;T,0.3',
-        'D,1.0;T,0.4;D,0.2;T,0.4;D,0.2;T,0.4',
-        'T,0.2;L,0.1;T,0.4;D,0.3;T,0.4;R,0.1;T,0.2'
-    ],
-    'Earth': [
-        'T,1.0;T,1.0;D,0.5;T,0.8;D,0.3;T,0.8;T,0.5',
-        'T,0.8;L,0.2;T,0.8;D,0.4;T,0.8;R,0.2;T,0.5',
-        'T,1.2;D,0.3;T,1.0;D,0.3;T,0.8;D,0.3;T,0.6'
-    ],
-    'Mars': [
-        'T,1.0;T,1.0;D,0.5;T,0.7;T,0.7;D,0.3;T,0.5',
-        'T,0.7;L,0.2;T,0.7;D,0.4;T,0.7;R,0.2;T,0.7;T,0.5',
-        'T,1.2;D,0.3;T,1.0;D,0.3;T,0.8;D,0.3;T,0.6'
-    ],
-    'Asteroid': [
-        'T,0.2;D,1.0;T,0.2;D,0.5;L,0.1;D,0.5;R,0.1',
-        'D,1.5;T,0.2;D,0.5;T,0.2;D,0.5;T,0.2',
-        'D,0.8;L,0.1;D,0.5;T,0.2;D,0.5;R,0.1;T,0.1'
-    ],
-    'Custom': [
-        'T,0.6;D,0.4;T,0.6;D,0.4;T,0.6;D,0.4;T,0.4',
-        'T,0.8;L,0.2;T,0.7;D,0.5;T,0.7;R,0.2;T,0.5',
-        'D,0.5;T,0.8;T,0.8;T,0.6;D,0.3;T,0.6;T,0.6'
-    ]
-};
-
 function createParameterControls() {
     // Container for parameters
     let panel = createDiv();
@@ -200,6 +171,45 @@ function createSceneControls() {
         if (savedScene === currentScene && savedGenome) {
             genomeInput.value(savedGenome);
             console.log("Loaded saved genome for", currentScene);
+            
+            // Also set up the template if this was a successful genome
+            if (!hasFoundGoodAngle) {
+                console.log("Setting up genome template from saved successful genome");
+                const genes = savedGenome.split(';');
+                
+                // Initialize the template
+                genomeTemplate = [...genes];
+                frozenLRGenes = [];
+                frozenLRPositions = [];
+                
+                // Identify L/R genes to freeze
+                for (let i = 0; i < genes.length; i++) {
+                    const [action, duration] = genes[i].split(',');
+                    if (action === 'L' || action === 'R') {
+                        frozenLRGenes.push(genes[i]);
+                        frozenLRPositions.push(i);
+                    }
+                }
+                
+                // Enable genome template freezing
+                hasFoundGoodAngle = true;
+                
+                console.log("=====================================================");
+                console.log("🔒 PERMANENT GENOME TEMPLATE RESTORED FROM SAVED GENOME 🔒");
+                console.log("=====================================================");
+                console.log(`TEMPLATE LENGTH: ${genomeTemplate.length} genes`);
+                console.log(`COMPLETE TEMPLATE: ${genomeTemplate.join(';')}`);
+                
+                if (frozenLRGenes.length > 0) {
+                    console.log("\nPERMANENTLY FROZEN L/R GENES:");
+                    for (let i = 0; i < frozenLRGenes.length; i++) {
+                        console.log(`  Position ${frozenLRPositions[i]}: ${frozenLRGenes[i]}`);
+                    }
+                } else {
+                    console.log("\nNO L/R GENES TO FREEZE IN TEMPLATE");
+                }
+                console.log("=====================================================");
+            }
         }
     } catch (e) {
         console.log("No saved genome found:", e);
@@ -262,6 +272,44 @@ function createSceneControls() {
             if (savedGenome) {
                 genomeInput.value(savedGenome);
                 console.log(`Loaded previously successful genome from ${savedScene}`);
+                
+                // Also set up the template when manually loading
+                console.log("Setting up genome template from loaded successful genome");
+                const genes = savedGenome.split(';');
+                
+                // Initialize the template
+                genomeTemplate = [...genes];
+                frozenLRGenes = [];
+                frozenLRPositions = [];
+                
+                // Identify L/R genes to freeze
+                for (let i = 0; i < genes.length; i++) {
+                    const [action, duration] = genes[i].split(',');
+                    if (action === 'L' || action === 'R') {
+                        frozenLRGenes.push(genes[i]);
+                        frozenLRPositions.push(i);
+                    }
+                }
+                
+                // Enable genome template freezing
+                hasFoundGoodAngle = true;
+                
+                console.log("=====================================================");
+                console.log("🔒 PERMANENT GENOME TEMPLATE RESTORED FROM LOADED GENOME 🔒");
+                console.log("=====================================================");
+                console.log(`TEMPLATE LENGTH: ${genomeTemplate.length} genes`);
+                console.log(`COMPLETE TEMPLATE: ${genomeTemplate.join(';')}`);
+                
+                if (frozenLRGenes.length > 0) {
+                    console.log("\nPERMANENTLY FROZEN L/R GENES:");
+                    for (let i = 0; i < frozenLRGenes.length; i++) {
+                        console.log(`  Position ${frozenLRPositions[i]}: ${frozenLRGenes[i]}`);
+                    }
+                } else {
+                    console.log("\nNO L/R GENES TO FREEZE IN TEMPLATE");
+                }
+                console.log("=====================================================");
+                
                 if (savedScene !== currentScene) {
                     console.log(`Warning: This genome was trained for ${savedScene}, not ${currentScene}`);
                 }
@@ -385,12 +433,107 @@ function resetLander() {
     lander.color = [180, 180, 180];
     currentManeuver = 0;
     maneuverStartTime = millis();
-    maneuvers = parseGenome(genomeInput.value());
+    
+    const currentGenome = genomeInput.value();
+    
+    // Critical fix: If a genome template is active, verify the current genome follows it
+    if (hasFoundGoodAngle && genomeTemplate.length > 0) {
+        const genes = currentGenome.split(';');
+        let templateMismatch = false;
+        
+        // Check if the genome length matches the template
+        if (genes.length !== genomeTemplate.length) {
+            console.log("⚠️ TEMPLATE MISMATCH: Current genome length doesn't match the template!");
+            console.log(`Template has ${genomeTemplate.length} genes, but genome has ${genes.length} genes`);
+            templateMismatch = true;
+        } else {
+            // Check if each gene type matches the template
+            for (let i = 0; i < genes.length; i++) {
+                const [action] = genes[i].split(',');
+                const [templateAction] = genomeTemplate[i].split(',');
+                
+                if (action !== templateAction) {
+                    console.log(`⚠️ TEMPLATE MISMATCH: Gene at position ${i} doesn't match template (${action} vs ${templateAction})`);
+                    templateMismatch = true;
+                    break;
+                }
+            }
+        }
+        
+        // If mismatch detected, generate a new genome that follows the template
+        if (templateMismatch) {
+            console.log("⚠️ REPLACING GENOME with one that follows the template");
+            const correctedGenome = generateRandomGenome(); // This will use the template
+            genomeInput.value(correctedGenome);
+            console.log(`CORRECTED GENOME: ${correctedGenome}`);
+        }
+    }
+    
+    // Update currentGenome if it was corrected
+    const finalGenome = genomeInput.value();
+    maneuvers = parseGenome(finalGenome);
+    
+    // Log current genome details
+    console.log("\n==================================================");
+    console.log("🚀 STARTING NEW SIMULATION 🚀");
+    console.log("==================================================");
+    console.log(`SCENE: ${currentScene}`);
+    console.log(`CURRENT GENOME: ${finalGenome}`);
+    
+    // Parse and log individual genes for better readability
+    if (finalGenome) {
+        const genes = finalGenome.split(';');
+        console.log(`GENOME LENGTH: ${genes.length} genes`);
+        console.log("GENOME BREAKDOWN:");
+        
+        genes.forEach((gene, index) => {
+            const [action, duration] = gene.split(',');
+            // Use different indicators for different gene types
+            let indicator = '';
+            if (action === 'T') indicator = '🔥'; // Thruster
+            else if (action === 'D') indicator = '✨'; // Drift
+            else if (action === 'L') indicator = '↩️'; // Left
+            else if (action === 'R') indicator = '↪️'; // Right
+            
+            // Check if this gene is a frozen L/R gene when template is active
+            let frozenMarker = '';
+            if (hasFoundGoodAngle && (action === 'L' || action === 'R') && 
+                frozenLRPositions.includes(index)) {
+                frozenMarker = ' 🔒 FROZEN';
+            }
+            
+            console.log(`  Gene ${index}: ${indicator} ${action},${duration}${frozenMarker}`);
+        });
+    }
+    console.log("==================================================");
+    
     activeThrusters = {
         main: false,
         left: false,
         right: false
     };
+    
+    // Log the first maneuver if there is one
+    if (maneuvers.length > 0) {
+        const firstAction = maneuvers[0];
+        
+        let indicator = '';
+        if (firstAction.action === 'T') indicator = '🔥';
+        else if (firstAction.action === 'D') indicator = '✨';
+        else if (firstAction.action === 'L') indicator = '↩️';
+        else if (firstAction.action === 'R') indicator = '↪️';
+        
+        // Check if this gene is frozen
+        let frozenMarker = '';
+        if (hasFoundGoodAngle && (firstAction.action === 'L' || firstAction.action === 'R')) {
+            const template = genomeTemplate.map(gene => gene.split(',')[0]);
+            if (template[0] === firstAction.action) {
+                frozenMarker = ' 🔒 FROZEN';
+            }
+        }
+        
+        console.log(`▶️ STARTING: Maneuver 0: ${indicator} ${firstAction.action},${firstAction.duration.toFixed(2)}${frozenMarker}`);
+    }
 }
 
 function parseGenome(genomeStr) {
@@ -461,8 +604,41 @@ function updateLander() {
             }
         } else {
             // Move to next maneuver
+            // Log the completion of the current maneuver
+            let indicator = '';
+            if (currentAction.action === 'T') indicator = '🔥';
+            else if (currentAction.action === 'D') indicator = '✨';
+            else if (currentAction.action === 'L') indicator = '↩️';
+            else if (currentAction.action === 'R') indicator = '↪️';
+            
+            console.log(`✓ COMPLETED: Maneuver ${currentManeuver}: ${indicator} ${currentAction.action},${currentAction.duration.toFixed(2)}`);
+            
             currentManeuver++;
             maneuverStartTime = millis();
+            
+            // Log the start of the next maneuver if there is one
+            if (currentManeuver < maneuvers.length) {
+                const nextAction = maneuvers[currentManeuver];
+                
+                let nextIndicator = '';
+                if (nextAction.action === 'T') nextIndicator = '🔥';
+                else if (nextAction.action === 'D') nextIndicator = '✨';
+                else if (nextAction.action === 'L') nextIndicator = '↩️';
+                else if (nextAction.action === 'R') nextIndicator = '↪️';
+                
+                // Check if this gene is frozen
+                let frozenMarker = '';
+                if (hasFoundGoodAngle && (nextAction.action === 'L' || nextAction.action === 'R')) {
+                    const template = genomeTemplate.map(gene => gene.split(',')[0]);
+                    if (template[currentManeuver] === nextAction.action) {
+                        frozenMarker = ' 🔒 FROZEN';
+                    }
+                }
+                
+                console.log(`▶️ STARTING: Maneuver ${currentManeuver}: ${nextIndicator} ${nextAction.action},${nextAction.duration.toFixed(2)}${frozenMarker}`);
+            } else {
+                console.log("📌 END OF GENOME: All maneuvers completed");
+            }
         }
     }
 
@@ -612,31 +788,39 @@ function drawLander() {
 function initializePopulation(populationSize = BASE_POPULATION_SIZE) {
     population = [];
     
-    // Reset global L/R freezing state when starting a new training session
-    hasFoundGoodAngle = false;
-    frozenLRGenes = [];
-    frozenLRPositions = [];
-    genomeTemplate = [];
-    console.log("GLOBAL FREEZING - Reset global L/R gene freezing state and genome template for new training session");
+    // Check if we need to preserve the template from a previous successful run
+    const savedGenome = localStorage.getItem('lastSuccessfulGenome');
+    const savedScene = localStorage.getItem('lastSuccessfulScene');
     
-    // Add scene-specific templates as a starting point
-    if (sceneGenomeTemplates[currentScene]) {
-        const templates = sceneGenomeTemplates[currentScene];
-        for (const template of templates) {
-            population.push(template);
-        }
-        
-        // Add slight variations of the templates
-        for (let i = 0; i < Math.min(20, populationSize * 0.05); i++) {
-            const templateIndex = Math.floor(Math.random() * templates.length);
-            const template = templates[templateIndex];
-            population.push(mutate(template, 0.3)); // Higher mutation rate for variations
-        }
+    // Only reset the template if this is a new scene, otherwise preserve it
+    if (currentScene !== savedScene || !savedGenome || !hasFoundGoodAngle) {
+        // Reset global L/R freezing state when starting a new training session on a different scene
+        hasFoundGoodAngle = false;
+        frozenLRGenes = [];
+        frozenLRPositions = [];
+        genomeTemplate = [];
+        console.log("GLOBAL FREEZING - Reset global L/R gene freezing state and genome template for new training session");
+    } else {
+        console.log("GLOBAL FREEZING - Preserving existing genome template for continued training");
+        console.log(`TEMPLATE LENGTH: ${genomeTemplate.length} genes`);
+        console.log(`COMPLETE TEMPLATE: ${genomeTemplate.join(';')}`);
     }
     
-    // Fill the rest with random genomes
-    while (population.length < populationSize) {
-        population.push(generateRandomGenome());
+    // If hasFoundGoodAngle is true, create population based on the template
+    if (hasFoundGoodAngle && genomeTemplate.length > 0) {
+        console.log("POPULATION - Creating population based on frozen template");
+        // Add variations of the frozen template
+        for (let i = 0; i < populationSize; i++) {
+            population.push(generateRandomGenome()); // This will use the template when hasFoundGoodAngle is true
+        }
+    } else {
+        // No template exists, initialize with completely random genomes
+        console.log("POPULATION - Initializing with completely random genomes (no templates)");
+        
+        // Fill the population with random genomes
+        while (population.length < populationSize) {
+            population.push(generateRandomGenome());
+        }
     }
 }
 
@@ -654,28 +838,62 @@ function generateRandomGenome() {
     
     // If global L/R freezing is active, create a genome that respects it
     if (hasFoundGoodAngle) {
-        console.log("RANDOM GENOME - Using strict genome template with frozen L/R genes");
-        console.log(`GLOBAL FREEZING - Template length: ${genomeTemplate.length} genes`);
-        
-        // Create a new genome following the exact template structure
-        let newGenes = [];
-        
-        for (let i = 0; i < genomeTemplate.length; i++) {
-            const [action, duration] = genomeTemplate[i].split(',');
+        // CRITICAL FIX: Make sure we actually have a valid template
+        if (genomeTemplate.length === 0) {
+            console.error("ERROR: Template is empty but hasFoundGoodAngle is true!");
+            console.log("Resetting hasFoundGoodAngle to false due to corrupted state");
+            hasFoundGoodAngle = false;
+            // Continue with normal genome generation
+        } else {
+            console.log("RANDOM GENOME - Using strict genome template");
+            console.log(`TEMPLATE LENGTH: ${genomeTemplate.length} genes`);
+            console.log(`COMPLETE TEMPLATE: ${genomeTemplate.join(';')}`);
             
-            // If this is an L/R gene, use the exact frozen value
-            if (action === 'L' || action === 'R') {
-                newGenes[i] = genomeTemplate[i];
-                console.log(`GLOBAL FREEZING - Using exact L/R gene at position ${i}: ${genomeTemplate[i]}`);
-            } else {
-                // For T/D positions, keep the same action type but randomize duration
-                const newDuration = (Math.random() * (maxDuration - minDuration) + minDuration).toFixed(2);
-                newGenes[i] = `${action},${newDuration}`;
-                console.log(`GLOBAL FREEZING - Generated new ${action} gene at position ${i}: ${newGenes[i]}`);
+            // Create a new genome following the exact template structure
+            let newGenes = [];
+            let lrGenesUsed = [];
+            let tdGenesGenerated = [];
+            
+            for (let i = 0; i < genomeTemplate.length; i++) {
+                const [action, duration] = genomeTemplate[i].split(',');
+                
+                // If this is an L/R gene, use the exact frozen value
+                if (action === 'L' || action === 'R') {
+                    newGenes[i] = genomeTemplate[i];
+                    lrGenesUsed.push(`Position ${i}: ${newGenes[i]}`);
+                } else {
+                    // For T/D positions, keep the same action type but randomize duration
+                    const newDuration = (Math.random() * (maxDuration - minDuration) + minDuration).toFixed(2);
+                    newGenes[i] = `${action},${newDuration}`;
+                    tdGenesGenerated.push(`Position ${i}: ${newGenes[i]}`);
+                }
             }
+            
+            // Enhanced logging
+            if (lrGenesUsed.length > 0) {
+                console.log("\n🔒 USING PERMANENT GENOME TEMPLATE 🔒");
+                console.log("FROZEN L/R GENES USED:");
+                lrGenesUsed.forEach(gene => console.log(`  ${gene}`));
+            } else {
+                console.log("\n🔒 USING PERMANENT GENOME TEMPLATE (NO L/R GENES) 🔒");
+            }
+            
+            console.log("\nNEW T/D GENES GENERATED:");
+            tdGenesGenerated.forEach(gene => console.log(`  ${gene}`));
+            console.log(`FINAL GENOME: ${newGenes.join(';')}`);
+            
+            // FINAL VERIFICATION: Make sure the genome structure matches the template exactly
+            const finalGenome = newGenes.join(';');
+            const finalGenes = finalGenome.split(';');
+            if (finalGenes.length !== genomeTemplate.length) {
+                console.error("ERROR: Generated genome length doesn't match template!");
+                console.log(`Template: ${genomeTemplate.length} genes, Generated: ${finalGenes.length} genes`);
+                // Emergency fix: reconstruct the genome
+                return generateRandomGenome();
+            }
+            
+            return finalGenome;
         }
-        
-        return newGenes.join(';');
     }
     
     // Normal random genome generation if no global L/R freezing
@@ -784,9 +1002,27 @@ function evaluateFitness(genome) {
                     
                     // Store the entire genome as a template
                     genomeTemplate = [...genes];
-                    console.log("GLOBAL FREEZING - Storing entire genome structure as template");
-                    console.log(`GLOBAL FREEZING - Template length: ${genomeTemplate.length} genes`);
-                    console.log(`GLOBAL FREEZING - Template: ${currentGenome}`);
+                    
+                    // Enhanced logging for clarity
+                    console.log("=====================================================");
+                    console.log("🔒 PERMANENT GENOME TEMPLATE FROZEN 🔒");
+                    console.log("=====================================================");
+                    console.log(`TEMPLATE LENGTH: ${genomeTemplate.length} genes`);
+                    console.log(`COMPLETE TEMPLATE: ${currentGenome}`);
+                    console.log("\nPERMANENTLY FROZEN L/R GENES:");
+                    for (let i = 0; i < frozenLRGenes.length; i++) {
+                        console.log(`  Position ${frozenLRPositions[i]}: ${frozenLRGenes[i]}`);
+                    }
+                    console.log("\nT/D GENES (positions fixed, values will vary):");
+                    for (let i = 0; i < genomeTemplate.length; i++) {
+                        const [action, duration] = genomeTemplate[i].split(',');
+                        if (action === 'T' || action === 'D') {
+                            console.log(`  Position ${i}: ${action},${duration} (duration will vary)`);
+                        }
+                    }
+                    console.log("=====================================================");
+                    console.log("These L/R genes will NEVER change for the rest of training");
+                    console.log("=====================================================");
                     
                     // Set the global flag that we've found a good angle
                     hasFoundGoodAngle = true;
@@ -869,361 +1105,244 @@ function mutate(genome, mutationRate = BASE_MUTATION_RATE, fitnessInfo = null) {
     
     // Check if we have found a good landing angle globally
     if (hasFoundGoodAngle) {
-        console.log("MUTATION - Using strict genome template with frozen L/R genes");
-        
-        // When global template is active, follow it strictly - same length, same actions
-        let newGenes = [];
-        
-        // Ensure genome length matches template
-        if (genes.length !== genomeTemplate.length) {
-            console.log("MUTATION - Genome length doesn't match template, rebuilding from template");
+        // CRITICAL FIX: Make sure we actually have a valid template
+        if (genomeTemplate.length === 0) {
+            console.error("ERROR: Template is empty but hasFoundGoodAngle is true!");
+            console.log("Resetting hasFoundGoodAngle to false due to corrupted state");
+            hasFoundGoodAngle = false;
+            // Fall back to normal mutation without template
+        } else {
+            console.log("MUTATION - Using strict genome template");
             
-            // Create a genome following the exact template structure
-            for (let i = 0; i < genomeTemplate.length; i++) {
-                const [templateAction, templateDuration] = genomeTemplate[i].split(',');
+            // When global template is active, follow it strictly - same length, same actions
+            let newGenes = [];
+            let lrGenesPreserved = [];
+            let tdGenesMutated = [];
+            let tdGenesPreserved = [];
+            
+            // Ensure genome length matches template
+            if (genes.length !== genomeTemplate.length) {
+                console.log("MUTATION - Genome length doesn't match template, rebuilding from template");
                 
-                // For L/R genes, use exact template value
-                if (templateAction === 'L' || templateAction === 'R') {
-                    newGenes[i] = genomeTemplate[i];
-                } else {
-                    // For T/D genes, use the same type, but allow mutation of duration
-                    // Default to a random duration if outside bounds
-                    const duration = i < genes.length ? genes[i].split(',')[1] : null;
-                    const maxDuration = Math.min(2.0, 0.5 * gravityFactor);
+                // Create a genome following the exact template structure
+                for (let i = 0; i < genomeTemplate.length; i++) {
+                    const [templateAction, templateDuration] = genomeTemplate[i].split(',');
                     
-                    if (duration && Math.random() > mutationRate) {
-                        // Keep the same duration
-                        newGenes[i] = `${templateAction},${duration}`;
+                    // For L/R genes, use exact template value
+                    if (templateAction === 'L' || templateAction === 'R') {
+                        newGenes[i] = genomeTemplate[i];
+                        lrGenesPreserved.push(`Position ${i}: ${newGenes[i]}`);
                     } else {
-                        // Create a new duration
-                        const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                        newGenes[i] = `${templateAction},${newDuration}`;
-                    }
-                }
-            }
-            
-            return newGenes.join(';');
-        }
-        
-        // If genome length matches template, process gene by gene
-        for (let i = 0; i < genes.length; i++) {
-            const [action, duration] = genes[i].split(',');
-            const [templateAction] = genomeTemplate[i].split(',');
-            
-            // If this gene type doesn't match the template, fix it
-            if (action !== templateAction) {
-                console.log(`MUTATION - Gene at position ${i} doesn't match template (${action} vs ${templateAction}), fixing`);
-                
-                if (templateAction === 'L' || templateAction === 'R') {
-                    // If template says this should be an L/R gene, use exact template value
-                    newGenes[i] = genomeTemplate[i];
-                } else {
-                    // If template says this should be a T/D gene, keep the action type but allow duration mutation
-                    if (Math.random() < mutationRate) {
-                        // Mutate duration
+                        // For T/D genes, use the same type, but allow mutation of duration
+                        // Default to a random duration if outside bounds
+                        const duration = i < genes.length ? genes[i].split(',')[1] : null;
                         const maxDuration = Math.min(2.0, 0.5 * gravityFactor);
-                        const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                        newGenes[i] = `${templateAction},${newDuration}`;
-                    } else {
-                        // Use existing duration with correct action
-                        newGenes[i] = `${templateAction},${duration}`;
+                        
+                        if (duration && Math.random() > mutationRate) {
+                            // Keep the same duration
+                            // BUG FIX: DO NOT allow random change between T and D - strictly follow template
+                            newGenes[i] = `${templateAction},${duration}`;
+                            tdGenesPreserved.push(`Position ${i}: ${newGenes[i]}`);
+                        } else {
+                            // Create a new duration
+                            // BUG FIX: DO NOT allow random change between T and D - strictly follow template
+                            const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
+                            newGenes[i] = `${templateAction},${newDuration}`;
+                            tdGenesMutated.push(`Position ${i}: ${newGenes[i]}`);
+                        }
                     }
-                }
-            } else {
-                // Gene type matches template
-                if (action === 'L' || action === 'R') {
-                    // L/R genes are fixed exactly to template
-                    newGenes[i] = genomeTemplate[i];
-                } else {
-                    // For T/D genes, allow duration mutation
-                    if (Math.random() < mutationRate) {
-                        // Mutate duration
-                        const mutationSize = Math.min(0.5, 0.15 * gravityFactor);
-                        let newDuration = parseFloat(duration) + (Math.random() * 2 * mutationSize - mutationSize);
-                        newDuration = Math.max(0.01, Math.min(2, newDuration));
-                        newGenes[i] = `${action},${newDuration.toFixed(2)}`;
-                    } else {
-                        // Keep unchanged
-                        newGenes[i] = genes[i];
-                    }
-                }
-            }
-        }
-        
-        return newGenes.join(';');
-    }
-    
-    // Check if we have found a good landing angle globally
-    if (hasFoundGoodAngle) {
-        console.log("MUTATION - Using globally frozen L/R genes from previous good landing");
-        console.log(`GLOBAL FREEZING - These L/R genes (${frozenLRGenes.join(', ')}) are permanently frozen`);
-    }
-    
-    // CRITICAL FIX: If fitnessInfo is null, treat it as a completely fresh genome that shouldn't 
-    // preserve any historical information, BUT still respect global L/R freezing
-    if (!fitnessInfo) {
-        console.log("MUTATION - No fitness info provided - treating as fresh genome with no history");
-        
-        // If out of bounds, generate a new genome BUT maintain frozen L/R genes if available
-        if (hasFoundGoodAngle) {
-            console.log("MUTATION - Genome went out of bounds but we have frozen L/R genes - preserving them");
-            
-            // Create a new random genome first
-            let newGenome = [];
-            const newSize = Math.max(10, frozenLRPositions.length * 2); // Ensure adequate size for frozen genes
-            
-            // First fill with random genes
-            for (let i = 0; i < newSize; i++) {
-                // Default to random T/D genes (not L/R)
-                const action = Math.random() < 0.5 ? 'T' : 'D';
-                const maxDuration = Math.min(2.0, 0.5 * gravityFactor);
-                const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                newGenome[i] = `${action},${newDuration}`;
-            }
-            
-            // Then inject the frozen L/R genes at their original positions if possible
-            for (let i = 0; i < frozenLRGenes.length; i++) {
-                const pos = frozenLRPositions[i];
-                if (pos < newSize) {
-                    console.log(`MUTATION - Injecting permanent frozen L/R gene ${frozenLRGenes[i]} at position ${pos}`);
-                    newGenome[pos] = frozenLRGenes[i];
-                } else {
-                    // If position is beyond the new genome size, add it at the end
-                    console.log(`MUTATION - Adding permanent frozen L/R gene ${frozenLRGenes[i]} at the end`);
-                    newGenome.push(frozenLRGenes[i]);
-                }
-            }
-            
-            return newGenome.join(';');
-        }
-        
-        // Apply standard mutation without any gene preservation
-        const mutatedGenes = genes.map((gene) => {
-            if (Math.random() < mutationRate * 1.5) {  // Increased mutation rate for exploration
-            const [action, duration] = gene.split(',');
-            
-                // Even with no fitness info, never mutate L/R genes if we have global freezing
-                if (hasFoundGoodAngle && (action === 'L' || action === 'R')) {
-                    console.log(`MUTATION - Preserving permanent frozen L/R gene: ${gene}`);
-                    return gene;
                 }
                 
-                // Otherwise, generate random genes, BUT respect L/R freezing by only generating T/D
-                const allowedActions = hasFoundGoodAngle ? ['T', 'D'] : actions;
-                const randomAction = allowedActions[Math.floor(Math.random() * allowedActions.length)];
-                const maxDuration = Math.min(2.0, 0.5 * gravityFactor);
-                const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                return `${randomAction},${newDuration}`;
+                // Enhanced logging
+                console.log("\n🔒 REBUILT USING PERMANENT TEMPLATE 🔒");
+                console.log("FROZEN L/R GENES PRESERVED:");
+                lrGenesPreserved.forEach(gene => console.log(`  ${gene}`));
+                
+                if (tdGenesPreserved.length > 0) {
+                    console.log("\nT/D GENES PRESERVED:");
+                    tdGenesPreserved.forEach(gene => console.log(`  ${gene}`));
+                }
+                
+                console.log("\nT/D GENES MUTATED:");
+                tdGenesMutated.forEach(gene => console.log(`  ${gene}`));
+                
+                // FINAL VERIFICATION: Ensure the genome matches the template length
+                const finalGenome = newGenes.join(';');
+                const finalGenes = finalGenome.split(';');
+                if (finalGenes.length !== genomeTemplate.length) {
+                    console.error("ERROR: Generated genome length doesn't match template!");
+                    console.log(`Template: ${genomeTemplate.length} genes, Generated: ${finalGenes.length} genes`);
+                    // Emergency fix: regenerate
+                    return generateRandomGenome();
+                }
+                
+                return finalGenome;
+            }
+            
+            // If genome length matches template, process gene by gene
+            for (let i = 0; i < genes.length; i++) {
+                const [action, duration] = genes[i].split(',');
+                const [templateAction] = genomeTemplate[i].split(',');
+                
+                // If this gene type doesn't match the template, fix it
+                if (action !== templateAction) {
+                    console.log(`MUTATION - Gene at position ${i} doesn't match template (${action} vs ${templateAction}), fixing`);
+                    
+                    if (templateAction === 'L' || templateAction === 'R') {
+                        // If template says this should be an L/R gene, use exact template value
+                        newGenes[i] = genomeTemplate[i];
+                        lrGenesPreserved.push(`Position ${i}: ${newGenes[i]} (fixed type mismatch)`);
+                    } else {
+                        // BUG FIX: DO NOT allow switching between T and D - strictly follow template
+                        
+                        if (Math.random() < mutationRate) {
+                            // Mutate duration
+                            const maxDuration = Math.min(2.0, 0.5 * gravityFactor);
+                            const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
+                            newGenes[i] = `${templateAction},${newDuration}`;
+                            tdGenesMutated.push(`Position ${i}: ${genes[i]} → ${newGenes[i]}`);
+                        } else {
+                            // Use existing duration with correct action
+                            newGenes[i] = `${templateAction},${duration}`;
+                            tdGenesPreserved.push(`Position ${i}: ${newGenes[i]} (fixed type mismatch)`);
+                        }
+                    }
+                } else {
+                    // Gene type matches template
+                    if (action === 'L' || action === 'R') {
+                        // L/R genes are fixed exactly to template
+                        newGenes[i] = genomeTemplate[i];
+                        lrGenesPreserved.push(`Position ${i}: ${newGenes[i]}`);
+                    } else {
+                        // For T/D genes, allow duration mutation but NOT type mutation
+                        if (Math.random() < mutationRate) {
+                            // Mutate duration only
+                            const mutationSize = Math.min(0.5, 0.15 * gravityFactor);
+                            let newDuration = parseFloat(duration) + (Math.random() * 2 * mutationSize - mutationSize);
+                            newDuration = Math.max(0.01, Math.min(2, newDuration));
+                            
+                            // BUG FIX: DO NOT allow T/D switching - keep templateAction
+                            
+                            newGenes[i] = `${templateAction},${newDuration.toFixed(2)}`;
+                            tdGenesMutated.push(`Position ${i}: ${genes[i]} → ${newGenes[i]}`);
+                        } else {
+                            // Keep unchanged
+                            newGenes[i] = genes[i];
+                            tdGenesPreserved.push(`Position ${i}: ${newGenes[i]}`);
+                        }
+                    }
+                }
+            }
+            
+            // Enhanced logging
+            console.log("\n🔒 MUTATING WITH PERMANENT TEMPLATE 🔒");
+            console.log("FROZEN L/R GENES PRESERVED:");
+            lrGenesPreserved.forEach(gene => console.log(`  ${gene}`));
+            
+            if (tdGenesPreserved.length > 0) {
+                console.log("\nT/D GENES PRESERVED:");
+                tdGenesPreserved.forEach(gene => console.log(`  ${gene}`));
+            }
+            
+            if (tdGenesMutated.length > 0) {
+                console.log("\nT/D GENES MUTATED:");
+                tdGenesMutated.forEach(gene => console.log(`  ${gene}`));
+            }
+            
+            // FINAL VERIFICATION: Ensure the genome matches the template exactly
+            const finalGenome = newGenes.join(';');
+            const finalGenes = finalGenome.split(';');
+            if (finalGenes.length !== genomeTemplate.length) {
+                console.error("ERROR: Generated genome length doesn't match template!");
+                console.log(`Template: ${genomeTemplate.length} genes, Generated: ${finalGenes.length} genes`);
+                // Emergency fix: regenerate
+                return generateRandomGenome();
+            }
+            
+            return finalGenome;
+        }
+    }
+    
+    // SIMPLIFIED APPROACH FOR NON-TEMPLATE CASE
+    // When no template is active, we apply a basic mutation approach
+    console.log("MUTATION - No template active, applying standard mutations");
+    
+    // Check if fitnessInfo is null (which means we're likely dealing with an out-of-bounds genome)
+    if (!fitnessInfo || fitnessInfo.fitness <= -5000) {
+        console.log("MUTATION - No fitness info or out-of-bounds genome, applying strong mutations");
+        // Apply stronger mutations for exploration in this case
+        
+        // Mutate each gene with higher probability
+        const mutatedGenes = genes.map(gene => {
+            if (Math.random() < mutationRate * 2) { // Double mutation rate
+                const [action, duration] = gene.split(',');
+                
+                // 50% chance to completely change the gene
+                if (Math.random() < 0.5) {
+                    const newAction = actions[Math.floor(Math.random() * actions.length)];
+                    const maxDuration = Math.min(2.0, 0.5 * gravityFactor);
+                    const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
+                    return `${newAction},${newDuration}`;
+                } else {
+                    // 50% chance to just change the duration
+                    const maxDuration = Math.min(2.0, 0.5 * gravityFactor);
+                    const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
+                    return `${action},${newDuration}`;
+                }
             }
             return gene;
         });
-        return mutatedGenes.join(';');
-    }
-    
-    // Normal processing with fitness info
-    // Check if we have landed (even if crashed) AND not out of bounds
-    // Out of bounds landers should never have their genes preserved
-    const hasLanded = fitnessInfo && fitnessInfo.hasLanded;
-    const isOutOfBounds = fitnessInfo && fitnessInfo.fitness <= -5000; // Out of bounds penalty is -5000
-    const goodAngle = fitnessInfo && fitnessInfo.safeAngle;
-    const goodSpeed = fitnessInfo && fitnessInfo.safeSpeed;
-    
-    // If this was an out-of-bounds lander, regenerate most genes BUT preserve frozen L/R genes
-    if (isOutOfBounds) {
-        console.log("MUTATION - Genome went out of bounds");
         
-        // If we have global L/R freezing, create a new genome but preserve L/R genes
-        if (hasFoundGoodAngle) {
-            console.log("MUTATION - Using globally frozen L/R genes despite out-of-bounds");
-            
-            // Create a new genome based on the input size but with preserved L/R genes
-            let newGenome = [];
-            const newSize = genes.length;
-            
-            // First fill with random T/D genes
-            for (let i = 0; i < newSize; i++) {
-                // Only use T or D for random genes
-                const action = Math.random() < 0.5 ? 'T' : 'D';
-                const maxDuration = Math.min(2.0, 0.5 * gravityFactor);
-                const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                newGenome[i] = `${action},${newDuration}`;
-            }
-            
-            // Then inject the frozen L/R genes at their original positions if possible
-            for (let i = 0; i < frozenLRGenes.length; i++) {
-                const pos = frozenLRPositions[i];
-                if (pos < newSize) {
-                    console.log(`MUTATION - Injecting frozen L/R gene ${frozenLRGenes[i]} at position ${pos}`);
-                    newGenome[pos] = frozenLRGenes[i];
-            } else {
-                    // If position is beyond the new genome size, add it at the end
-                    console.log(`MUTATION - Adding frozen L/R gene ${frozenLRGenes[i]} at the end`);
-                    newGenome.push(frozenLRGenes[i]);
-                }
-            }
-            
-            return newGenome.join(';');
-        }
+        // Occasionally add or remove genes
+        let finalGenes = [...mutatedGenes];
         
-        // If no global L/R freezing yet, just generate a completely new random genome
-        console.log("MUTATION - Completely replacing all genes (no global L/R freezing yet)");
-        return generateRandomGenome();
-    }
-    
-    // Log what we're preserving for debugging
-    if (hasLanded) {
-        console.log("MUTATION - Genome has landed, preserving size.");
-        if (goodAngle) {
-            console.log("MUTATION - Good angle detected, COMPLETELY FREEZING ALL L/R genes.");
-        }
-        if (goodSpeed) {
-            console.log("MUTATION - Good speed detected, COMPLETELY FREEZING ALL T/D genes.");
-        }
-    }
-    
-    // If global L/R freezing is active, never modify L/R genes regardless of this genome's performance
-    if (hasFoundGoodAngle) {
-        console.log("MUTATION - Global L/R freezing active - never modifying L/R genes");
-    }
-    
-    // NEVER add or remove genes if we've landed at all
-    if (!hasLanded) {
-        // Increase gene addition chance for higher gravity (more maneuvers needed)
-        const addChance = Math.min(0.2, 0.1 * gravityFactor);
-        
-        // Add new genes with higher probability in high gravity environments
-        if (genes.length < 12 && Math.random() < addChance) {
-            // If global L/R freezing is active, only add T or D genes
-            const allowedActions = hasFoundGoodAngle ? ['T', 'D'] : actions;
-            const action = allowedActions[Math.floor(Math.random() * allowedActions.length)];
+        // 20% chance to add a gene
+        if (finalGenes.length < 12 && Math.random() < 0.2) {
+            const newAction = actions[Math.floor(Math.random() * actions.length)];
             const maxDuration = Math.min(2.0, 0.5 * gravityFactor);
-            const duration = (Math.random() * maxDuration + 0.1).toFixed(2);
-            genes.push(`${action},${duration}`);
+            const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
+            finalGenes.push(`${newAction},${newDuration}`);
+            console.log("MUTATION - Added a new gene");
         }
         
-        // Remove gene logic - less likely to remove genes in high gravity
-        // BUT never remove L/R genes if global freezing is active
-        if (genes.length > 4 && Math.random() < 0.05 / gravityFactor) {
-            // Find a gene that isn't a frozen L/R gene
-            let canRemove = false;
-            let indexToRemove = -1;
-            let attempts = 0;
-            const maxAttempts = genes.length;
-            
-            while (!canRemove && attempts < maxAttempts) {
-                indexToRemove = Math.floor(Math.random() * genes.length);
-                const [action] = genes[indexToRemove].split(',');
+        // 10% chance to remove a gene
+        if (finalGenes.length > 4 && Math.random() < 0.1) {
+            const indexToRemove = Math.floor(Math.random() * finalGenes.length);
+            finalGenes.splice(indexToRemove, 1);
+            console.log("MUTATION - Removed a gene");
+        }
+        
+        return finalGenes.join(';');
+    } else {
+        // Normal case - standard mutation for genomes with valid fitness
+        const mutatedGenes = genes.map(gene => {
+            if (Math.random() < mutationRate) {
+                const [action, duration] = gene.split(',');
                 
-                // Never remove L/R genes if global freezing is active
-                if (!(hasFoundGoodAngle && (action === 'L' || action === 'R'))) {
-                    canRemove = true;
+                // 60% chance to only modify duration, 40% chance to change action type
+                if (Math.random() < 0.6) {
+                    const mutationSize = Math.min(0.5, 0.15 * gravityFactor);
+                    let newDuration = parseFloat(duration) + (Math.random() * 2 * mutationSize - mutationSize);
+                    newDuration = Math.max(0.01, Math.min(2, newDuration));
+                    return `${action},${newDuration.toFixed(2)}`;
+                } else {
+                    // When changing action type, if current is T/D, randomly switch between these two with higher probability
+                    let newAction;
+                    if ((action === 'T' || action === 'D') && Math.random() < 0.8) {
+                        // 80% chance to just toggle between T and D
+                        newAction = action === 'T' ? 'D' : 'T';
+                    } else {
+                        // 20% chance to pick any action (including L/R)
+                        newAction = actions[Math.floor(Math.random() * actions.length)];
+                    }
+                    return `${newAction},${duration}`;
                 }
-                attempts++;
             }
-            
-            // Only remove if we found a suitable gene
-            if (canRemove) {
-                genes.splice(indexToRemove, 1);
-            }
-        }
-    }
-
-    // For landed genomes, apply a strict freeze based on landing characteristics
-    if (hasLanded) {
-        // Prepare the mutated genes array with copies of originals as default
-        const mutatedGenes = [...genes]; 
-        
-        // Create lists of allowed action types based on landing characteristics
-        const allowedActions = [];
-        
-        // If angle is good, only allow mutating T/D genes
-        if (goodAngle) {
-            allowedActions.push('T', 'D');
-            console.log("MUTATION - Allowing only T/D genes to be mutated");
-        }
-        
-        // If speed is good, only allow mutating L/R genes
-        if (goodSpeed) {
-            // But if global L/R freezing is active, don't allow L/R mutations regardless
-            if (!hasFoundGoodAngle) {
-                allowedActions.push('L', 'R');
-                console.log("MUTATION - Allowing only L/R genes to be mutated");
-            } else {
-                console.log("MUTATION - Global L/R freezing overrides local speed preservation");
-            }
-        }
-        
-        // If both angle and speed are good, no mutations should occur
-        if (goodAngle && goodSpeed) {
-            console.log("MUTATION - Both angle and speed are good, freezing ALL genes");
-            return genes.join(';'); // Return unchanged genome
-        }
-        
-        // If neither angle nor speed are good, allow all mutations except frozen L/R genes
-        if (!goodAngle && !goodSpeed) {
-            // If global L/R freezing is active, only allow T/D mutations
-            if (hasFoundGoodAngle) {
-                allowedActions.push('T', 'D');
-                console.log("MUTATION - Neither angle nor speed are good, but L/R genes globally frozen - only T/D mutations allowed");
-            } else {
-                allowedActions.push('T', 'D', 'L', 'R');
-                console.log("MUTATION - Neither angle nor speed are good, all genes can be mutated");
-            }
-        }
-        
-        // Only mutate genes that are allowed to be changed
-        for (let i = 0; i < genes.length; i++) {
-            const [action, duration] = genes[i].split(',');
-            
-            // STRICT FREEZE: If action type is not in allowed list, preserve it completely
-            // Additionally, NEVER mutate L/R genes if global freezing is active
-            const isGloballyFrozen = hasFoundGoodAngle && (action === 'L' || action === 'R');
-            const canMutate = !isGloballyFrozen && allowedActions.includes(action) && Math.random() < mutationRate;
-            
-            if (canMutate) {
-                // Only change duration of allowed genes, never the action type
-                const mutationSize = Math.min(0.5, 0.15 * gravityFactor);
-                let newDuration = parseFloat(duration) + (Math.random() * 2 * mutationSize - mutationSize);
-                newDuration = Math.max(0.01, Math.min(2, newDuration));
-                console.log(`MUTATION - Modified duration for gene at position ${i}: ${action},${duration} -> ${action},${newDuration.toFixed(2)}`);
-                mutatedGenes[i] = `${action},${newDuration.toFixed(2)}`;
-            } else {
-                console.log(`MUTATION - Preserved gene at position ${i}: ${genes[i]}`);
-            }
-        }
+            return gene;
+        });
         
         return mutatedGenes.join(';');
     }
-    
-    // For non-landed genomes, perform normal mutation
-    const mutatedGenes = genes.map((gene, index) => {
-        if (Math.random() < mutationRate) {
-            const [action, duration] = gene.split(',');
-            
-            // NEVER mutate L/R genes if global freezing is active
-            if (hasFoundGoodAngle && (action === 'L' || action === 'R')) {
-                console.log(`MUTATION - Globally frozen L/R gene preserved: ${gene}`);
-                return gene;
-            }
-            
-            const durationChangeChance = Math.min(0.8, 0.5 * gravityFactor);
-            
-            if (Math.random() < durationChangeChance) {
-                const mutationSize = Math.min(0.5, 0.15 * gravityFactor);
-                let newDuration = parseFloat(duration) + (Math.random() * 2 * mutationSize - mutationSize);
-                newDuration = Math.max(0.01, Math.min(2, newDuration));
-                return `${action},${newDuration.toFixed(2)}`;
-            } else {
-                // Otherwise full random change (only for non-landed genomes)
-                // But respect global L/R freezing by only generating T/D when active
-                const allowedActions = hasFoundGoodAngle ? ['T', 'D'] : actions;
-                return `${allowedActions[Math.floor(Math.random() * allowedActions.length)]},${duration}`;
-            }
-        }
-        return gene;
-    });
-    
-    return mutatedGenes.join(';');
 }
 
 // Update crossover to strictly preserve successful gene patterns
@@ -1235,440 +1354,131 @@ function crossover(parent1, parent2, fitnessInfo1 = null, fitnessInfo2 = null) {
     if (hasFoundGoodAngle) {
         console.log("CROSSOVER - Global genome template active - using strict template");
         
-        // Create a new genome that strictly follows the template
-        let childGenes = [];
-        
-        for (let i = 0; i < genomeTemplate.length; i++) {
-            const [templateAction, templateDuration] = genomeTemplate[i].split(',');
+        // CRITICAL FIX: Make sure we actually have a valid template
+        if (genomeTemplate.length === 0) {
+            console.error("ERROR: Template is empty but hasFoundGoodAngle is true!");
+            console.log("Resetting hasFoundGoodAngle to false due to corrupted state");
+            hasFoundGoodAngle = false;
+            // Fall back to normal crossover without template
+        } else {
+            // Create a new genome that strictly follows the template
+            let childGenes = [];
             
-            // L/R genes are always fixed exactly as in the template
-            if (templateAction === 'L' || templateAction === 'R') {
-                childGenes[i] = genomeTemplate[i];
-                console.log(`CROSSOVER - Using exact template L/R gene at position ${i}: ${genomeTemplate[i]}`);
-            } else {
-                // For T/D genes, crossover from parents (if position exists) or use template
-                const parent1HasGene = i < genes1.length;
-                const parent2HasGene = i < genes2.length;
+            for (let i = 0; i < genomeTemplate.length; i++) {
+                const [templateAction, templateDuration] = genomeTemplate[i].split(',');
                 
-                // If both parents have genes at this position, do a crossover
-                if (parent1HasGene && parent2HasGene) {
-                    const [action1, duration1] = genes1[i].split(',');
-                    const [action2, duration2] = genes2[i].split(',');
-                    
-                    // If either parent has correct action type, use it
-                    const validParent1 = action1 === templateAction;
-                    const validParent2 = action2 === templateAction;
-                    
-                    if (validParent1 && validParent2) {
-                        // Both parents have correct type, choose one randomly
-                        const useParent1 = Math.random() < 0.5;
-                        childGenes[i] = useParent1 ? genes1[i] : genes2[i];
-                        console.log(`CROSSOVER - Using ${useParent1 ? 'parent1' : 'parent2'}'s gene at position ${i}: ${childGenes[i]}`);
-                    } else if (validParent1) {
-                        // Only parent1 has correct type
-                        childGenes[i] = genes1[i];
-                        console.log(`CROSSOVER - Using parent1's gene at position ${i}: ${childGenes[i]}`);
-                    } else if (validParent2) {
-                        // Only parent2 has correct type
-                        childGenes[i] = genes2[i];
-                        console.log(`CROSSOVER - Using parent2's gene at position ${i}: ${childGenes[i]}`);
-                    } else {
-                        // Neither parent has correct type, use template with random duration
-                        const maxDuration = Math.min(2.0, 0.5 * Math.sqrt(sceneParameters[currentScene].gravity / REFERENCE_GRAVITY));
-                        const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                        childGenes[i] = `${templateAction},${newDuration}`;
-                        console.log(`CROSSOVER - Neither parent has correct type, using template with random duration: ${childGenes[i]}`);
-                    }
-                } else if (parent1HasGene) {
-                    // Only parent1 has a gene at this position
-                    const [action1, duration1] = genes1[i].split(',');
-                    
-                    if (action1 === templateAction) {
-                        // If correct type, use it
-                        childGenes[i] = genes1[i];
-                    } else {
-                        // Otherwise create from template
-                        const maxDuration = Math.min(2.0, 0.5 * Math.sqrt(sceneParameters[currentScene].gravity / REFERENCE_GRAVITY));
-                        const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                        childGenes[i] = `${templateAction},${newDuration}`;
-                    }
-                } else if (parent2HasGene) {
-                    // Only parent2 has a gene at this position
-                    const [action2, duration2] = genes2[i].split(',');
-                    
-                    if (action2 === templateAction) {
-                        // If correct type, use it
-                        childGenes[i] = genes2[i];
-                    } else {
-                        // Otherwise create from template
-                        const maxDuration = Math.min(2.0, 0.5 * Math.sqrt(sceneParameters[currentScene].gravity / REFERENCE_GRAVITY));
-                        const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                        childGenes[i] = `${templateAction},${newDuration}`;
-                    }
+                // L/R genes are always fixed exactly as in the template
+                if (templateAction === 'L' || templateAction === 'R') {
+                    childGenes[i] = genomeTemplate[i];
+                    console.log(`CROSSOVER - Using exact template L/R gene at position ${i}: ${genomeTemplate[i]}`);
                 } else {
-                    // Neither parent has a gene at this position, create from template
-                    const maxDuration = Math.min(2.0, 0.5 * Math.sqrt(sceneParameters[currentScene].gravity / REFERENCE_GRAVITY));
-                    const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                    childGenes[i] = `${templateAction},${newDuration}`;
+                    // For T/D genes, crossover from parents (if position exists) or use template
+                    const parent1HasGene = i < genes1.length;
+                    const parent2HasGene = i < genes2.length;
+                    
+                    // If both parents have genes at this position, do a crossover
+                    if (parent1HasGene && parent2HasGene) {
+                        const [action1, duration1] = genes1[i].split(',');
+                        const [action2, duration2] = genes2[i].split(',');
+                        
+                        // BUG FIX: Strict template checking - gene must be EXACTLY the same type as template
+                        const validParent1 = action1 === templateAction;  // Must match exactly
+                        const validParent2 = action2 === templateAction;  // Must match exactly
+                        
+                        if (validParent1 && validParent2) {
+                            // Both parents have correct type, choose one randomly
+                            const useParent1 = Math.random() < 0.5;
+                            // BUG FIX: Ensure gene type matches template exactly
+                            const chosenDuration = useParent1 ? duration1 : duration2;
+                            childGenes[i] = `${templateAction},${chosenDuration}`;
+                            console.log(`CROSSOVER - Using ${useParent1 ? 'parent1' : 'parent2'}'s duration with template type at position ${i}: ${childGenes[i]}`);
+                        } else if (validParent1) {
+                            // Only parent1 has correct type
+                            // BUG FIX: Ensure gene type matches template exactly
+                            childGenes[i] = `${templateAction},${duration1}`;
+                            console.log(`CROSSOVER - Using parent1's duration with template type at position ${i}: ${childGenes[i]}`);
+                        } else if (validParent2) {
+                            // Only parent2 has correct type
+                            // BUG FIX: Ensure gene type matches template exactly
+                            childGenes[i] = `${templateAction},${duration2}`;
+                            console.log(`CROSSOVER - Using parent2's duration with template type at position ${i}: ${childGenes[i]}`);
+                        } else {
+                            // Neither parent has correct type, use template with random duration
+                            const maxDuration = Math.min(2.0, 0.5 * Math.sqrt(sceneParameters[currentScene].gravity / REFERENCE_GRAVITY));
+                            const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
+                            childGenes[i] = `${templateAction},${newDuration}`;
+                            console.log(`CROSSOVER - Neither parent has correct type, using template with random duration: ${childGenes[i]}`);
+                        }
+                    } else if (parent1HasGene) {
+                        // Only parent1 has a gene at this position
+                        const [action1, duration1] = genes1[i].split(',');
+                        
+                        if (action1 === templateAction) {
+                            // If correct type, use it
+                            childGenes[i] = genes1[i];
+                        } else {
+                            // Otherwise create from template
+                            const maxDuration = Math.min(2.0, 0.5 * Math.sqrt(sceneParameters[currentScene].gravity / REFERENCE_GRAVITY));
+                            const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
+                            childGenes[i] = `${templateAction},${newDuration}`;
+                        }
+                    } else if (parent2HasGene) {
+                        // Only parent2 has a gene at this position
+                        const [action2, duration2] = genes2[i].split(',');
+                        
+                        if (action2 === templateAction) {
+                            // If correct type, use it
+                            childGenes[i] = genes2[i];
+                        } else {
+                            // Otherwise create from template
+                            const maxDuration = Math.min(2.0, 0.5 * Math.sqrt(sceneParameters[currentScene].gravity / REFERENCE_GRAVITY));
+                            const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
+                            childGenes[i] = `${templateAction},${newDuration}`;
+                        }
+                    } else {
+                        // Neither parent has a gene at this position, create from template
+                        const maxDuration = Math.min(2.0, 0.5 * Math.sqrt(sceneParameters[currentScene].gravity / REFERENCE_GRAVITY));
+                        const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
+                        childGenes[i] = `${templateAction},${newDuration}`;
+                    }
                 }
             }
+            
+            // FINAL VERIFICATION: Make sure the genome structure matches the template exactly
+            const finalGenome = childGenes.join(';');
+            const finalGenes = finalGenome.split(';');
+            if (finalGenes.length !== genomeTemplate.length) {
+                console.error("ERROR: Generated genome length doesn't match template!");
+                console.log(`Template: ${genomeTemplate.length} genes, Generated: ${finalGenes.length} genes`);
+                // Emergency fix: reconstruct using the template with random durations for T/D genes
+                return generateRandomGenome();
+            }
+            
+            return finalGenome;
         }
-        
-        return childGenes.join(';');
     }
-    
-    // Ensure we have genes to work with
-    if (genes1.length < 2 || genes2.length < 2) {
-        return genes1.length > genes2.length ? parent1 : parent2;
-    }
-    
-    // Check for out-of-bounds cases - never preserve these genes
-    const parent1OutOfBounds = fitnessInfo1 && fitnessInfo1.fitness <= -5000;
-    const parent2OutOfBounds = fitnessInfo2 && fitnessInfo2.fitness <= -5000;
     
     // Special handling for out-of-bounds cases
     if (parent1OutOfBounds && parent2OutOfBounds) {
         console.log("CROSSOVER - Both parents went out of bounds");
         
-        // Even with both parents out of bounds, preserve frozen L/R genes if we have them
-        if (hasFoundGoodAngle) {
-            console.log("CROSSOVER - Creating new genome but preserving frozen L/R genes");
-            
-            // Create a new base genome with only T/D genes
-            let newGenome = [];
-            const newSize = Math.max(10, frozenLRPositions.length * 2); // Ensure adequate size
-            
-            // Fill with random T/D genes
-            for (let i = 0; i < newSize; i++) {
-                const action = Math.random() < 0.5 ? 'T' : 'D';
-                const maxDuration = Math.min(2.0, 0.5 * Math.sqrt(sceneParameters[currentScene].gravity / REFERENCE_GRAVITY));
-                const newDuration = (Math.random() * maxDuration + 0.1).toFixed(2);
-                newGenome[i] = `${action},${newDuration}`;
-            }
-            
-            // Then inject the frozen L/R genes at their original positions
-            for (let i = 0; i < frozenLRGenes.length; i++) {
-                const pos = frozenLRPositions[i];
-                if (pos < newSize) {
-                    console.log(`CROSSOVER - Injecting frozen L/R gene ${frozenLRGenes[i]} at position ${pos}`);
-                    newGenome[pos] = frozenLRGenes[i];
-                } else {
-                    console.log(`CROSSOVER - Adding frozen L/R gene ${frozenLRGenes[i]} at the end`);
-                    newGenome.push(frozenLRGenes[i]);
-                }
-            }
-            
-            return newGenome.join(';');
-        }
-        
-        // If no global L/R freezing, create a completely new random genome
-        console.log("CROSSOVER - Both parents went out of bounds, creating COMPLETELY NEW random genome");
+        // Just create a completely new random genome
+        console.log("CROSSOVER - Both parents went out of bounds, creating new random genome");
         return generateRandomGenome();
     } else if (parent1OutOfBounds) {
-        if (hasFoundGoodAngle) {
-            console.log("CROSSOVER - Parent 1 out of bounds, using parent 2 but enforcing frozen L/R genes");
-            // Start with parent 2's genes
-            let newGenome = [...genes2];
-            
-            // Replace any L/R genes with the frozen versions at the right positions
-            for (let i = 0; i < frozenLRGenes.length; i++) {
-                const pos = frozenLRPositions[i];
-                if (pos < newGenome.length) {
-                    const [action] = newGenome[pos].split(',');
-                    // Only replace if this position has a gene but it's not an L/R gene from parent2
-                    if (!(action === 'L' || action === 'R')) {
-                        console.log(`CROSSOVER - Replacing gene at position ${pos} with frozen L/R gene: ${frozenLRGenes[i]}`);
-                        newGenome[pos] = frozenLRGenes[i];
-                    }
-                } else {
-                    // If position is beyond parent2's genome, add it
-                    console.log(`CROSSOVER - Adding frozen L/R gene to parent 2's genome: ${frozenLRGenes[i]}`);
-                    newGenome.push(frozenLRGenes[i]);
-                }
-            }
-            
-            return newGenome.join(';');
-        } else {
-            console.log("CROSSOVER - Parent 1 went out of bounds, using ONLY parent 2's genes");
-            return parent2;
-        }
+        console.log("CROSSOVER - Parent 1 went out of bounds, using ONLY parent 2's genes");
+        return parent2;
     } else if (parent2OutOfBounds) {
-        if (hasFoundGoodAngle) {
-            console.log("CROSSOVER - Parent 2 out of bounds, using parent 1 but enforcing frozen L/R genes");
-            // Start with parent 1's genes
-            let newGenome = [...genes1];
-            
-            // Replace any L/R genes with the frozen versions at the right positions
-            for (let i = 0; i < frozenLRGenes.length; i++) {
-                const pos = frozenLRPositions[i];
-                if (pos < newGenome.length) {
-                    const [action] = newGenome[pos].split(',');
-                    // Only replace if this position has a gene but it's not an L/R gene from parent1
-                    if (!(action === 'L' || action === 'R')) {
-                        console.log(`CROSSOVER - Replacing gene at position ${pos} with frozen L/R gene: ${frozenLRGenes[i]}`);
-                        newGenome[pos] = frozenLRGenes[i];
-                    }
-                } else {
-                    // If position is beyond parent1's genome, add it
-                    console.log(`CROSSOVER - Adding frozen L/R gene to parent 1's genome: ${frozenLRGenes[i]}`);
-                    newGenome.push(frozenLRGenes[i]);
-                }
-            }
-            
-            return newGenome.join(';');
-        } else {
-            console.log("CROSSOVER - Parent 2 went out of bounds, using ONLY parent 1's genes");
-            return parent1;
-        }
+        console.log("CROSSOVER - Parent 2 went out of bounds, using ONLY parent 1's genes");
+        return parent1;
     }
     
-    // Regular crossover for non-out-of-bounds parents
-    // But with global L/R gene freezing if active
-    if (hasFoundGoodAngle) {
-        console.log("CROSSOVER - Using regular crossover with global L/R gene freezing");
-        
-        // Choose base genome size (prefer successful landings)
-        let childGenes = [];
-        let baseGenomeSize = Math.max(genes1.length, genes2.length);
-        
-        // First, perform regular crossover but only for T/D genes
-        // For common length genes
-        const commonLength = Math.min(genes1.length, genes2.length);
-        
-        // Use standard two-point crossover
-        const maxPoint = commonLength;
-        let point1 = Math.floor(Math.random() * (maxPoint - 1)) + 1;
-        let point2 = Math.floor(Math.random() * (maxPoint - 1)) + 1;
-        
-        // Make sure we get different points
-        while (point1 === point2 && maxPoint > 2) {
-            point2 = Math.floor(Math.random() * (maxPoint - 1)) + 1;
-        }
-        
-        // Ensure point1 is less than point2
-        if (point1 > point2) {
-            [point1, point2] = [point2, point1];
-        }
-        
-        console.log(`CROSSOVER - Using crossover points: ${point1} and ${point2}`);
-        
-        // Create child using crossover but never touching L/R genes
-        for (let i = 0; i < baseGenomeSize; i++) {
-            // If we're beyond the common length, take genes from the longer parent
-            if (i >= commonLength) {
-                if (i < genes1.length) {
-                    const [action] = genes1[i].split(',');
-                    // For L/R genes, always use the frozen version
-                    if (action === 'L' || action === 'R') {
-                        // Check if this position matches a frozen L/R gene position
-                        const frozenIndex = frozenLRPositions.indexOf(i);
-                        if (frozenIndex !== -1) {
-                            childGenes[i] = frozenLRGenes[frozenIndex];
-                            console.log(`CROSSOVER - Using frozen L/R gene at position ${i}: ${frozenLRGenes[frozenIndex]}`);
-                        } else {
-                            // Otherwise keep parent's L/R gene
-                            childGenes[i] = genes1[i];
-                            console.log(`CROSSOVER - Keeping parent 1's L/R gene at position ${i}: ${genes1[i]}`);
-                        }
-                    } else {
-                        // For T/D genes, use the parent's gene
-                        childGenes[i] = genes1[i];
-                    }
-                } else if (i < genes2.length) {
-                    const [action] = genes2[i].split(',');
-                    // For L/R genes, always use the frozen version
-                    if (action === 'L' || action === 'R') {
-                        // Check if this position matches a frozen L/R gene position
-                        const frozenIndex = frozenLRPositions.indexOf(i);
-                        if (frozenIndex !== -1) {
-                            childGenes[i] = frozenLRGenes[frozenIndex];
-                            console.log(`CROSSOVER - Using frozen L/R gene at position ${i}: ${frozenLRGenes[frozenIndex]}`);
-                        } else {
-                            // Otherwise keep parent's L/R gene
-                            childGenes[i] = genes2[i];
-                            console.log(`CROSSOVER - Keeping parent 2's L/R gene at position ${i}: ${genes2[i]}`);
-                        }
-                    } else {
-                        // For T/D genes, use the parent's gene
-                        childGenes[i] = genes2[i];
-                    }
-                }
-                continue;
-            }
-            
-            // Handle genes within common length using crossover
-            // Determine which parent gene to use based on crossover points
-            const useParent1 = i < point1 || i >= point2;
-            const sourceGene = useParent1 ? genes1[i] : genes2[i];
-            const [action] = sourceGene.split(',');
-            
-            // If this is an L/R gene, check if we have a frozen version to use instead
-            if (action === 'L' || action === 'R') {
-                // Check if this position matches a frozen L/R gene position
-                const frozenIndex = frozenLRPositions.indexOf(i);
-                if (frozenIndex !== -1) {
-                    childGenes[i] = frozenLRGenes[frozenIndex];
-                    console.log(`CROSSOVER - Using frozen L/R gene at position ${i}: ${frozenLRGenes[frozenIndex]}`);
-                } else {
-                    // If no frozen gene for this position, use the source parent's gene
-                    childGenes[i] = sourceGene;
-                    console.log(`CROSSOVER - Using parent ${useParent1 ? '1' : '2'}'s L/R gene at position ${i}: ${sourceGene}`);
-                }
-            } else {
-                // For T/D genes, use normal crossover logic
-                childGenes[i] = sourceGene;
-            }
-        }
-        
-        // Finally, ensure all frozen L/R genes are included somewhere in the child genome
-        // We may need to add some at the end if their positions weren't in the child
-        for (let i = 0; i < frozenLRGenes.length; i++) {
-            const pos = frozenLRPositions[i];
-            // If this position wasn't included in the child or if the child already has an L/R gene there
-            if (pos >= childGenes.length) {
-                console.log(`CROSSOVER - Adding missing frozen L/R gene at the end: ${frozenLRGenes[i]}`);
-                childGenes.push(frozenLRGenes[i]);
-            }
-        }
-        
-        return childGenes.join(';');
-    }
+    // Normal crossover for non-out-of-bounds parents
+    // Choose a random split point
+    const splitPoint = Math.floor(Math.random() * Math.min(genes1.length, genes2.length));
     
-    // Normal cases - proceed with regular landing check
-    const parent1HasLanded = fitnessInfo1 && fitnessInfo1.hasLanded;
-    const parent2HasLanded = fitnessInfo2 && fitnessInfo2.hasLanded;
-    const parent1HasGoodAngle = fitnessInfo1 && fitnessInfo1.safeAngle;
-    const parent2HasGoodAngle = fitnessInfo2 && fitnessInfo2.safeAngle;
-    const parent1HasGoodSpeed = fitnessInfo1 && fitnessInfo1.safeSpeed;
-    const parent2HasGoodSpeed = fitnessInfo2 && fitnessInfo2.safeSpeed;
-    
-    // If either parent has landed, use strict gene-by-gene crossover with freezing
-    if (parent1HasLanded || parent2HasLanded) {
-        console.log("CROSSOVER - Using strict gene-by-gene preservation with freezing for landed parents");
-        
-        // Detailed logging of parent characteristics for debugging
-        if (parent1HasGoodAngle) console.log("CROSSOVER - Parent 1 has good angle - will PRESERVE ALL its L/R genes");
-        if (parent1HasGoodSpeed) console.log("CROSSOVER - Parent 1 has good speed - will PRESERVE ALL its T/D genes");
-        if (parent2HasGoodAngle) console.log("CROSSOVER - Parent 2 has good angle - will PRESERVE ALL its L/R genes");
-        if (parent2HasGoodSpeed) console.log("CROSSOVER - Parent 2 has good speed - will PRESERVE ALL its T/D genes");
-        
-        // Find the parent with best angle and best speed (if any)
-        const bestAngleParent = parent1HasGoodAngle ? 1 : (parent2HasGoodAngle ? 2 : 0);
-        const bestSpeedParent = parent1HasGoodSpeed ? 1 : (parent2HasGoodSpeed ? 2 : 0);
-        
-        // Log which parent has the best characteristics
-        if (bestAngleParent) {
-            console.log(`CROSSOVER - Parent ${bestAngleParent} has the good angle - using ALL its L/R genes`);
-        }
-        if (bestSpeedParent) {
-            console.log(`CROSSOVER - Parent ${bestSpeedParent} has the good speed - using ALL its T/D genes`);
-        }
-        
-        // Choose base genome size (prefer successful landings)
-        let baseGenomeSize;
-        if (parent1HasLanded && !parent2HasLanded) {
-            baseGenomeSize = genes1.length;
-            console.log(`CROSSOVER - Using parent 1's genome size (${baseGenomeSize}) as base`);
-        } else if (parent2HasLanded && !parent1HasLanded) {
-            baseGenomeSize = genes2.length;
-            console.log(`CROSSOVER - Using parent 2's genome size (${baseGenomeSize}) as base`);
-        } else {
-            // Both or neither landed - use the longer one
-            baseGenomeSize = Math.max(genes1.length, genes2.length);
-            console.log(`CROSSOVER - Using maximum genome size (${baseGenomeSize}) as base`);
-        }
-        
-        // Create child by combining the best characteristics from each parent
-        let childGenes = [];
-        
-        // Process all genes up to the length of the shorter parent
-        const commonLength = Math.min(genes1.length, genes2.length);
-        
-        // Build the child genome using the COMPLETE FREEZE approach
-        for (let i = 0; i < baseGenomeSize; i++) {
-            // If we've gone beyond common length, use genes from the longer parent
-            if (i >= commonLength) {
-                // Take genes from the parent that has the longer genome
-                const sourceGene = i < genes1.length ? genes1[i] : genes2[i];
-                childGenes.push(sourceGene);
-                console.log(`CROSSOVER - Position ${i}: Using gene from longer parent: ${sourceGene}`);
-                continue;
-            }
-            
-            // Within common length, apply the strict freezing rules
-            const [action1] = genes1[i].split(',');
-            const [action2] = genes2[i].split(',');
-            
-            // Complete freeze: if either parent has good angle, use its L/R genes without modification
-            if ((action1 === 'L' || action1 === 'R') && bestAngleParent === 1) {
-                console.log(`CROSSOVER - Position ${i}: FREEZING L/R gene from parent 1: ${genes1[i]}`);
-                childGenes.push(genes1[i]);
-            }
-            else if ((action2 === 'L' || action2 === 'R') && bestAngleParent === 2) {
-                console.log(`CROSSOVER - Position ${i}: FREEZING L/R gene from parent 2: ${genes2[i]}`);
-                childGenes.push(genes2[i]);
-            }
-            // Complete freeze: if either parent has good speed, use its T/D genes without modification
-            else if ((action1 === 'T' || action1 === 'D') && bestSpeedParent === 1) {
-                console.log(`CROSSOVER - Position ${i}: FREEZING T/D gene from parent 1: ${genes1[i]}`);
-                childGenes.push(genes1[i]);
-            }
-            else if ((action2 === 'T' || action2 === 'D') && bestSpeedParent === 2) {
-                console.log(`CROSSOVER - Position ${i}: FREEZING T/D gene from parent 2: ${genes2[i]}`);
-                childGenes.push(genes2[i]);
-            }
-            // For genes where neither parent has good characteristics, use the one with higher fitness
-            else {
-                const betterFitness = fitnessInfo1 && fitnessInfo2 && 
-                                      fitnessInfo1.fitness > fitnessInfo2.fitness;
-                
-                const sourceGene = betterFitness ? genes1[i] : genes2[i];
-                const sourceParent = betterFitness ? 1 : 2;
-                
-                console.log(`CROSSOVER - Position ${i}: Using gene from parent ${sourceParent} based on fitness: ${sourceGene}`);
-                childGenes.push(sourceGene);
-            }
-        }
-        
-        const childGenome = childGenes.join(';');
-        console.log(`CROSSOVER - Created child with frozen genes: ${childGenome}`);
-        return childGenome;
-    }
-    
-    // If neither parent has landed, use regular two-point crossover
-    console.log("CROSSOVER - Using standard two-point crossover (no landing detected)");
-    const maxPoint = Math.min(genes1.length, genes2.length);
-    let point1 = Math.floor(Math.random() * (maxPoint - 1)) + 1;
-    let point2 = Math.floor(Math.random() * (maxPoint - 1)) + 1;
-    
-    // Make sure we get different points
-    while (point1 === point2 && maxPoint > 2) {
-        point2 = Math.floor(Math.random() * (maxPoint - 1)) + 1;
-    }
-    
-    // Ensure point1 is less than point2
-    if (point1 > point2) {
-        [point1, point2] = [point2, point1];
-    }
-    
-    console.log(`CROSSOVER - Standard crossover points: ${point1} and ${point2}`);
-    
-    // Create child using traditional crossover
-    let child = [];
-    for (let i = 0; i < maxPoint; i++) {
-        if (i < point1 || i >= point2) {
-            child.push(genes1[i]);
-        } else {
-            child.push(genes2[i]);
-        }
-    }
-    
-    // Add any remaining genes from the longer parent
-    if (genes1.length > maxPoint) {
-        child = child.concat(genes1.slice(maxPoint));
-    } else if (genes2.length > maxPoint) {
-        child = child.concat(genes2.slice(maxPoint));
-    }
+    // Create the child using genes from both parents
+    const child = [...genes1.slice(0, splitPoint), ...genes2.slice(splitPoint)];
     
     return child.join(';');
 }
@@ -1899,5 +1709,7 @@ function getGravityAdjustedParameters() {
         generationLimit: Math.min(200, Math.floor(BASE_GENERATION_LIMIT * Math.sqrt(gravityFactor)))
     };
 }
+
+
 
 
