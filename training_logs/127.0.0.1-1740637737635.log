@@ -1,0 +1,133 @@
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: -153.55°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 9.65
+sketch.js:418 Landing angle: -31.33°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.41
+sketch.js:418 Landing angle: 177.19°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 11.50
+sketch.js:418 Landing angle: -88.93°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: -137.08°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: 125.33°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: 40.11°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 10.46
+sketch.js:418 Landing angle: 156.70°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: 128.95°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 5.65
+sketch.js:418 Landing angle: 174.32°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.14
+sketch.js:418 Landing angle: 138.23°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 7.85
+sketch.js:418 Landing angle: 65.93°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: -6.59°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 10.08
+sketch.js:418 Landing angle: -81.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: 65.17°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.09
+sketch.js:418 Landing angle: 137.94°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.80
+sketch.js:418 Landing angle: 98.98°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.34
+sketch.js:418 Landing angle: -55.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: 29.65°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 10.97
+sketch.js:418 Landing angle: 157.28°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:626 Perfect landing found!
+sketch.js:627 Generation 0
+sketch.js:628 Best Fitness = 10000
+sketch.js:629 Best Genome = R,0.02;T,0.38;L,0.06;R,0.47;D,0.07;T,0.04;L,0.31;L,0.04
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 4.40
+sketch.js:418 Landing angle: -44.52°
+sketch.js:421 Successful landing!
+sketch.js:626 Perfect landing found!
+sketch.js:627 Generation 0
+sketch.js:628 Best Fitness = 10000
+sketch.js:629 Best Genome = L,0.35;D,0.06;D,0.10;D,0.27;L,0.33;D,0.31;L,0.33;D,0.35
+sketch.js:417 Landing speed: 4.40
+sketch.js:418 Landing angle: -49.97°
+sketch.js:421 Successful landing!
+sketch.js:417 Landing speed: 4.40
+sketch.js:418 Landing angle: -49.97°
+sketch.js:421 Successful landing!
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 9.43
+sketch.js:418 Landing angle: 176.93°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 9.43
+sketch.js:418 Landing angle: 6.80°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 5.16
+sketch.js:418 Landing angle: -153.77°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 8.50
+sketch.js:418 Landing angle: -161.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 7.74
+sketch.js:418 Landing angle: 40.24°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 6.60
+sketch.js:418 Landing angle: -163.59°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 8.81
+sketch.js:418 Landing angle: -149.15°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 9.43
+sketch.js:418 Landing angle: -147.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 9.43
+sketch.js:418 Landing angle: 69.93°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 3.15
+sketch.js:418 Landing angle: -47.58°
+sketch.js:421 Successful landing!
+sketch.js:626 Perfect landing found!
+sketch.js:627 Generation 0
+sketch.js:628 Best Fitness = 10000
+sketch.js:629 Best Genome = R,0.22;R,0.02;L,0.10;D,0.32;D,0.38;T,0.11;D,0.05;T,0.27
+sketch.js:417 Landing speed: 2.80
+sketch.js:418 Landing angle: -46.41°
+sketch.js:421 Successful landing!
+sketch.js:417 Landing speed: 2.34
+sketch.js:418 Landing angle: -31.25°
+sketch.js:421 Successful landing!

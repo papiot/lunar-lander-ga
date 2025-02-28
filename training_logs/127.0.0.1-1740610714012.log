@@ -1,0 +1,248 @@
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 0:
+sketch.js:643 Best Fitness = -1000
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: 110.68°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 1:
+sketch.js:643 Best Fitness = 1000
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -78.21°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 2:
+sketch.js:643 Best Fitness = 1000
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 1.87
+sketch.js:418 Landing angle: -117.25°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 3:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -67.36°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 4:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -141.42°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 5:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 6:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 7:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 8:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 9:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 10:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 11:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 12:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 13:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -24.82°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 14:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 15:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 16:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.40
+sketch.js:418 Landing angle: -163.48°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 17:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 18:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: 156.03°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 19:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 20:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 21:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 22:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 23:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 24:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -80.89°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 25:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: 176.22°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 26:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 27:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -45.65°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 28:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 29:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -57.11°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 30:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: 136.87°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 31:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: 23.10°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 32:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -52.93°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 33:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: 1.47°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 34:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 35:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 4.21
+sketch.js:418 Landing angle: -79.23°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 36:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 37:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 38:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 39:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 40:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 41:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 42:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 43:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -135.50°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 44:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 45:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -62.17°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 46:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 47:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:642 Generation 48:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: -118.71°
+sketch.js:424 Landing failed
+sketch.js:642 Generation 49:
+sketch.js:643 Best Fitness = 1000.0000150085172
+sketch.js:644 Best Genome = L,0.18;R,0.70;R,0.41;D,0.75;D,0.71;D,0.83;T,0.67;L,0.55
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: 7.20°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 7.94
+sketch.js:418 Landing angle: 4.19°
+sketch.js:424 Landing failed

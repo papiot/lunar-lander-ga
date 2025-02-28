@@ -1,0 +1,450 @@
+sketch.js:196 Loaded saved genome for Moon
+sketch.js:225 Training with adjusted parameters for Moon: {populationSize: 10000, mutationRate: 0.1, generationLimit: 50}generationLimit: 50mutationRate: 0.1populationSize: 10000[[Prototype]]: Object
+sketch.js:827 Generation 0 - Evaluating 10000 genomes with gravity 1.62m/s²
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 172.89°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 140.95°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 120.93°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 5.56
+sketch.js:508 Landing angle: 87.88°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 6.44
+sketch.js:508 Landing angle: 143.92°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 4.01
+sketch.js:508 Landing angle: 105.67°
+sketch.js:509 On platform: true
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: D,0.39;L,0.40;T,0.16;L,0.18;D,0.49;D,0.46;T,0.11;L,0.35
+sketch.js:518 Missing criteria: Angle too large
+sketch.js:507 Landing speed: 5.75
+sketch.js:508 Landing angle: 143.38°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 115.92°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.95
+sketch.js:508 Landing angle: 8.97°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 8.41
+sketch.js:508 Landing angle: 56.01°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 11.32°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 21.16°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 6.59
+sketch.js:508 Landing angle: 99.16°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 2.26
+sketch.js:508 Landing angle: 85.74°
+sketch.js:509 On platform: true
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: L,0.34;L,0.38;L,0.22;D,0.49;T,0.23;L,0.32
+sketch.js:518 Missing criteria: Angle too large
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 89.71°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 5.16
+sketch.js:508 Landing angle: 89.17°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 8.34
+sketch.js:508 Landing angle: 126.04°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 5.42
+sketch.js:508 Landing angle: 85.06°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 5.09
+sketch.js:508 Landing angle: 58.73°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 4.53
+sketch.js:508 Landing angle: 169.53°
+sketch.js:509 On platform: true
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: R,0.29;R,0.18;R,0.39;D,0.43;R,0.20;T,0.44
+sketch.js:518 Missing criteria: Angle too large
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 122.33°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 6.91
+sketch.js:508 Landing angle: 127.20°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 113.30°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 8.23
+sketch.js:508 Landing angle: 79.71°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 122.90°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 8.10
+sketch.js:508 Landing angle: 72.19°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 88.52°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 29.08°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 32.80°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 0.10°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 68.04°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 146.82°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 3.58°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:902 Evaluated 100/10000 genomes...
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 6.36
+sketch.js:508 Landing angle: 139.55°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 90.53°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 31.47°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 135.36°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 169.74°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 138.27°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 4.90
+sketch.js:508 Landing angle: 129.24°
+sketch.js:509 On platform: true
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: D,0.35;D,0.15;D,0.18;L,0.15;L,0.38;T,0.16;R,0.11
+sketch.js:518 Missing criteria: Angle too large
+sketch.js:507 Landing speed: 8.47
+sketch.js:508 Landing angle: 8.67°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 6.10
+sketch.js:508 Landing angle: 53.78°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 8.10
+sketch.js:508 Landing angle: 66.14°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 52.57°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 5.44
+sketch.js:508 Landing angle: 168.78°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 4.11
+sketch.js:508 Landing angle: 84.45°
+sketch.js:509 On platform: false
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: D,0.30;D,0.31;R,0.50;D,0.12;D,0.18;T,0.42
+sketch.js:518 Missing criteria: Not on platform, Angle too large
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 8.58
+sketch.js:508 Landing angle: 83.35°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 44.30°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 89.38°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 131.92°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 1.06
+sketch.js:508 Landing angle: 126.73°
+sketch.js:509 On platform: true
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: R,0.49;D,0.26;R,0.31;L,0.37;T,0.33;L,0.39
+sketch.js:518 Missing criteria: Angle too large
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 10.78°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.86
+sketch.js:508 Landing angle: 80.32°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 6.87
+sketch.js:508 Landing angle: 36.38°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 63.64°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 146.47°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.24
+sketch.js:508 Landing angle: 21.73°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 4.31
+sketch.js:508 Landing angle: 53.82°
+sketch.js:509 On platform: true
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: L,0.45;L,0.12;R,0.23;L,0.29;R,0.14;T,0.20;R,0.36;L,0.17
+sketch.js:518 Missing criteria: Angle too large
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 107.57°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 72.38°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 122.04°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 89.95°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.36
+sketch.js:508 Landing angle: 75.96°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 97.48°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 36.38°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 18.01°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 73.34°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 55.82°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 108.47°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 153.94°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 17.62°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:902 Evaluated 200/10000 genomes...
+sketch.js:507 Landing speed: 4.53
+sketch.js:508 Landing angle: 165.48°
+sketch.js:509 On platform: true
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: D,0.24;R,0.15;R,0.48;L,0.16;L,0.47;T,0.25;R,0.27;T,0.24
+sketch.js:518 Missing criteria: Angle too large
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 96.01°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed

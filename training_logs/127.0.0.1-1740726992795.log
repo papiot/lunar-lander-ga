@@ -1,0 +1,87 @@
+sketch.js:196 Loaded saved genome for Moon
+sketch.js:225 Training with adjusted parameters for Moon: {populationSize: 10000, mutationRate: 0.1, generationLimit: 50}
+sketch.js:923 Generation 0 - Evaluating 10000 genomes with gravity 1.62m/s²
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 5.71
+sketch.js:508 Landing angle: 111.09°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 127.81°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 41.15°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 92.43°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.17
+sketch.js:508 Landing angle: 114.27°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 3.23
+sketch.js:508 Landing angle: 15.80°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!
+sketch.js:705 Perfect landing validated!
+sketch.js:931 Potential perfect landing found, validating...
+sketch.js:938 Validation attempt 1/3...
+sketch.js:507 Landing speed: 3.39
+sketch.js:508 Landing angle: 29.55°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!
+sketch.js:705 Perfect landing validated!
+sketch.js:938 Validation attempt 2/3...
+sketch.js:507 Landing speed: 3.39
+sketch.js:508 Landing angle: 29.55°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!
+sketch.js:705 Perfect landing validated!
+sketch.js:938 Validation attempt 3/3...
+sketch.js:507 Landing speed: 3.39
+sketch.js:508 Landing angle: 29.55°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!
+sketch.js:705 Perfect landing validated!
+sketch.js:949 Perfect landing confirmed! (3/3 successes)
+sketch.js:950 Generation 0
+sketch.js:951 Best Fitness = 10000
+sketch.js:952 Best Genome = R,0.46;L,0.39;R,0.49;T,0.23;L,0.46;R,0.48
+sketch.js:958 Genome saved to localStorage
+sketch.js:507 Landing speed: 3.39
+sketch.js:508 Landing angle: 29.55°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!

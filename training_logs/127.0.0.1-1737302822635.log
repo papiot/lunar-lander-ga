@@ -1,0 +1,1102 @@
+sketch.js:48 Creating PID controller with Kp=0.209, Ki=0.037, Kd=0.395
+sketch.js:48 Creating PID controller with Kp=0.171, Ki=0.047, Kd=0.408
+sketch.js:48 Creating PID controller with Kp=0.216, Ki=0.033, Kd=0.367
+sketch.js:48 Creating PID controller with Kp=0.188, Ki=0.037, Kd=0.379
+sketch.js:48 Creating PID controller with Kp=0.207, Ki=0.048, Kd=0.368
+sketch.js:48 Creating PID controller with Kp=0.208, Ki=0.038, Kd=0.396
+sketch.js:48 Creating PID controller with Kp=0.224, Ki=0.035, Kd=0.436
+sketch.js:48 Creating PID controller with Kp=0.252, Ki=0.049, Kd=0.388
+sketch.js:48 Creating PID controller with Kp=0.173, Ki=0.043, Kd=0.471
+sketch.js:48 Creating PID controller with Kp=0.233, Ki=0.042, Kd=0.321
+sketch.js:48 Creating PID controller with Kp=0.241, Ki=0.048, Kd=0.431
+sketch.js:48 Creating PID controller with Kp=0.23, Ki=0.047, Kd=0.341
+sketch.js:48 Creating PID controller with Kp=0.214, Ki=0.038, Kd=0.418
+sketch.js:48 Creating PID controller with Kp=0.208, Ki=0.045, Kd=0.347
+sketch.js:48 Creating PID controller with Kp=0.201, Ki=0.042, Kd=0.361
+sketch.js:48 Creating PID controller with Kp=0.233, Ki=0.038, Kd=0.373
+sketch.js:48 Creating PID controller with Kp=0.187, Ki=0.033, Kd=0.343
+sketch.js:48 Creating PID controller with Kp=0.219, Ki=0.04, Kd=0.365
+sketch.js:48 Creating PID controller with Kp=0.228, Ki=0.042, Kd=0.349
+sketch.js:48 Creating PID controller with Kp=0.169, Ki=0.041, Kd=0.413
+sketch.js:48 Creating PID controller with Kp=0.193, Ki=0.046, Kd=0.41
+sketch.js:48 Creating PID controller with Kp=0.153, Ki=0.045, Kd=0.4
+sketch.js:48 Creating PID controller with Kp=0.185, Ki=0.029, Kd=0.397
+sketch.js:48 Creating PID controller with Kp=0.193, Ki=0.037, Kd=0.393
+sketch.js:48 Creating PID controller with Kp=0.23, Ki=0.037, Kd=0.376
+sketch.js:48 Creating PID controller with Kp=0.185, Ki=0.041, Kd=0.425
+sketch.js:48 Creating PID controller with Kp=0.205, Ki=0.047, Kd=0.341
+sketch.js:48 Creating PID controller with Kp=0.219, Ki=0.039, Kd=0.43
+sketch.js:48 Creating PID controller with Kp=0.196, Ki=0.038, Kd=0.359
+sketch.js:48 Creating PID controller with Kp=0.184, Ki=0.043, Kd=0.428
+sketch.js:48 Creating PID controller with Kp=0.181, Ki=0.042, Kd=0.345
+sketch.js:48 Creating PID controller with Kp=0.209, Ki=0.042, Kd=0.395
+sketch.js:48 Creating PID controller with Kp=0.211, Ki=0.042, Kd=0.37
+sketch.js:48 Creating PID controller with Kp=0.232, Ki=0.036, Kd=0.38
+sketch.js:48 Creating PID controller with Kp=0.199, Ki=0.042, Kd=0.358
+sketch.js:48 Creating PID controller with Kp=0.216, Ki=0.033, Kd=0.431
+sketch.js:48 Creating PID controller with Kp=0.206, Ki=0.037, Kd=0.371
+sketch.js:48 Creating PID controller with Kp=0.222, Ki=0.043, Kd=0.336
+sketch.js:48 Creating PID controller with Kp=0.197, Ki=0.042, Kd=0.41
+sketch.js:48 Creating PID controller with Kp=0.214, Ki=0.045, Kd=0.352
+sketch.js:48 Creating PID controller with Kp=0.242, Ki=0.047, Kd=0.391
+sketch.js:48 Creating PID controller with Kp=0.187, Ki=0.036, Kd=0.4
+sketch.js:48 Creating PID controller with Kp=0.231, Ki=0.033, Kd=0.407
+sketch.js:48 Creating PID controller with Kp=0.228, Ki=0.04, Kd=0.346
+sketch.js:48 Creating PID controller with Kp=0.198, Ki=0.043, Kd=0.369
+sketch.js:48 Creating PID controller with Kp=0.199, Ki=0.048, Kd=0.441
+sketch.js:48 Creating PID controller with Kp=0.181, Ki=0.044, Kd=0.291
+sketch.js:48 Creating PID controller with Kp=0.241, Ki=0.052, Kd=0.365
+sketch.js:48 Creating PID controller with Kp=0.19, Ki=0.043, Kd=0.394
+sketch.js:48 Creating PID controller with Kp=0.256, Ki=0.037, Kd=0.373
+sketch.js:48 Creating PID controller with Kp=0.173, Ki=0.045, Kd=0.397
+sketch.js:48 Creating PID controller with Kp=0.221, Ki=0.041, Kd=0.453
+sketch.js:48 Creating PID controller with Kp=0.226, Ki=0.04, Kd=0.416
+sketch.js:48 Creating PID controller with Kp=0.18, Ki=0.041, Kd=0.403
+sketch.js:48 Creating PID controller with Kp=0.202, Ki=0.037, Kd=0.356
+sketch.js:48 Creating PID controller with Kp=0.183, Ki=0.039, Kd=0.384
+sketch.js:48 Creating PID controller with Kp=0.191, Ki=0.039, Kd=0.432
+sketch.js:48 Creating PID controller with Kp=0.23, Ki=0.045, Kd=0.372
+sketch.js:48 Creating PID controller with Kp=0.203, Ki=0.028, Kd=0.412
+sketch.js:48 Creating PID controller with Kp=0.2, Ki=0.035, Kd=0.396
+sketch.js:48 Creating PID controller with Kp=0.211, Ki=0.046, Kd=0.348
+sketch.js:48 Creating PID controller with Kp=0.221, Ki=0.05, Kd=0.396
+sketch.js:48 Creating PID controller with Kp=0.242, Ki=0.037, Kd=0.341
+sketch.js:48 Creating PID controller with Kp=0.232, Ki=0.048, Kd=0.385
+sketch.js:48 Creating PID controller with Kp=0.18, Ki=0.038, Kd=0.37
+sketch.js:48 Creating PID controller with Kp=0.184, Ki=0.044, Kd=0.385
+sketch.js:48 Creating PID controller with Kp=0.213, Ki=0.04, Kd=0.367
+sketch.js:48 Creating PID controller with Kp=0.23, Ki=0.052, Kd=0.363
+sketch.js:48 Creating PID controller with Kp=0.189, Ki=0.045, Kd=0.358
+sketch.js:48 Creating PID controller with Kp=0.211, Ki=0.043, Kd=0.344
+sketch.js:48 Creating PID controller with Kp=0.182, Ki=0.042, Kd=0.393
+sketch.js:48 Creating PID controller with Kp=0.205, Ki=0.041, Kd=0.358
+sketch.js:48 Creating PID controller with Kp=0.189, Ki=0.042, Kd=0.392
+sketch.js:48 Creating PID controller with Kp=0.203, Ki=0.042, Kd=0.44
+sketch.js:48 Creating PID controller with Kp=0.217, Ki=0.037, Kd=0.375
+sketch.js:48 Creating PID controller with Kp=0.211, Ki=0.041, Kd=0.347
+sketch.js:48 Creating PID controller with Kp=0.185, Ki=0.047, Kd=0.399
+sketch.js:48 Creating PID controller with Kp=0.223, Ki=0.035, Kd=0.351
+sketch.js:48 Creating PID controller with Kp=0.194, Ki=0.035, Kd=0.345
+sketch.js:48 Creating PID controller with Kp=0.2, Ki=0.044, Kd=0.379
+sketch.js:48 Creating PID controller with Kp=0.241, Ki=0.039, Kd=0.423
+sketch.js:48 Creating PID controller with Kp=0.179, Ki=0.042, Kd=0.357
+sketch.js:48 Creating PID controller with Kp=0.208, Ki=0.04, Kd=0.368
+sketch.js:48 Creating PID controller with Kp=0.195, Ki=0.04, Kd=0.377
+sketch.js:48 Creating PID controller with Kp=0.176, Ki=0.04, Kd=0.392
+sketch.js:48 Creating PID controller with Kp=0.224, Ki=0.038, Kd=0.34
+sketch.js:48 Creating PID controller with Kp=0.226, Ki=0.048, Kd=0.331
+sketch.js:48 Creating PID controller with Kp=0.225, Ki=0.041, Kd=0.389
+sketch.js:48 Creating PID controller with Kp=0.229, Ki=0.043, Kd=0.374
+sketch.js:48 Creating PID controller with Kp=0.223, Ki=0.045, Kd=0.424
+sketch.js:48 Creating PID controller with Kp=0.226, Ki=0.048, Kd=0.369
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.214, Ki=0.038, Kd=0.418
+sketch.js:687 Gravity: 9.99 m/s²
+sketch.js:688 Distance to target: 288.76
+sketch.js:689 Final velocity: 9.46
+sketch.js:690 Thruster usage: 36
+sketch.js:691 Time steps: 96
+sketch.js:692 Final fitness: 9388.67
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.233, Ki=0.038, Kd=0.373
+sketch.js:687 Gravity: 9.98 m/s²
+sketch.js:688 Distance to target: 213.03
+sketch.js:689 Final velocity: 9.44
+sketch.js:690 Thruster usage: 42
+sketch.js:691 Time steps: 96
+sketch.js:692 Final fitness: 9458.56
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.169, Ki=0.041, Kd=0.413
+sketch.js:687 Gravity: 9.97 m/s²
+sketch.js:688 Distance to target: 227.79
+sketch.js:689 Final velocity: 9.44
+sketch.js:690 Thruster usage: 31
+sketch.js:691 Time steps: 96
+sketch.js:692 Final fitness: 9454.78
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.203, Ki=0.042, Kd=0.44
+sketch.js:687 Gravity: 9.81 m/s²
+sketch.js:688 Distance to target: 423.24
+sketch.js:689 Final velocity: 9.39
+sketch.js:690 Thruster usage: 35
+sketch.js:691 Time steps: 97
+sketch.js:692 Final fitness: 9253.89
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.231, Ki=0.05, Kd=0.371
+sketch.js:687 Gravity: 9.68 m/s²
+sketch.js:688 Distance to target: 668.60
+sketch.js:689 Final velocity: 9.34
+sketch.js:690 Thruster usage: 45
+sketch.js:691 Time steps: 98
+sketch.js:692 Final fitness: 8996.97
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.216, Ki=0.033, Kd=0.367
+sketch.js:687 Gravity: 9.58 m/s²
+sketch.js:688 Distance to target: 208.54
+sketch.js:689 Final velocity: 9.25
+sketch.js:690 Thruster usage: 41
+sketch.js:691 Time steps: 98
+sketch.js:692 Final fitness: 9461.97
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.184, Ki=0.043, Kd=0.428
+sketch.js:687 Gravity: 9.59 m/s²
+sketch.js:688 Distance to target: 297.55
+sketch.js:689 Final velocity: 9.27
+sketch.js:690 Thruster usage: 33
+sketch.js:691 Time steps: 98
+sketch.js:692 Final fitness: 9380.80
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.211, Ki=0.043, Kd=0.344
+sketch.js:687 Gravity: 9.57 m/s²
+sketch.js:688 Distance to target: 176.28
+sketch.js:689 Final velocity: 9.24
+sketch.js:690 Thruster usage: 44
+sketch.js:691 Time steps: 98
+sketch.js:692 Final fitness: 9491.29
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.208, Ki=0.038, Kd=0.396
+sketch.js:687 Gravity: 9.46 m/s²
+sketch.js:688 Distance to target: 598.48
+sketch.js:689 Final velocity: 9.23
+sketch.js:690 Thruster usage: 39
+sketch.js:691 Time steps: 99
+sketch.js:692 Final fitness: 9072.18
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.222, Ki=0.043, Kd=0.336
+sketch.js:687 Gravity: 9.50 m/s²
+sketch.js:688 Distance to target: 753.12
+sketch.js:689 Final velocity: 9.27
+sketch.js:690 Thruster usage: 47
+sketch.js:691 Time steps: 99
+sketch.js:692 Final fitness: 8909.22
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.18, Ki=0.041, Kd=0.403
+sketch.js:687 Gravity: 9.38 m/s²
+sketch.js:688 Distance to target: 197.87
+sketch.js:689 Final velocity: 9.15
+sketch.js:690 Thruster usage: 36
+sketch.js:691 Time steps: 99
+sketch.js:692 Final fitness: 9476.60
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.241, Ki=0.039, Kd=0.423
+sketch.js:687 Gravity: 9.49 m/s²
+sketch.js:688 Distance to target: 710.23
+sketch.js:689 Final velocity: 9.26
+sketch.js:690 Thruster usage: 41
+sketch.js:691 Time steps: 99
+sketch.js:692 Final fitness: 8958.20
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.193, Ki=0.037, Kd=0.393
+sketch.js:687 Gravity: 9.26 m/s²
+sketch.js:688 Distance to target: 521.11
+sketch.js:689 Final velocity: 9.13
+sketch.js:690 Thruster usage: 37
+sketch.js:691 Time steps: 100
+sketch.js:692 Final fitness: 9150.63
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.205, Ki=0.047, Kd=0.341
+sketch.js:687 Gravity: 9.25 m/s²
+sketch.js:688 Distance to target: 455.71
+sketch.js:689 Final velocity: 9.11
+sketch.js:690 Thruster usage: 46
+sketch.js:691 Time steps: 100
+sketch.js:692 Final fitness: 9207.15
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.198, Ki=0.043, Kd=0.369
+sketch.js:687 Gravity: 9.31 m/s²
+sketch.js:688 Distance to target: 742.87
+sketch.js:689 Final velocity: 9.17
+sketch.js:690 Thruster usage: 41
+sketch.js:691 Time steps: 100
+sketch.js:692 Final fitness: 8924.42
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.208, Ki=0.04, Kd=0.368
+sketch.js:687 Gravity: 9.20 m/s²
+sketch.js:688 Distance to target: 228.92
+sketch.js:689 Final velocity: 9.07
+sketch.js:690 Thruster usage: 43
+sketch.js:691 Time steps: 100
+sketch.js:692 Final fitness: 9437.39
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.224, Ki=0.038, Kd=0.34
+sketch.js:687 Gravity: 9.20 m/s²
+sketch.js:688 Distance to target: 198.55
+sketch.js:689 Final velocity: 9.06
+sketch.js:690 Thruster usage: 47
+sketch.js:691 Time steps: 100
+sketch.js:692 Final fitness: 9463.82
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.193, Ki=0.046, Kd=0.41
+sketch.js:687 Gravity: 9.06 m/s²
+sketch.js:688 Distance to target: 459.23
+sketch.js:689 Final velocity: 9.02
+sketch.js:690 Thruster usage: 38
+sketch.js:691 Time steps: 101
+sketch.js:692 Final fitness: 9210.53
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.181, Ki=0.042, Kd=0.345
+sketch.js:687 Gravity: 9.14 m/s²
+sketch.js:688 Distance to target: 827.80
+sketch.js:689 Final velocity: 9.10
+sketch.js:690 Thruster usage: 41
+sketch.js:691 Time steps: 101
+sketch.js:692 Final fitness: 8838.22
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.226, Ki=0.048, Kd=0.369
+sketch.js:687 Gravity: 9.01 m/s²
+sketch.js:688 Distance to target: 159.58
+sketch.js:689 Final velocity: 8.97
+sketch.js:690 Thruster usage: 47
+sketch.js:691 Time steps: 101
+sketch.js:692 Final fitness: 9501.76
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.216, Ki=0.033, Kd=0.431
+sketch.js:687 Gravity: 8.82 m/s²
+sketch.js:688 Distance to target: 95.03
+sketch.js:689 Final velocity: 8.87
+sketch.js:690 Thruster usage: 39
+sketch.js:691 Time steps: 102
+sketch.js:692 Final fitness: 9573.32
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.228, Ki=0.04, Kd=0.346
+sketch.js:687 Gravity: 8.65 m/s²
+sketch.js:688 Distance to target: 25.10
+sketch.js:689 Final velocity: 8.77
+sketch.js:690 Thruster usage: 51
+sketch.js:691 Time steps: 103
+sketch.js:692 Final fitness: 9630.23
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.23, Ki=0.047, Kd=0.341
+sketch.js:687 Gravity: 8.53 m/s²
+sketch.js:688 Distance to target: 286.59
+sketch.js:689 Final velocity: 8.73
+sketch.js:690 Thruster usage: 53
+sketch.js:691 Time steps: 104
+sketch.js:692 Final fitness: 9365.08
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.213, Ki=0.04, Kd=0.367
+sketch.js:687 Gravity: 8.52 m/s²
+sketch.js:688 Distance to target: 276.57
+sketch.js:689 Final velocity: 8.73
+sketch.js:690 Thruster usage: 47
+sketch.js:691 Time steps: 104
+sketch.js:692 Final fitness: 9381.12
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.196, Ki=0.038, Kd=0.359
+sketch.js:687 Gravity: 8.26 m/s²
+sketch.js:688 Distance to target: 599.07
+sketch.js:689 Final velocity: 8.63
+sketch.js:690 Thruster usage: 46
+sketch.js:691 Time steps: 106
+sketch.js:692 Final fitness: 9056.64
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.19, Ki=0.043, Kd=0.394
+sketch.js:687 Gravity: 8.01 m/s²
+sketch.js:688 Distance to target: 78.58
+sketch.js:689 Final velocity: 8.45
+sketch.js:690 Thruster usage: 44
+sketch.js:691 Time steps: 107
+sketch.js:692 Final fitness: 9578.91
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.23, Ki=0.052, Kd=0.363
+sketch.js:687 Gravity: 8.16 m/s²
+sketch.js:688 Distance to target: 835.48
+sketch.js:689 Final velocity: 8.59
+sketch.js:690 Thruster usage: 53
+sketch.js:691 Time steps: 107
+sketch.js:692 Final fitness: 8811.60
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.203, Ki=0.028, Kd=0.412
+sketch.js:687 Gravity: 7.93 m/s²
+sketch.js:688 Distance to target: 457.18
+sketch.js:689 Final velocity: 8.44
+sketch.js:690 Thruster usage: 43
+sketch.js:691 Time steps: 108
+sketch.js:692 Final fitness: 9199.39
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.205, Ki=0.041, Kd=0.358
+sketch.js:687 Gravity: 7.88 m/s²
+sketch.js:688 Distance to target: 127.48
+sketch.js:689 Final velocity: 8.38
+sketch.js:690 Thruster usage: 51
+sketch.js:691 Time steps: 108
+sketch.js:692 Final fitness: 9521.69
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.173, Ki=0.045, Kd=0.397
+sketch.js:687 Gravity: 7.76 m/s²
+sketch.js:688 Distance to target: 287.77
+sketch.js:689 Final velocity: 8.33
+sketch.js:690 Thruster usage: 43
+sketch.js:691 Time steps: 109
+sketch.js:692 Final fitness: 9367.88
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.194, Ki=0.035, Kd=0.345
+sketch.js:687 Gravity: 7.69 m/s²
+sketch.js:688 Distance to target: 685.03
+sketch.js:689 Final velocity: 8.33
+sketch.js:690 Thruster usage: 51
+sketch.js:691 Time steps: 110
+sketch.js:692 Final fitness: 8960.65
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.208, Ki=0.045, Kd=0.347
+sketch.js:687 Gravity: 7.41 m/s²
+sketch.js:688 Distance to target: 600.95
+sketch.js:689 Final velocity: 8.17
+sketch.js:690 Thruster usage: 56
+sketch.js:691 Time steps: 112
+sketch.js:692 Final fitness: 9037.36
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.221, Ki=0.05, Kd=0.396
+sketch.js:687 Gravity: 7.39 m/s²
+sketch.js:688 Distance to target: 471.31
+sketch.js:689 Final velocity: 8.15
+sketch.js:690 Thruster usage: 53
+sketch.js:691 Time steps: 112
+sketch.js:692 Final fitness: 9170.22
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.189, Ki=0.045, Kd=0.358
+sketch.js:687 Gravity: 7.17 m/s²
+sketch.js:688 Distance to target: 709.57
+sketch.js:689 Final velocity: 8.05
+sketch.js:690 Thruster usage: 53
+sketch.js:691 Time steps: 114
+sketch.js:692 Final fitness: 8928.97
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.226, Ki=0.048, Kd=0.331
+sketch.js:687 Gravity: 6.61 m/s²
+sketch.js:688 Distance to target: 76.90
+sketch.js:689 Final velocity: 7.67
+sketch.js:690 Thruster usage: 67
+sketch.js:691 Time steps: 118
+sketch.js:692 Final fitness: 9543.42
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.153, Ki=0.045, Kd=0.4
+sketch.js:687 Gravity: 6.47 m/s²
+sketch.js:688 Distance to target: 736.15
+sketch.js:689 Final velocity: 7.65
+sketch.js:690 Thruster usage: 47
+sketch.js:691 Time steps: 120
+sketch.js:692 Final fitness: 8900.35
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.191, Ki=0.039, Kd=0.432
+sketch.js:687 Gravity: 6.40 m/s²
+sketch.js:688 Distance to target: 229.23
+sketch.js:689 Final velocity: 7.57
+sketch.js:690 Thruster usage: 51
+sketch.js:691 Time steps: 120
+sketch.js:692 Final fitness: 9404.10
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.185, Ki=0.047, Kd=0.399
+sketch.js:687 Gravity: 6.42 m/s²
+sketch.js:688 Distance to target: 341.51
+sketch.js:689 Final velocity: 7.59
+sketch.js:690 Thruster usage: 53
+sketch.js:691 Time steps: 120
+sketch.js:692 Final fitness: 9289.64
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.195, Ki=0.04, Kd=0.377
+sketch.js:687 Gravity: 6.38 m/s²
+sketch.js:688 Distance to target: 27.31
+sketch.js:689 Final velocity: 7.53
+sketch.js:690 Thruster usage: 59
+sketch.js:691 Time steps: 120
+sketch.js:692 Final fitness: 9598.36
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.22, Ki=0.036, Kd=0.398
+sketch.js:687 Gravity: 6.29 m/s²
+sketch.js:688 Distance to target: 149.37
+sketch.js:689 Final velocity: 7.49
+sketch.js:690 Thruster usage: 59
+sketch.js:691 Time steps: 121
+sketch.js:692 Final fitness: 9474.71
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.19, Ki=0.044, Kd=0.376
+sketch.js:687 Gravity: 6.24 m/s²
+sketch.js:688 Distance to target: 494.44
+sketch.js:689 Final velocity: 7.49
+sketch.js:690 Thruster usage: 59
+sketch.js:691 Time steps: 122
+sketch.js:692 Final fitness: 9127.69
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.199, Ki=0.048, Kd=0.441
+sketch.js:687 Gravity: 6.26 m/s²
+sketch.js:688 Distance to target: 701.41
+sketch.js:689 Final velocity: 7.52
+sketch.js:690 Thruster usage: 53
+sketch.js:691 Time steps: 122
+sketch.js:692 Final fitness: 8926.38
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.226, Ki=0.04, Kd=0.416
+sketch.js:687 Gravity: 6.25 m/s²
+sketch.js:688 Distance to target: 564.09
+sketch.js:689 Final velocity: 7.50
+sketch.js:690 Thruster usage: 60
+sketch.js:691 Time steps: 122
+sketch.js:692 Final fitness: 9056.93
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.225, Ki=0.041, Kd=0.389
+sketch.js:687 Gravity: 6.21 m/s²
+sketch.js:688 Distance to target: 320.95
+sketch.js:689 Final velocity: 7.46
+sketch.js:690 Thruster usage: 61
+sketch.js:691 Time steps: 122
+sketch.js:692 Final fitness: 9299.47
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.256, Ki=0.037, Kd=0.373
+sketch.js:687 Gravity: 6.00 m/s²
+sketch.js:688 Distance to target: 111.61
+sketch.js:689 Final velocity: 7.30
+sketch.js:690 Thruster usage: 71
+sketch.js:691 Time steps: 124
+sketch.js:692 Final fitness: 9496.35
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.185, Ki=0.041, Kd=0.425
+sketch.js:687 Gravity: 5.91 m/s²
+sketch.js:688 Distance to target: 265.42
+sketch.js:689 Final velocity: 7.27
+sketch.js:690 Thruster usage: 55
+sketch.js:691 Time steps: 125
+sketch.js:692 Final fitness: 9356.86
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.182, Ki=0.042, Kd=0.393
+sketch.js:687 Gravity: 5.80 m/s²
+sketch.js:688 Distance to target: 111.55
+sketch.js:689 Final velocity: 7.19
+sketch.js:690 Thruster usage: 59
+sketch.js:691 Time steps: 126
+sketch.js:692 Final fitness: 9505.54
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.217, Ki=0.037, Kd=0.375
+sketch.js:687 Gravity: 5.63 m/s²
+sketch.js:688 Distance to target: 111.91
+sketch.js:689 Final velocity: 7.08
+sketch.js:690 Thruster usage: 68
+sketch.js:691 Time steps: 128
+sketch.js:692 Final fitness: 9493.30
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.171, Ki=0.047, Kd=0.408
+sketch.js:687 Gravity: 5.50 m/s²
+sketch.js:688 Distance to target: 545.17
+sketch.js:689 Final velocity: 7.04
+sketch.js:690 Thruster usage: 59
+sketch.js:691 Time steps: 130
+sketch.js:692 Final fitness: 9065.45
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.252, Ki=0.049, Kd=0.388
+sketch.js:687 Gravity: 5.51 m/s²
+sketch.js:688 Distance to target: 476.19
+sketch.js:689 Final velocity: 7.03
+sketch.js:690 Thruster usage: 76
+sketch.js:691 Time steps: 130
+sketch.js:692 Final fitness: 9117.55
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.211, Ki=0.041, Kd=0.347
+sketch.js:687 Gravity: 5.48 m/s²
+sketch.js:688 Distance to target: 302.08
+sketch.js:689 Final velocity: 7.00
+sketch.js:690 Thruster usage: 73
+sketch.js:691 Time steps: 130
+sketch.js:692 Final fitness: 9294.92
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.202, Ki=0.037, Kd=0.356
+sketch.js:687 Gravity: 5.39 m/s²
+sketch.js:688 Distance to target: 231.02
+sketch.js:689 Final velocity: 6.94
+sketch.js:690 Thruster usage: 72
+sketch.js:691 Time steps: 131
+sketch.js:692 Final fitness: 9365.62
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.179, Ki=0.042, Kd=0.357
+sketch.js:687 Gravity: 5.35 m/s²
+sketch.js:688 Distance to target: 626.34
+sketch.js:689 Final velocity: 6.94
+sketch.js:690 Thruster usage: 67
+sketch.js:691 Time steps: 132
+sketch.js:692 Final fitness: 8973.22
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.211, Ki=0.042, Kd=0.37
+sketch.js:687 Gravity: 5.25 m/s²
+sketch.js:688 Distance to target: 353.07
+sketch.js:689 Final velocity: 6.85
+sketch.js:690 Thruster usage: 73
+sketch.js:691 Time steps: 133
+sketch.js:692 Final fitness: 9239.42
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.201, Ki=0.042, Kd=0.361
+sketch.js:687 Gravity: 4.98 m/s²
+sketch.js:688 Distance to target: 4.67
+sketch.js:689 Final velocity: 6.65
+sketch.js:690 Thruster usage: 77
+sketch.js:691 Time steps: 136
+sketch.js:692 Final fitness: 9579.83
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.229, Ki=0.043, Kd=0.374
+sketch.js:687 Gravity: 5.02 m/s²
+sketch.js:688 Distance to target: 319.55
+sketch.js:689 Final velocity: 6.70
+sketch.js:690 Thruster usage: 79
+sketch.js:691 Time steps: 136
+sketch.js:692 Final fitness: 9262.49
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.219, Ki=0.04, Kd=0.365
+sketch.js:687 Gravity: 4.97 m/s²
+sketch.js:688 Distance to target: 581.18
+sketch.js:689 Final velocity: 6.69
+sketch.js:690 Thruster usage: 78
+sketch.js:691 Time steps: 137
+sketch.js:692 Final fitness: 8999.96
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.214, Ki=0.045, Kd=0.352
+sketch.js:687 Gravity: 4.94 m/s²
+sketch.js:688 Distance to target: 236.04
+sketch.js:689 Final velocity: 6.63
+sketch.js:690 Thruster usage: 82
+sketch.js:691 Time steps: 137
+sketch.js:692 Final fitness: 9341.61
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.214, Ki=0.036, Kd=0.379
+sketch.js:687 Gravity: 4.87 m/s²
+sketch.js:688 Distance to target: 316.15
+sketch.js:689 Final velocity: 6.60
+sketch.js:690 Thruster usage: 76
+sketch.js:691 Time steps: 138
+sketch.js:692 Final fitness: 9265.85
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.232, Ki=0.036, Kd=0.38
+sketch.js:687 Gravity: 4.90 m/s²
+sketch.js:688 Distance to target: 593.45
+sketch.js:689 Final velocity: 6.64
+sketch.js:690 Thruster usage: 78
+sketch.js:691 Time steps: 138
+sketch.js:692 Final fitness: 8986.15
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.173, Ki=0.043, Kd=0.471
+sketch.js:687 Gravity: 4.73 m/s²
+sketch.js:688 Distance to target: 368.32
+sketch.js:689 Final velocity: 6.51
+sketch.js:690 Thruster usage: 60
+sketch.js:691 Time steps: 140
+sketch.js:692 Final fitness: 9226.54
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.2, Ki=0.044, Kd=0.379
+sketch.js:687 Gravity: 4.65 m/s²
+sketch.js:688 Distance to target: 105.21
+sketch.js:689 Final velocity: 6.43
+sketch.js:690 Thruster usage: 80
+sketch.js:691 Time steps: 141
+sketch.js:692 Final fitness: 9468.49
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.25, Ki=0.043, Kd=0.328
+sketch.js:687 Gravity: 4.61 m/s²
+sketch.js:688 Distance to target: 215.56
+sketch.js:689 Final velocity: 6.40
+sketch.js:690 Thruster usage: 97
+sketch.js:691 Time steps: 142
+sketch.js:692 Final fitness: 9339.47
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.184, Ki=0.044, Kd=0.385
+sketch.js:687 Gravity: 4.62 m/s²
+sketch.js:688 Distance to target: 459.93
+sketch.js:689 Final velocity: 6.44
+sketch.js:690 Thruster usage: 76
+sketch.js:691 Time steps: 142
+sketch.js:692 Final fitness: 9115.70
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.23, Ki=0.045, Kd=0.372
+sketch.js:687 Gravity: 4.57 m/s²
+sketch.js:688 Distance to target: 586.86
+sketch.js:689 Final velocity: 6.41
+sketch.js:690 Thruster usage: 88
+sketch.js:691 Time steps: 143
+sketch.js:692 Final fitness: 8975.06
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.219, Ki=0.039, Kd=0.43
+sketch.js:687 Gravity: 4.45 m/s²
+sketch.js:688 Distance to target: 613.81
+sketch.js:689 Final velocity: 6.33
+sketch.js:690 Thruster usage: 78
+sketch.js:691 Time steps: 145
+sketch.js:692 Final fitness: 8954.93
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.2, Ki=0.035, Kd=0.396
+sketch.js:687 Gravity: 4.40 m/s²
+sketch.js:688 Distance to target: 129.08
+sketch.js:689 Final velocity: 6.26
+sketch.js:690 Thruster usage: 78
+sketch.js:691 Time steps: 145
+sketch.js:692 Final fitness: 9440.33
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.209, Ki=0.037, Kd=0.395
+sketch.js:687 Gravity: 4.35 m/s²
+sketch.js:688 Distance to target: 145.87
+sketch.js:689 Final velocity: 6.22
+sketch.js:690 Thruster usage: 82
+sketch.js:691 Time steps: 146
+sketch.js:692 Final fitness: 9417.94
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.189, Ki=0.042, Kd=0.392
+sketch.js:687 Gravity: 4.13 m/s²
+sketch.js:688 Distance to target: 279.19
+sketch.js:689 Final velocity: 6.07
+sketch.js:690 Thruster usage: 85
+sketch.js:691 Time steps: 150
+sketch.js:692 Final fitness: 9275.09
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.185, Ki=0.04, Kd=0.396
+sketch.js:687 Gravity: 4.09 m/s²
+sketch.js:688 Distance to target: 399.98
+sketch.js:689 Final velocity: 6.05
+sketch.js:690 Thruster usage: 83
+sketch.js:691 Time steps: 151
+sketch.js:692 Final fitness: 9154.53
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.223, Ki=0.035, Kd=0.351
+sketch.js:687 Gravity: 4.09 m/s²
+sketch.js:688 Distance to target: 330.49
+sketch.js:689 Final velocity: 6.04
+sketch.js:690 Thruster usage: 96
+sketch.js:691 Time steps: 151
+sketch.js:692 Final fitness: 9211.14
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.176, Ki=0.04, Kd=0.392
+sketch.js:687 Gravity: 4.08 m/s²
+sketch.js:688 Distance to target: 311.49
+sketch.js:689 Final velocity: 6.04
+sketch.js:690 Thruster usage: 81
+sketch.js:691 Time steps: 151
+sketch.js:692 Final fitness: 9245.13
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.232, Ki=0.048, Kd=0.385
+sketch.js:687 Gravity: 4.04 m/s²
+sketch.js:688 Distance to target: 313.89
+sketch.js:689 Final velocity: 6.00
+sketch.js:690 Thruster usage: 98
+sketch.js:691 Time steps: 152
+sketch.js:692 Final fitness: 9224.16
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.218, Ki=0.038, Kd=0.37
+sketch.js:687 Gravity: 4.00 m/s²
+sketch.js:688 Distance to target: 575.86
+sketch.js:689 Final velocity: 5.99
+sketch.js:690 Thruster usage: 94
+sketch.js:691 Time steps: 153
+sketch.js:692 Final fitness: 8964.22
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.231, Ki=0.033, Kd=0.407
+sketch.js:687 Gravity: 3.92 m/s²
+sketch.js:688 Distance to target: 178.06
+sketch.js:689 Final velocity: 5.90
+sketch.js:690 Thruster usage: 92
+sketch.js:691 Time steps: 154
+sketch.js:692 Final fitness: 9362.92
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.233, Ki=0.042, Kd=0.321
+sketch.js:687 Gravity: 3.82 m/s²
+sketch.js:688 Distance to target: 120.64
+sketch.js:689 Final velocity: 5.82
+sketch.js:690 Thruster usage: 110
+sketch.js:691 Time steps: 156
+sketch.js:692 Final fitness: 9399.21
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.206, Ki=0.037, Kd=0.371
+sketch.js:687 Gravity: 3.69 m/s²
+sketch.js:688 Distance to target: 325.86
+sketch.js:689 Final velocity: 5.74
+sketch.js:690 Thruster usage: 97
+sketch.js:691 Time steps: 159
+sketch.js:692 Final fitness: 9201.77
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.188, Ki=0.037, Kd=0.379
+sketch.js:687 Gravity: 3.57 m/s²
+sketch.js:688 Distance to target: 519.54
+sketch.js:689 Final velocity: 5.66
+sketch.js:690 Thruster usage: 97
+sketch.js:691 Time steps: 162
+sketch.js:692 Final fitness: 9002.90
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.242, Ki=0.047, Kd=0.391
+sketch.js:687 Gravity: 3.53 m/s²
+sketch.js:688 Distance to target: 481.50
+sketch.js:689 Final velocity: 5.61
+sketch.js:690 Thruster usage: 111
+sketch.js:691 Time steps: 163
+sketch.js:692 Final fitness: 9025.36
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.187, Ki=0.033, Kd=0.343
+sketch.js:687 Gravity: 3.44 m/s²
+sketch.js:688 Distance to target: 388.92
+sketch.js:689 Final velocity: 5.54
+sketch.js:690 Thruster usage: 103
+sketch.js:691 Time steps: 165
+sketch.js:692 Final fitness: 9122.70
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.209, Ki=0.042, Kd=0.395
+sketch.js:687 Gravity: 3.34 m/s²
+sketch.js:688 Distance to target: 133.43
+sketch.js:689 Final velocity: 5.44
+sketch.js:690 Thruster usage: 106
+sketch.js:691 Time steps: 167
+sketch.js:692 Final fitness: 9372.15
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.22, Ki=0.034, Kd=0.401
+sketch.js:687 Gravity: 3.29 m/s²
+sketch.js:688 Distance to target: 487.51
+sketch.js:689 Final velocity: 5.42
+sketch.js:690 Thruster usage: 106
+sketch.js:691 Time steps: 169
+sketch.js:692 Final fitness: 9014.28
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.185, Ki=0.029, Kd=0.397
+sketch.js:687 Gravity: 3.24 m/s²
+sketch.js:688 Distance to target: 417.87
+sketch.js:689 Final velocity: 5.38
+sketch.js:690 Thruster usage: 97
+sketch.js:691 Time steps: 170
+sketch.js:692 Final fitness: 9091.30
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.181, Ki=0.044, Kd=0.291
+sketch.js:687 Gravity: 3.18 m/s²
+sketch.js:688 Distance to target: 469.49
+sketch.js:689 Final velocity: 5.32
+sketch.js:690 Thruster usage: 128
+sketch.js:691 Time steps: 172
+sketch.js:692 Final fitness: 9005.33
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.187, Ki=0.036, Kd=0.4
+sketch.js:687 Gravity: 3.09 m/s²
+sketch.js:688 Distance to target: 297.63
+sketch.js:689 Final velocity: 5.25
+sketch.js:690 Thruster usage: 104
+sketch.js:691 Time steps: 174
+sketch.js:692 Final fitness: 9197.90
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.183, Ki=0.039, Kd=0.384
+sketch.js:687 Gravity: 3.09 m/s²
+sketch.js:688 Distance to target: 251.50
+sketch.js:689 Final velocity: 5.24
+sketch.js:690 Thruster usage: 109
+sketch.js:691 Time steps: 174
+sketch.js:692 Final fitness: 9239.10
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.207, Ki=0.048, Kd=0.368
+sketch.js:687 Gravity: 2.97 m/s²
+sketch.js:688 Distance to target: 310.83
+sketch.js:689 Final velocity: 5.12
+sketch.js:690 Thruster usage: 128
+sketch.js:691 Time steps: 178
+sketch.js:692 Final fitness: 9153.92
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.223, Ki=0.045, Kd=0.424
+sketch.js:687 Gravity: 2.96 m/s²
+sketch.js:688 Distance to target: 154.59
+sketch.js:689 Final velocity: 5.11
+sketch.js:690 Thruster usage: 120
+sketch.js:691 Time steps: 178
+sketch.js:692 Final fitness: 9318.31
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.242, Ki=0.037, Kd=0.341
+sketch.js:687 Gravity: 2.93 m/s²
+sketch.js:688 Distance to target: 139.71
+sketch.js:689 Final velocity: 5.08
+sketch.js:690 Thruster usage: 132
+sketch.js:691 Time steps: 179
+sketch.js:692 Final fitness: 9319.53
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.18, Ki=0.038, Kd=0.37
+sketch.js:687 Gravity: 2.72 m/s²
+sketch.js:688 Distance to target: 224.62
+sketch.js:689 Final velocity: 4.90
+sketch.js:690 Thruster usage: 125
+sketch.js:691 Time steps: 186
+sketch.js:692 Final fitness: 9229.36
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.197, Ki=0.042, Kd=0.41
+sketch.js:687 Gravity: 2.69 m/s²
+sketch.js:688 Distance to target: 247.59
+sketch.js:689 Final velocity: 4.88
+sketch.js:690 Thruster usage: 126
+sketch.js:691 Time steps: 187
+sketch.js:692 Final fitness: 9203.63
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.221, Ki=0.041, Kd=0.453
+sketch.js:687 Gravity: 2.62 m/s²
+sketch.js:688 Distance to target: 439.76
+sketch.js:689 Final velocity: 4.82
+sketch.js:690 Thruster usage: 127
+sketch.js:691 Time steps: 190
+sketch.js:692 Final fitness: 9005.01
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.211, Ki=0.046, Kd=0.348
+sketch.js:687 Gravity: 2.59 m/s²
+sketch.js:688 Distance to target: 329.19
+sketch.js:689 Final velocity: 4.78
+sketch.js:690 Thruster usage: 148
+sketch.js:691 Time steps: 191
+sketch.js:692 Final fitness: 9093.04
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.228, Ki=0.042, Kd=0.349
+sketch.js:687 Gravity: 2.51 m/s²
+sketch.js:688 Distance to target: 216.46
+sketch.js:689 Final velocity: 4.69
+sketch.js:690 Thruster usage: 152
+sketch.js:691 Time steps: 194
+sketch.js:692 Final fitness: 9196.62
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.241, Ki=0.048, Kd=0.431
+sketch.js:687 Gravity: 2.46 m/s²
+sketch.js:688 Distance to target: 305.16
+sketch.js:689 Final velocity: 4.66
+sketch.js:690 Thruster usage: 145
+sketch.js:691 Time steps: 196
+sketch.js:692 Final fitness: 9111.26
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.203, Ki=0.037, Kd=0.378
+sketch.js:687 Gravity: 2.40 m/s²
+sketch.js:688 Distance to target: 413.58
+sketch.js:689 Final velocity: 4.60
+sketch.js:690 Thruster usage: 143
+sketch.js:691 Time steps: 199
+sketch.js:692 Final fitness: 8999.39
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.241, Ki=0.052, Kd=0.365
+sketch.js:687 Gravity: 2.17 m/s²
+sketch.js:688 Distance to target: 143.41
+sketch.js:689 Final velocity: 4.35
+sketch.js:690 Thruster usage: 176
+sketch.js:691 Time steps: 209
+sketch.js:692 Final fitness: 9219.14
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.199, Ki=0.042, Kd=0.358
+sketch.js:687 Gravity: 2.13 m/s²
+sketch.js:688 Distance to target: 68.20
+sketch.js:689 Final velocity: 4.30
+sketch.js:690 Thruster usage: 166
+sketch.js:691 Time steps: 211
+sketch.js:692 Final fitness: 9300.75
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.224, Ki=0.035, Kd=0.436
+sketch.js:687 Gravity: 2.10 m/s²
+sketch.js:688 Distance to target: 427.51
+sketch.js:689 Final velocity: 4.31
+sketch.js:690 Thruster usage: 153
+sketch.js:691 Time steps: 213
+sketch.js:692 Final fitness: 8950.43
+sketch.js:693 Status: CRASHED
+sketch.js:685 
+Genome Performance Details:
+sketch.js:686 PID Values: Kp=0.23, Ki=0.037, Kd=0.376
+sketch.js:687 Gravity: 2.02 m/s²
+sketch.js:688 Distance to target: 418.86
+sketch.js:689 Final velocity: 4.20
+sketch.js:690 Thruster usage: 173
+sketch.js:691 Time steps: 218
+sketch.js:692 Final fitness: 8930.14
+sketch.js:693 Status: CRASHED
+sketch.js:595 Best Genome: 0.228,0.040,0.346
+sketch.js:596 Best Fitness: 9630.23
+sketch.js:597 Average Fitness: 9226.63
+sketch.js:638 
+Saving checkpoint...
+sketch.js:782 Saved PID genome to genomes/pid_genome_2025-01-19T12:17:25.770Z.txt
+sketch.js:643 
+=== Training Complete ===
+sketch.js:644 Final Best Fitness: 9671.60
+sketch.js:645 Final Best Genome: 0.221,0.047,0.368
+sketch.js:782 Saved PID genome to genomes/pid_genome_2025-01-19T12:17:25.770Z.txt

@@ -1,0 +1,220 @@
+sketch.js:196 Loaded saved genome for Moon
+sketch.js:258 Loaded previously successful genome from Moon
+sketch.js:507 Landing speed: 3.93
+sketch.js:508 Landing angle: 0.04°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!
+sketch.js:225 Training with adjusted parameters for Moon: {populationSize: 10000, mutationRate: 0.1, generationLimit: 50}
+sketch.js:1100 Generation 0 - Evaluating 10000 genomes with gravity 1.62m/s²
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 7.16° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:756 Good landing speed: 2.18 - will preserve T/D genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 9.02° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 2.86° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 7.16° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 9.02° - will preserve L/R genes
+sketch.js:507 Landing speed: 4.31
+sketch.js:508 Landing angle: 28.83°
+sketch.js:509 On platform: false
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: D,0.3;D,0.37;T,0.17;D,0.5;L,0.3;D,0.5;T,0.3
+sketch.js:518 Missing criteria: Not on platform
+sketch.js:753 Good landing angle: 28.83° - will preserve L/R genes
+sketch.js:756 Good landing speed: 4.31 - will preserve T/D genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 83.65°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 0.00°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:756 Good landing speed: 3.00 - will preserve T/D genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 15.76° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 7.16° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 5.16° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:756 Good landing speed: 4.46 - will preserve T/D genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 5.16° - will preserve L/R genes
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 39.39°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 11.03° - will preserve L/R genes
+sketch.js:507 Landing speed: 5.42
+sketch.js:508 Landing angle: 89.28°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 156.35°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 94.93°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 23.39° - will preserve L/R genes
+sketch.js:756 Good landing speed: 4.16 - will preserve T/D genes
+sketch.js:507 Landing speed: 6.55
+sketch.js:508 Landing angle: 137.61°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 5.51
+sketch.js:508 Landing angle: 133.64°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 27.22° - will preserve L/R genes
+sketch.js:756 Good landing speed: 3.00 - will preserve T/D genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 144.67°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.14° - will preserve L/R genes
+sketch.js:507 Landing speed: 6.63
+sketch.js:508 Landing angle: 39.10°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 6.44
+sketch.js:508 Landing angle: 38.39°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 5.06
+sketch.js:508 Landing angle: 41.93°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 3.69
+sketch.js:508 Landing angle: 162.29°
+sketch.js:509 On platform: true
+sketch.js:516 Safe landing but not perfect
+sketch.js:517 Genome for safe landing: R,0.29;D,0.38;D,0.38;L,0.25;T,0.25;D,0.42;L,0.19
+sketch.js:518 Missing criteria: Angle too large
+sketch.js:756 Good landing speed: 3.69 - will preserve T/D genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.43° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:756 Good landing speed: 1.81 - will preserve T/D genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:507 Landing speed: 8.16
+sketch.js:508 Landing angle: 8.63°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:753 Good landing angle: 8.63° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 19.48°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:753 Good landing angle: 19.48° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 18.91° - will preserve L/R genes
+sketch.js:507 Landing speed: 7.53
+sketch.js:508 Landing angle: 161.21°
+sketch.js:509 On platform: false
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 5.18
+sketch.js:508 Landing angle: 86.44°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 177.41°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:507 Landing speed: 6.64
+sketch.js:508 Landing angle: 144.63°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:507 Landing speed: 7.94
+sketch.js:508 Landing angle: 115.20°
+sketch.js:509 On platform: true
+sketch.js:523 Crash landing
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 0.00° - will preserve L/R genes
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:482 Out of bounds - Mission failed
+sketch.js:753 Good landing angle: 27.22° - will preserve L/R genes
+sketch.js:756 Good landing speed: 3.00 - will preserve T/D genes
+sketch.js:507 Landing speed: 3.54
+sketch.js:508 Landing angle: 20.87°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!
+sketch.js:714 Perfect landing validated!
+sketch.js:1108 Potential perfect landing found, validating...
+sketch.js:1115 Validation attempt 1/3...
+sketch.js:507 Landing speed: 3.38
+sketch.js:508 Landing angle: 20.30°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!
+sketch.js:714 Perfect landing validated!
+sketch.js:1115 Validation attempt 2/3...
+sketch.js:507 Landing speed: 3.54
+sketch.js:508 Landing angle: 20.87°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!
+sketch.js:714 Perfect landing validated!
+sketch.js:1115 Validation attempt 3/3...
+sketch.js:507 Landing speed: 3.54
+sketch.js:508 Landing angle: 20.87°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!
+sketch.js:714 Perfect landing validated!
+sketch.js:1126 Perfect landing confirmed! (3/3 successes)
+sketch.js:1127 Generation 0
+sketch.js:1128 Best Fitness = 10000
+sketch.js:1129 Best Genome = L,0.38;D,0.20;D,0.49;L,0.11;R,0.11;T,0.24;D,0.32;R,0.33
+sketch.js:1135 Genome saved to localStorage
+sketch.js:507 Landing speed: 3.54
+sketch.js:508 Landing angle: 20.87°
+sketch.js:509 On platform: true
+sketch.js:513 Perfect landing!

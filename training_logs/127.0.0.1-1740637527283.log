@@ -1,0 +1,2227 @@
+sketch.js:417 Landing speed: 7.80
+sketch.js:418 Landing angle: 42.97°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: -176.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: 5.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: 91.53°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.34
+sketch.js:418 Landing angle: 47.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.01
+sketch.js:418 Landing angle: -156.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: -109.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 9.38
+sketch.js:418 Landing angle: -164.48°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: 112.20°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: 136.94°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 7.67
+sketch.js:418 Landing angle: -175.83°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: -114.31°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: -70.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: -144.39°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.66
+sketch.js:418 Landing angle: -2.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 8.67
+sketch.js:418 Landing angle: -61.35°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.14
+sketch.js:418 Landing angle: -57.58°
+sketch.js:424 Landing failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:626 Perfect landing found!
+sketch.js:627 Generation 0
+sketch.js:628 Best Fitness = 10000
+sketch.js:629 Best Genome = T,0.33;D,0.28;T,0.31;L,0.16;T,0.19;L,0.23;T,0.04;T,0.44
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 10.22
+sketch.js:418 Landing angle: 70.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 9.21
+sketch.js:418 Landing angle: -29.08°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.74
+sketch.js:418 Landing angle: 37.20°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 4.87
+sketch.js:418 Landing angle: -136.40°
+sketch.js:421 Successful landing!
+sketch.js:626 Perfect landing found!
+sketch.js:627 Generation 0
+sketch.js:628 Best Fitness = 10000
+sketch.js:629 Best Genome = D,0.06;L,0.21;T,0.20;D,0.05;L,0.38;R,0.05;R,0.19;T,0.35
+sketch.js:417 Landing speed: 4.50
+sketch.js:418 Landing angle: -129.96°
+sketch.js:421 Successful landing!
+sketch.js:417 Landing speed: 5.37
+sketch.js:418 Landing angle: -137.26°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 5.37
+sketch.js:418 Landing angle: -137.26°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 4.21
+sketch.js:418 Landing angle: -126.95°
+sketch.js:421 Successful landing!
+sketch.js:417 Landing speed: 3.50
+sketch.js:418 Landing angle: -124.37°
+sketch.js:421 Successful landing!
+sketch.js:417 Landing speed: 4.58
+sketch.js:418 Landing angle: -131.68°
+sketch.js:421 Successful landing!
+sketch.js:417 Landing speed: 3.35
+sketch.js:418 Landing angle: -114.92°
+sketch.js:421 Successful landing!
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:626 Perfect landing found!
+sketch.js:627 Generation 0
+sketch.js:628 Best Fitness = 10000
+sketch.js:629 Best Genome = T,0.09;L,0.31;L,0.19;D,0.14;D,0.11;R,0.35;R,0.37;R,0.12
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 4.40
+sketch.js:418 Landing angle: 82.04°
+sketch.js:421 Successful landing!
+sketch.js:626 Perfect landing found!
+sketch.js:627 Generation 0
+sketch.js:628 Best Fitness = 10000
+sketch.js:629 Best Genome = L,0.30;D,0.41;D,0.37;R,0.33;L,0.14;L,0.31;D,0.21;D,0.39
+sketch.js:417 Landing speed: 4.40
+sketch.js:418 Landing angle: 82.04°
+sketch.js:421 Successful landing!
+sketch.js:395 Out of bounds - Mission failed
+sketch.js:417 Landing speed: 4.74
+sketch.js:418 Landing angle: 102.92°
+sketch.js:421 Successful landing!
+sketch.js:626 Perfect landing found!
+sketch.js:627 Generation 0
+sketch.js:628 Best Fitness = 10000
+sketch.js:629 Best Genome = L,0.01;T,0.06;D,0.43;R,0.36;D,0.17;R,0.46;T,0.20;D,0.10
+sketch.js:417 Landing speed: 4.91
+sketch.js:418 Landing angle: 130.43°
+sketch.js:421 Successful landing!
+sketch.js:417 Landing speed: 18.40
+sketch.js:418 Landing angle: 61.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.92
+sketch.js:418 Landing angle: 0.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: -1.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -107.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.42
+sketch.js:418 Landing angle: 95.97°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -49.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 8.02°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.38
+sketch.js:418 Landing angle: -36.24°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -91.39°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -105.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.88
+sketch.js:418 Landing angle: 29.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.92
+sketch.js:418 Landing angle: 2.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -107.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -92.25°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 29.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 42.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.39
+sketch.js:418 Landing angle: 18.48°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -103.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.35
+sketch.js:418 Landing angle: 90.10°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.89
+sketch.js:418 Landing angle: 53.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.42
+sketch.js:418 Landing angle: 47.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.85
+sketch.js:418 Landing angle: -9.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -19.34°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 97.83°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -109.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 91.96°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 5.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -105.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 33.52°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.92
+sketch.js:418 Landing angle: -108.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.42
+sketch.js:418 Landing angle: -103.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.37
+sketch.js:418 Landing angle: 82.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.33
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: -0.14°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.40
+sketch.js:418 Landing angle: -100.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 73.77°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.40
+sketch.js:418 Landing angle: 102.56°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 17.19°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.39
+sketch.js:418 Landing angle: 89.38°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.41
+sketch.js:418 Landing angle: -97.26°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: -41.11°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -94.39°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 30.08°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 50.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 100.55°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 105.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.87
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: 57.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.32
+sketch.js:418 Landing angle: 15.04°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.91
+sketch.js:418 Landing angle: -39.53°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.85
+sketch.js:418 Landing angle: -70.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 109.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 63.88°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.89
+sketch.js:418 Landing angle: -19.19°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.39
+sketch.js:418 Landing angle: -94.97°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 109.58°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 82.94°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.91
+sketch.js:418 Landing angle: 105.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: -64.74°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.39
+sketch.js:418 Landing angle: -94.54°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.92
+sketch.js:418 Landing angle: 106.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -20.91°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -1.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.37
+sketch.js:418 Landing angle: -81.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.92
+sketch.js:418 Landing angle: 109.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 110.44°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.86
+sketch.js:418 Landing angle: 103.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.38
+sketch.js:418 Landing angle: -69.61°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.40
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -81.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 61.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.33
+sketch.js:418 Landing angle: -17.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.92
+sketch.js:418 Landing angle: 29.36°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.41
+sketch.js:418 Landing angle: -64.74°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.82
+sketch.js:418 Landing angle: 51.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.91
+sketch.js:418 Landing angle: -105.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.91
+sketch.js:418 Landing angle: -108.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.91
+sketch.js:418 Landing angle: 5.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.39
+sketch.js:418 Landing angle: 97.98°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.92
+sketch.js:418 Landing angle: 64.17°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -106.14°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 2.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.92
+sketch.js:418 Landing angle: -99.84°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.42
+sketch.js:418 Landing angle: -110.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.82
+sketch.js:418 Landing angle: -55.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -31.66°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 94.25°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.37
+sketch.js:418 Landing angle: 102.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.86
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.41
+sketch.js:418 Landing angle: -107.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.85
+sketch.js:418 Landing angle: -87.09°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -19.48°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.34
+sketch.js:418 Landing angle: 66.46°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.88
+sketch.js:418 Landing angle: -62.02°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -13.03°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 64.60°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 71.62°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -64.74°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.39
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.89
+sketch.js:418 Landing angle: 97.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.39
+sketch.js:418 Landing angle: -38.53°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 101.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.92
+sketch.js:418 Landing angle: 108.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.92
+sketch.js:418 Landing angle: 103.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: 99.69°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.91
+sketch.js:418 Landing angle: -100.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.92
+sketch.js:418 Landing angle: -50.71°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 7.88°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.40
+sketch.js:418 Landing angle: -96.26°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -35.52°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 96.69°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.42
+sketch.js:418 Landing angle: -28.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.40
+sketch.js:418 Landing angle: 101.70°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -8.74°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.91
+sketch.js:418 Landing angle: 51.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 74.91°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.37
+sketch.js:418 Landing angle: -17.19°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.38
+sketch.js:418 Landing angle: 58.87°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.37
+sketch.js:418 Landing angle: -63.17°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.91
+sketch.js:418 Landing angle: 80.93°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -9.31°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -81.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.32
+sketch.js:418 Landing angle: 61.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -45.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.89
+sketch.js:418 Landing angle: 88.95°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.89
+sketch.js:418 Landing angle: 11.32°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 50.13°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 15.61°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -100.55°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.86
+sketch.js:418 Landing angle: 9.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 109.58°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.42
+sketch.js:418 Landing angle: -24.06°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.91
+sketch.js:418 Landing angle: -85.94°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: -101.84°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.90
+sketch.js:418 Landing angle: 96.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 54.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.91
+sketch.js:418 Landing angle: -10.60°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -19.48°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.35
+sketch.js:418 Landing angle: -59.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.92
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.39
+sketch.js:418 Landing angle: -60.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.83
+sketch.js:418 Landing angle: 78.35°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 72.19°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.35
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -91.24°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 103.99°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.39
+sketch.js:418 Landing angle: 47.13°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 89.81°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.89
+sketch.js:418 Landing angle: -53.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 93.25°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.92
+sketch.js:418 Landing angle: 101.70°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 25.21°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.91
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.87
+sketch.js:418 Landing angle: 17.19°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 15.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.34
+sketch.js:418 Landing angle: 0.14°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -13.03°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: -88.81°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.91
+sketch.js:418 Landing angle: -104.56°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.42
+sketch.js:418 Landing angle: 101.99°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.86
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 90.96°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -34.38°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 94.39°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 6.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -45.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.37
+sketch.js:418 Landing angle: 96.97°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -89.67°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 10.31°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.38
+sketch.js:418 Landing angle: -102.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 84.08°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 92.96°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -25.50°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.91
+sketch.js:418 Landing angle: 19.19°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.39
+sketch.js:418 Landing angle: -20.20°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 53.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -96.26°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -78.21°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -64.03°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.92
+sketch.js:418 Landing angle: -107.14°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -36.24°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 32.23°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -19.48°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -72.34°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.90
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.37
+sketch.js:418 Landing angle: -49.56°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -98.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: -54.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -72.19°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.91
+sketch.js:418 Landing angle: -111.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 14.32°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -104.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 109.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.34
+sketch.js:418 Landing angle: -15.33°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.39
+sketch.js:418 Landing angle: -35.09°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.35
+sketch.js:418 Landing angle: -25.50°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 109.58°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -75.06°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 93.68°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 109.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 69.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -21.34°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 80.93°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.91
+sketch.js:418 Landing angle: -6.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -107.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.86
+sketch.js:418 Landing angle: -64.03°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.89
+sketch.js:418 Landing angle: -3.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.83
+sketch.js:418 Landing angle: 48.84°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 23.63°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.88
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.89
+sketch.js:418 Landing angle: 65.75°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.41
+sketch.js:418 Landing angle: -103.13°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 100.55°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 65.17°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -7.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 7.40
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.85
+sketch.js:418 Landing angle: 21.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 27.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.42
+sketch.js:418 Landing angle: -109.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -9.02°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.91
+sketch.js:418 Landing angle: 13.75°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -81.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.87
+sketch.js:418 Landing angle: 98.26°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.89
+sketch.js:418 Landing angle: 19.34°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.39
+sketch.js:418 Landing angle: -35.09°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 79.50°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 13.03°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 107.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -65.17°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.39
+sketch.js:418 Landing angle: 9.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 92.25°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 67.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -110.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.39
+sketch.js:418 Landing angle: 19.34°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.91
+sketch.js:418 Landing angle: -105.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.85
+sketch.js:418 Landing angle: 94.25°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.35
+sketch.js:418 Landing angle: 11.17°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.42
+sketch.js:418 Landing angle: -32.52°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 68.75°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: -61.02°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -105.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 78.64°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 5.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 46.84°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -104.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.39
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 74.77°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 102.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.42
+sketch.js:418 Landing angle: 36.53°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.88
+sketch.js:418 Landing angle: 98.26°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.38
+sketch.js:418 Landing angle: -95.97°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 49.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 74.63°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -110.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 38.10°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: 6.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -96.69°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -108.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.39
+sketch.js:418 Landing angle: -31.80°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -35.95°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -7.88°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.91
+sketch.js:418 Landing angle: 49.13°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.87
+sketch.js:418 Landing angle: -38.53°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.36
+sketch.js:418 Landing angle: -103.13°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.91
+sketch.js:418 Landing angle: 99.26°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 109.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -7.59°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 29.51°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.92
+sketch.js:418 Landing angle: -50.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.39
+sketch.js:418 Landing angle: 79.50°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -27.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.92
+sketch.js:418 Landing angle: -37.10°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 7.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.89
+sketch.js:418 Landing angle: 45.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.42
+sketch.js:418 Landing angle: -78.78°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 9.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 101.56°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -83.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -108.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 58.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.89
+sketch.js:418 Landing angle: 26.07°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -110.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -64.31°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.42
+sketch.js:418 Landing angle: -102.70°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.39
+sketch.js:418 Landing angle: 76.49°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.86
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -71.33°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -6.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.89
+sketch.js:418 Landing angle: 91.24°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 47.99°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 14.32°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -54.14°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 70.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.40
+sketch.js:418 Landing angle: 105.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.87
+sketch.js:418 Landing angle: 70.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.89
+sketch.js:418 Landing angle: -19.05°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -21.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.38
+sketch.js:418 Landing angle: 75.06°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 108.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.42
+sketch.js:418 Landing angle: 37.10°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -61.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 91.10°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.92
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.92
+sketch.js:418 Landing angle: -52.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.41
+sketch.js:418 Landing angle: -110.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -108.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.87
+sketch.js:418 Landing angle: -6.59°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.40
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.91
+sketch.js:418 Landing angle: -102.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 29.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.84
+sketch.js:418 Landing angle: -62.88°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.36
+sketch.js:418 Landing angle: 36.10°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 103.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.36
+sketch.js:418 Landing angle: 83.08°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 9.91
+sketch.js:418 Landing angle: -9.60°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -54.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -107.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.40
+sketch.js:418 Landing angle: -104.56°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 99.55°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.42
+sketch.js:418 Landing angle: 108.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: -55.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.42
+sketch.js:418 Landing angle: -112.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -107.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 108.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.41
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 65.32°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -91.53°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -15.33°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 109.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.90
+sketch.js:418 Landing angle: 85.94°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 9.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.85
+sketch.js:418 Landing angle: 56.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.42
+sketch.js:418 Landing angle: 108.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.91
+sketch.js:418 Landing angle: 104.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.79
+sketch.js:418 Landing angle: 66.46°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.32
+sketch.js:418 Landing angle: 10.46°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.89
+sketch.js:418 Landing angle: -39.39°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 108.58°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -7.88°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.35
+sketch.js:418 Landing angle: -85.80°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.38
+sketch.js:418 Landing angle: 25.78°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.92
+sketch.js:418 Landing angle: 73.20°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 11.89°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -29.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.92
+sketch.js:418 Landing angle: 80.36°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -109.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 68.75°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 83.37°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 100.55°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -60.88°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.33
+sketch.js:418 Landing angle: 14.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.39
+sketch.js:418 Landing angle: 22.78°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -5.44°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -93.11°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -49.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 35.52°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 84.51°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -87.52°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.87
+sketch.js:418 Landing angle: 23.35°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 21.49°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 81.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.92
+sketch.js:418 Landing angle: 7.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 6.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.83
+sketch.js:418 Landing angle: -73.05°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.36
+sketch.js:418 Landing angle: -15.33°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.91
+sketch.js:418 Landing angle: -108.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 60.02°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -42.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.92
+sketch.js:418 Landing angle: 112.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -42.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -42.54°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 87.52°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: -35.24°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.90
+sketch.js:418 Landing angle: 78.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -109.58°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.39
+sketch.js:418 Landing angle: -104.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -94.54°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.89
+sketch.js:418 Landing angle: -70.04°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 53.57°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 67.18°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.36
+sketch.js:418 Landing angle: -73.20°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: -98.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: 103.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.41
+sketch.js:418 Landing angle: 103.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.33
+sketch.js:418 Landing angle: -96.11°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 94.11°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.40
+sketch.js:418 Landing angle: 67.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 45.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.91
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.41
+sketch.js:418 Landing angle: 31.08°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: -57.73°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: -84.08°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -5.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 66.61°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -32.23°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: -78.21°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -53.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.41
+sketch.js:418 Landing angle: 101.84°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 87.52°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -81.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 95.68°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 100.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.87
+sketch.js:418 Landing angle: 104.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 61.31°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 80.50°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.78
+sketch.js:418 Landing angle: -84.37°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.89
+sketch.js:418 Landing angle: 4.73°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -72.19°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.42
+sketch.js:418 Landing angle: 96.69°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.34
+sketch.js:418 Landing angle: 76.20°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -109.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -49.56°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -7.88°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 1.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -102.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 108.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.40
+sketch.js:418 Landing angle: -90.53°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -9.88°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: 104.71°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.29
+sketch.js:418 Landing angle: -77.06°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.38
+sketch.js:418 Landing angle: -11.46°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 7.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.42
+sketch.js:418 Landing angle: 106.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.39
+sketch.js:418 Landing angle: -103.99°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -33.66°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.85
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -94.39°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.90
+sketch.js:418 Landing angle: 28.36°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 108.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.42
+sketch.js:418 Landing angle: 87.95°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 83.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 2.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 3.44°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: -98.84°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -80.36°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -27.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -36.10°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 75.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.30
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.91
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.92
+sketch.js:418 Landing angle: 112.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.92
+sketch.js:418 Landing angle: -105.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.38
+sketch.js:418 Landing angle: 98.98°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.91
+sketch.js:418 Landing angle: -101.70°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.41
+sketch.js:418 Landing angle: -51.14°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 49.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.87
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.37
+sketch.js:418 Landing angle: -58.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 13.03°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -5.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 58.73°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 14.61°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -6.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 97.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 9.41
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -81.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -83.37°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -109.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.39
+sketch.js:418 Landing angle: -12.46°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 59.30°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -67.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 87.52°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 8.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 78.64°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 96.69°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 109.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 102.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.30
+sketch.js:418 Landing angle: -48.84°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 9.37
+sketch.js:418 Landing angle: -87.66°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.41
+sketch.js:418 Landing angle: 111.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.41
+sketch.js:418 Landing angle: 102.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 82.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.41
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 61.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 29.51°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.84
+sketch.js:418 Landing angle: 27.50°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 103.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 110.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -17.19°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 21.63°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -69.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: -56.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.42
+sketch.js:418 Landing angle: -12.18°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 9.87
+sketch.js:418 Landing angle: -24.49°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 110.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -5.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.82
+sketch.js:418 Landing angle: -85.23°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.85
+sketch.js:418 Landing angle: -67.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.35
+sketch.js:418 Landing angle: -27.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 54.14°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 13.89°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 42.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -109.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -18.76°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -15.04°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -70.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 110.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.39
+sketch.js:418 Landing angle: 95.25°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -3.87°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.90
+sketch.js:418 Landing angle: 3.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.41
+sketch.js:418 Landing angle: -75.49°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 13.18°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.41
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -65.32°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 21.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: -91.10°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -30.08°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: -60.02°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -4.44°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -104.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.28
+sketch.js:418 Landing angle: -24.49°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -57.73°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 24.78°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 67.61°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -54.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.42
+sketch.js:418 Landing angle: 53.14°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 84.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -61.02°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.92
+sketch.js:418 Landing angle: -107.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 35.38°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.38
+sketch.js:418 Landing angle: 10.46°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.36
+sketch.js:418 Landing angle: -21.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -89.81°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 94.39°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.88
+sketch.js:418 Landing angle: -3.87°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.40
+sketch.js:418 Landing angle: -85.51°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.42
+sketch.js:418 Landing angle: -77.35°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.42
+sketch.js:418 Landing angle: -109.58°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.34
+sketch.js:418 Landing angle: 76.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.34
+sketch.js:418 Landing angle: -21.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.91
+sketch.js:418 Landing angle: -104.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -100.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.91
+sketch.js:418 Landing angle: 102.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 5.89
+sketch.js:418 Landing angle: -95.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 10.89°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 76.06°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 106.71°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: 86.66°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -110.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -65.32°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -81.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -42.54°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 87.52°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.83
+sketch.js:418 Landing angle: 75.34°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 34.23°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 63.03°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.91
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.91
+sketch.js:418 Landing angle: 108.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 102.56°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -88.81°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -11.46°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: -61.74°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 108.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 16.04°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 36.24°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -47.99°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -83.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: -13.89°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.89
+sketch.js:418 Landing angle: -99.41°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 65.32°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -11.17°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 8.90
+sketch.js:418 Landing angle: 83.51°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -59.73°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.37
+sketch.js:418 Landing angle: -74.34°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -87.09°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: -21.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.88
+sketch.js:418 Landing angle: -100.70°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 108.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.40
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 15.61°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: -81.93°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 10.74°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 48.56°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.92
+sketch.js:418 Landing angle: -45.69°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.92
+sketch.js:418 Landing angle: -84.37°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 58.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -8.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.41
+sketch.js:418 Landing angle: -107.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -110.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.41
+sketch.js:418 Landing angle: 24.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.86
+sketch.js:418 Landing angle: 49.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: -94.54°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 14.75°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -11.03°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 29.79°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -81.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 106.86°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.42
+sketch.js:418 Landing angle: -104.99°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.90
+sketch.js:418 Landing angle: 39.82°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -93.25°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 15.04°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.91
+sketch.js:418 Landing angle: 108.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.41
+sketch.js:418 Landing angle: 107.29°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 10.88
+sketch.js:418 Landing angle: -100.70°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.41
+sketch.js:418 Landing angle: -96.69°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -109.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 98.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.41
+sketch.js:418 Landing angle: 55.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.92
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.35
+sketch.js:418 Landing angle: -78.50°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.41
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -36.67°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -81.79°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 16.40
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.39
+sketch.js:418 Landing angle: -77.49°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: 51.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -61.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 11.41
+sketch.js:418 Landing angle: 108.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: 56.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.41
+sketch.js:418 Landing angle: 3.58°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: -109.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 44.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 29.22°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.39
+sketch.js:418 Landing angle: 26.79°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 13.39
+sketch.js:418 Landing angle: 91.24°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -26.21°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 83.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: -99.69°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -109.15°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -91.67°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: -4.01°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 43.40°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.86
+sketch.js:418 Landing angle: -6.02°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -78.64°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.36
+sketch.js:418 Landing angle: -101.70°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -52.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.40
+sketch.js:418 Landing angle: -104.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 23.49°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.85
+sketch.js:418 Landing angle: 49.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -25.93°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.85
+sketch.js:418 Landing angle: 99.55°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 6.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 15.87
+sketch.js:418 Landing angle: -49.42°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: 80.36°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.82
+sketch.js:418 Landing angle: 1.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -104.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 15.04°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 46.27°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 8.40
+sketch.js:418 Landing angle: 105.28°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.85
+sketch.js:418 Landing angle: -46.55°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -17.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: -91.24°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 70.90°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.92
+sketch.js:418 Landing angle: -68.75°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 43.12°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -6.02°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.41
+sketch.js:418 Landing angle: 78.92°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.38
+sketch.js:418 Landing angle: 82.94°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -92.25°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.92
+sketch.js:418 Landing angle: 64.74°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.40
+sketch.js:418 Landing angle: 69.47°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.90
+sketch.js:418 Landing angle: -64.60°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 24.49°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 14.04°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.92
+sketch.js:418 Landing angle: -112.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.90
+sketch.js:418 Landing angle: 16.33°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 12.41
+sketch.js:418 Landing angle: -108.72°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -109.43°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 14.41
+sketch.js:418 Landing angle: -5.16°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.32
+sketch.js:418 Landing angle: -86.37°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -11.75°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 17.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: -4.30°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.37
+sketch.js:418 Landing angle: -102.85°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 83.65°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 18.78
+sketch.js:418 Landing angle: -9.45°
+sketch.js:424 Landing failed
+sketch.js:417 Landing speed: 19.42
+sketch.js:418 Landing angle: 0.00°
+sketch.js:424 Landing failed
