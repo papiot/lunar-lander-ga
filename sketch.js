@@ -325,7 +325,7 @@ function createSceneControls() {
 
 function setup() {
     createCanvas(800, 600);
-    // Create scene selection buttons
+    // Add scene selector UI
     for (let i = 0; i < scenes.length; i++) {
         let button = createButton(scenes[i]);
         button.position(10 + i * 100, 10);
@@ -333,7 +333,7 @@ function setup() {
         button.class('scene-button');
         buttons.push(button);
     }
-    // Initialize Moon button as selected
+    // Default to Moon scene
     selectScene('Moon');
 }
     
