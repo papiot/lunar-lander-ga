@@ -95,7 +95,7 @@ let genomeTemplate = [];  // Will store the entire genome template when a good a
 
 const PHYSICS_SCALE = 0.05;  
 // Modified to be base values that will scale with gravity
-const BASE_MAIN_THRUSTER_FORCE = 10.0;  
+const BASE_MAIN_THRUSTER_FORCE = 4.0;  
 const BASE_SIDE_THRUSTER_FORCE = 0.05;  
 // Reference gravity to scale against (Moon gravity)
 const REFERENCE_GRAVITY = 1.62;
@@ -855,13 +855,17 @@ function generateRandomGenome() {
             let tdGenesGenerated = [];
             
             for (let i = 0; i < genomeTemplate.length; i++) {
-                const [action, duration] = genomeTemplate[i].split(',');
+                let [action, duration] = genomeTemplate[i].split(',');
                 
                 // If this is an L/R gene, use the exact frozen value
                 if (action === 'L' || action === 'R') {
                     newGenes[i] = genomeTemplate[i];
                     lrGenesUsed.push(`Position ${i}: ${newGenes[i]}`);
                 } else {
+                    // 50% chance to switch between T and D
+                    if (Math.random() < 0.5) {
+                        action = action === 'T' ? 'D' : 'T';
+                    }   
                     // For T/D positions, keep the same action type but randomize duration
                     const newDuration = (Math.random() * (maxDuration - minDuration) + minDuration).toFixed(2);
                     newGenes[i] = `${action},${newDuration}`;
@@ -1366,7 +1370,13 @@ function crossover(parent1, parent2, fitnessInfo1 = null, fitnessInfo2 = null) {
             
             for (let i = 0; i < genomeTemplate.length; i++) {
                 const [templateAction, templateDuration] = genomeTemplate[i].split(',');
-                
+                if (templateAction === 'D' || templateAction === 'T') {
+                    // 50% chance to switch between T and D
+                    console.log("Switching between T and D");
+                    if (Math.random() < 0.5) {
+                        templateAction = templateAction === 'T' ? 'D' : 'T';
+                    }
+                }
                 // L/R genes are always fixed exactly as in the template
                 if (templateAction === 'L' || templateAction === 'R') {
                     childGenes[i] = genomeTemplate[i];
@@ -1492,6 +1502,7 @@ async function trainGeneration(params = { populationSize: BASE_POPULATION_SIZE, 
     
     // Evaluate fitness for each genome
     for (let i = 0; i < population.length; i++) {
+        console.log(`Evaluating genome ${i+1}/${population.length}`);
         const result = await evaluateFitness(population[i]);
         
         // If we found a successful landing, validate it multiple times to be sure
