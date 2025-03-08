@@ -103,12 +103,18 @@ const REFERENCE_GRAVITY = 1.62;
 function createParameterControls() {
     // Container for parameters
     let panel = createDiv();
-    panel.position(20, 50); // Increased left margin from 10 to 20
+    panel.position(20, 50);
     panel.style('background-color', '#f0f0f0');
     panel.style('padding', '10px');
     panel.style('border-radius', '5px');
-    panel.style('width', '280px'); // Reduced from 300 to allow for margins
-    panel.style('margin-right', '20px'); // Add right margin
+    panel.style('width', '280px');
+    panel.style('margin-right', '20px');
+    
+    // Add panel to main container
+    let container = document.getElementById('main-container');
+    if (container) {
+        container.appendChild(panel.elt);
+    }
     
     // Add a title to the panel
     let title = createDiv('Scene Parameters');
@@ -167,7 +173,13 @@ function createSceneControls() {
     panel.style('border-radius', '5px');
     panel.style('width', '280px');
     panel.style('margin-right', '20px');
-    panel.style('height', '240px');
+    panel.style('height', '240px'); // Adjusted to reach the bottom with padding
+    
+    // Add panel to main container
+    let container = document.getElementById('main-container');
+    if (container) {
+        container.appendChild(panel.elt);
+    }
     
     // Add a title to the panel
     let title = createDiv('Genome Controls');
@@ -357,23 +369,40 @@ function createSceneControls() {
 }
 
 function setup() {
-    // Create canvas on the right side of the UI with more padding
-    let canvasX = 340; // Increased from 320 to add more padding
-    let canvasY = 10;  // Small top margin
+    // Create a container for everything
+    let container = createDiv();
+    container.style('position', 'relative');
+    container.style('width', '1170px'); // 320px UI + 20px padding + 800px canvas
+    container.style('height', '630px');  // 600px canvas + 20px padding
+    container.style('border', '5px solid #333');
+    container.style('box-sizing', 'border-box');
+    container.style('background-color', '#fff');
+    container.style('margin', '0 auto'); // Center the container
+    container.id('main-container');
+    
+    // Create canvas
     createCanvas(800, 600);
-    // Move the canvas to the right position
+    // Move the canvas to the right position inside the container
     let canvas = document.querySelector('canvas');
     canvas.style.position = 'absolute';
-    canvas.style.left = canvasX + 'px';
-    canvas.style.top = canvasY + 'px';
+    canvas.style.left = '340px';
+    canvas.style.top = '10px';
+    canvas.style.display = 'block';
+    // Move canvas into container
+    container.child(canvas);
     
     // Add scene selector UI at the top left with increased margin
     for (let i = 0; i < scenes.length; i++) {
         let button = createButton(scenes[i]);
-        button.position(20 + i * 58, 10); // Increased left margin from 10 to 20, adjusted spacing
+        button.position(20, 10); // Position relative to container
+        button.style('position', 'absolute');
+        button.style('left', (20 + i * 58) + 'px');
+        button.style('top', '10px');
         button.mousePressed(() => selectScene(scenes[i]));
         button.class('scene-button');
         button.style('padding', '5px 8px');
+        // Add button to container
+        container.child(button);
         buttons.push(button);
     }
     
@@ -386,8 +415,8 @@ function setup() {
 
 // Update window resize handler to account for new padding
 function windowResized() {
-    // Ensure minimum space for UI (320px + padding) and canvas (800px)
-    let minWidth = 1140; // 320px UI + 20px padding + 800px canvas
+    // Ensure minimum space for UI (320px + padding) and canvas (800px) plus border
+    let minWidth = 1150; // 1140px container + 10px margin
     
     if (window.innerWidth < minWidth) {
         // If window is too small, add scrollbars
@@ -397,11 +426,14 @@ function windowResized() {
             document.body.style.minWidth = 'auto';
         }
     }
+    
+    // Center the container
+    let container = document.getElementById('main-container');
+    if (container) {
+        container.style.margin = '10px auto';
+    }
 }
 
-// Call windowResized once at start to set initial state
-windowResized();
-    
 function draw() {
     // Draw different backgrounds based on scene
     switch(currentScene) {
