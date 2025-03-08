@@ -161,12 +161,13 @@ function createParameterControls() {
 function createSceneControls() {
     // Container for genome controls
     let panel = createDiv();
-    panel.position(20, 350);  // Increased left margin from 10 to 20
+    panel.position(20, 350);
     panel.style('background-color', '#f0f0f0');
     panel.style('padding', '10px');
     panel.style('border-radius', '5px');
-    panel.style('width', '280px'); // Reduced from 300 to allow for margins
-    panel.style('margin-right', '20px'); // Add right margin
+    panel.style('width', '280px');
+    panel.style('margin-right', '20px');
+    panel.style('height', '240px');
     
     // Add a title to the panel
     let title = createDiv('Genome Controls');
@@ -392,7 +393,9 @@ function windowResized() {
         // If window is too small, add scrollbars
         document.body.style.minWidth = minWidth + 'px';
     } else {
-        document.body.style.minWidth = 'auto';
+        if (document.body) {
+            document.body.style.minWidth = 'auto';
+        }
     }
 }
 
