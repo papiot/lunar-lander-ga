@@ -103,10 +103,19 @@ const REFERENCE_GRAVITY = 1.62;
 function createParameterControls() {
     // Container for parameters
     let panel = createDiv();
-    panel.position(10, 50);
+    panel.position(20, 50); // Increased left margin from 10 to 20
     panel.style('background-color', '#f0f0f0');
     panel.style('padding', '10px');
     panel.style('border-radius', '5px');
+    panel.style('width', '280px'); // Reduced from 300 to allow for margins
+    panel.style('margin-right', '20px'); // Add right margin
+    
+    // Add a title to the panel
+    let title = createDiv('Scene Parameters');
+    title.parent(panel);
+    title.style('font-weight', 'bold');
+    title.style('margin-bottom', '10px');
+    title.style('font-size', '16px');
     
     const parameters = [
         { name: 'gravity', label: 'Gravity (m/s²)', min: 0, max: 20, step: 0.1 },
@@ -124,14 +133,19 @@ function createParameterControls() {
         let container = createDiv();
         container.parent(panel);
         container.style('margin', '5px 0');
+        container.style('display', 'flex');
+        container.style('justify-content', 'space-between');
+        container.style('align-items', 'center');
         
         let label = createSpan(param.label + ': ');
         label.parent(container);
+        label.style('flex', '1');
         
         let input = createInput(sceneParameters[currentScene][param.name].toString(), 'number');
         input.parent(container);
-        input.style('width', '60px');
-        input.style('margin-left', '5px');
+        input.style('width', '80px');
+        input.style('margin-left', '10px');
+        input.style('padding', '2px 5px');
         input.attribute('min', param.min);
         input.attribute('max', param.max);
         input.attribute('step', param.step);
@@ -147,20 +161,32 @@ function createParameterControls() {
 function createSceneControls() {
     // Container for genome controls
     let panel = createDiv();
-    panel.position(10, 300);  
+    panel.position(20, 350);  // Increased left margin from 10 to 20
     panel.style('background-color', '#f0f0f0');
     panel.style('padding', '10px');
     panel.style('border-radius', '5px');
-    panel.style('width', '300px');
+    panel.style('width', '280px'); // Reduced from 300 to allow for margins
+    panel.style('margin-right', '20px'); // Add right margin
+    
+    // Add a title to the panel
+    let title = createDiv('Genome Controls');
+    title.parent(panel);
+    title.style('font-weight', 'bold');
+    title.style('margin-bottom', '10px');
+    title.style('font-size', '16px');
 
     // Genome input
     let label = createSpan('Genome: ');
     label.parent(panel);
+    label.style('display', 'block');
+    label.style('margin-bottom', '5px');
     
     genomeInput = createInput('');
     genomeInput.parent(panel);
-    genomeInput.style('width', '280px');
-    genomeInput.style('margin', '5px 0');
+    genomeInput.style('width', '100%');
+    genomeInput.style('box-sizing', 'border-box');
+    genomeInput.style('margin', '5px 0 10px 0');
+    genomeInput.style('padding', '5px');
     genomeInput.attribute('placeholder', 'Enter genome string...');
     
     // Try to load saved genome for this scene
@@ -221,11 +247,14 @@ function createSceneControls() {
     buttonContainer.style('display', 'flex');
     buttonContainer.style('gap', '10px');
     buttonContainer.style('margin-top', '10px');
+    buttonContainer.style('justify-content', 'space-between');
 
     // Play button
     playButton = createButton('Play Genome');
     playButton.parent(buttonContainer);
     playButton.class('action-button');
+    playButton.style('flex', '1');
+    playButton.style('padding', '8px');
     playButton.mousePressed(() => {
         resetLander();
     });
@@ -234,6 +263,8 @@ function createSceneControls() {
     trainButton = createButton('Train + Play');
     trainButton.parent(buttonContainer);
     trainButton.class('action-button');
+    trainButton.style('flex', '1');
+    trainButton.style('padding', '8px');
 
     trainButton.mousePressed(async () => {
         // Get parameters adjusted for current gravity
@@ -257,13 +288,14 @@ function createSceneControls() {
     let buttonContainer2 = createDiv();
     buttonContainer2.parent(panel);
     buttonContainer2.style('display', 'flex');
-    buttonContainer2.style('gap', '10px');
     buttonContainer2.style('margin-top', '10px');
     
     // Load previous success button
     let loadButton = createButton('Load Previous Success');
     loadButton.parent(buttonContainer2);
     loadButton.class('action-button');
+    loadButton.style('width', '100%');
+    loadButton.style('padding', '8px');
     loadButton.mousePressed(() => {
         try {
             const savedScene = localStorage.getItem('lastSuccessfulScene');
@@ -324,18 +356,48 @@ function createSceneControls() {
 }
 
 function setup() {
+    // Create canvas on the right side of the UI with more padding
+    let canvasX = 340; // Increased from 320 to add more padding
+    let canvasY = 10;  // Small top margin
     createCanvas(800, 600);
-    // Add scene selector UI
+    // Move the canvas to the right position
+    let canvas = document.querySelector('canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.left = canvasX + 'px';
+    canvas.style.top = canvasY + 'px';
+    
+    // Add scene selector UI at the top left with increased margin
     for (let i = 0; i < scenes.length; i++) {
         let button = createButton(scenes[i]);
-        button.position(10 + i * 100, 10);
+        button.position(20 + i * 58, 10); // Increased left margin from 10 to 20, adjusted spacing
         button.mousePressed(() => selectScene(scenes[i]));
         button.class('scene-button');
+        button.style('padding', '5px 8px');
         buttons.push(button);
     }
+    
     // Default to Moon scene
     selectScene('Moon');
+    
+    // Add window resize handler
+    window.addEventListener('resize', windowResized);
 }
+
+// Update window resize handler to account for new padding
+function windowResized() {
+    // Ensure minimum space for UI (320px + padding) and canvas (800px)
+    let minWidth = 1140; // 320px UI + 20px padding + 800px canvas
+    
+    if (window.innerWidth < minWidth) {
+        // If window is too small, add scrollbars
+        document.body.style.minWidth = minWidth + 'px';
+    } else {
+        document.body.style.minWidth = 'auto';
+    }
+}
+
+// Call windowResized once at start to set initial state
+windowResized();
     
 function draw() {
     // Draw different backgrounds based on scene
