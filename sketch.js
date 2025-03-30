@@ -65,10 +65,10 @@ let lander = {
     angularVel: 0,
     isPlaying: false,
     crashed: false,
-    color: [180, 180, 180] // Default gray color [R,G,B]
+    color: [180, 180, 180]
 };
 
-// Add these to your global variables
+// Global variables
 let currentManeuver = 0;
 let maneuverStartTime = 0;
 let maneuvers = [];
@@ -78,7 +78,7 @@ let activeThrusters = {
     right: false
 };
 
-// Add these global variables at the top
+// Global variables
 let population = [];
 const BASE_POPULATION_SIZE = 10000;
 const BASE_MUTATION_RATE = 0.1;
@@ -87,14 +87,17 @@ let currentGeneration = 0;
 let bestFitness = -Infinity;
 let bestGenome = '';
 
-// Add global variables for tracking frozen L/R genes
-let hasFoundGoodAngle = false;  // Flag indicating if we've found a good landing angle
-let frozenLRGenes = [];  // Will store the L/R genes that achieved good angle
-let frozenLRPositions = [];  // Will store the positions of L/R genes in the genome
-let genomeTemplate = [];  // Will store the entire genome template when a good angle is found
+// Global Variables for L/R frozen genes
+// Flag indicating if we've found a good landing angle
+let hasFoundGoodAngle = false;  
+// Will store the L/R genes that achieved good angle
+let frozenLRGenes = [];  
+// Will store the positions of L/R genes in the genome
+let frozenLRPositions = [];  
+// Will store the entire genome template when a good angle is found
+let genomeTemplate = [];  
 
 const PHYSICS_SCALE = 0.05;  
-// Modified to be base values that will scale with gravity
 const BASE_MAIN_THRUSTER_FORCE = 4.0;  
 const BASE_SIDE_THRUSTER_FORCE = 0.05;  
 // Reference gravity to scale against (Moon gravity)
@@ -110,13 +113,11 @@ function createParameterControls() {
     panel.style('width', '280px');
     panel.style('margin-right', '20px');
     
-    // Add panel to main container
     let container = document.getElementById('main-container');
     if (container) {
         container.appendChild(panel.elt);
     }
     
-    // Add a title to the panel
     let title = createDiv('Scene Parameters');
     title.parent(panel);
     title.style('font-weight', 'bold');
@@ -175,13 +176,11 @@ function createSceneControls() {
     panel.style('margin-right', '20px');
     panel.style('height', '240px'); // Adjusted to reach the bottom with padding
     
-    // Add panel to main container
     let container = document.getElementById('main-container');
     if (container) {
         container.appendChild(panel.elt);
     }
     
-    // Add a title to the panel
     let title = createDiv('Genome Controls');
     title.parent(panel);
     title.style('font-weight', 'bold');
@@ -427,7 +426,6 @@ function windowResized() {
         }
     }
     
-    // Center the container
     let container = document.getElementById('main-container');
     if (container) {
         container.style.margin = '10px auto';
@@ -880,8 +878,10 @@ function drawLander() {
     pop();
 }
 
-// Add these functions for the genetic algorithm
-
+// For the genetic algorithm, inspiration was taken from these sources:
+// https://github.com/rafa2000/Top-Genetic-Algorithm/blob/master/readme.md
+// https://github.com/varzival/genetic_space_landing
+// https://github.com/openai/gym/blob/dcd185843a62953e27c2d54dc8c2d647d604b635/gym/envs/box2d/lunar_lander.py#L75
 function initializePopulation(populationSize = BASE_POPULATION_SIZE) {
     population = [];
     
@@ -1007,6 +1007,8 @@ function generateRandomGenome() {
     return genome;
 }
 
+// The fitness function code is inspired by this reference:
+// https://stackoverflow.com/questions/1575061/ga-written-in-java
 function evaluateFitness(genome) {
     return new Promise(resolve => {
         genomeInput.value(genome);
@@ -1805,7 +1807,6 @@ async function trainGeneration(params = { populationSize: BASE_POPULATION_SIZE, 
     return currentGeneration < params.generationLimit;
 }
 
-// Add these functions to adjust GA parameters based on gravity
 function getGravityAdjustedParameters() {
     const gravity = sceneParameters[currentScene].gravity;
     const gravityFactor = gravity / REFERENCE_GRAVITY;
